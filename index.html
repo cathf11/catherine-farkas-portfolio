@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catherine Farkas | BI Consultant & Data Strategy Portfolio</title>
+
+   <meta name="description" content="Business Analyst with a global focus. I transform complex data into strategy and clarity to drive ROI for international teams.">
+
+    <link rel="icon" type="image/png" href="https://placehold.co/32x32/06B6D4/ffffff?text=CF">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJ9w6lJ8E+c4G6fM3iYJkK9J30L/b+6Q/9+8qXw/O+A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* CONFIGURACIÓN BASE Y TIPOGRAFÍA */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc; /* Fondo blanco muy suave */
+            color: #1f2937; /* Texto principal oscuro */
+        }
+
+        :root {
+            --color-cian: #06B6D4; /* Tailwind cyan-500 */
+            --color-shadow-light: rgba(6, 182, 212, 0.15); /* Sombra suave cian */
+        }
+
+        /* EFECTO DE VIDRIO ESMERILADO (Para header/nav) */
+        .glass-header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Estilo para las tarjetas (Notion-Like: limpio y con sombra sutil) */
+        .card-pro {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb; /* Borde muy claro */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03); /* Sombra muy sutil */
+        }
+
+        /* CLASE CRÍTICA: La tarjeta del proyecto 1 es clickeable entera */
+        .clickable-card:hover {
+            /* EFECTO GLOW AÑADIDO (Resplandor cian) */
+            cursor: pointer; /* Indica interactividad */
+            transform: translateY(-4px); /* Se levanta un poco más */
+            border-color: var(--color-cian); /* Borde se vuelve cian para destacar */
+            /* Sombra que incluye el resplandor del color principal */
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2), 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Títulos de sección con una línea de acento */
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background-color: var(--color-cian);
+            border-radius: 9999px;
+        }
+
+        /* Estilo para el nombre del proyecto (Igual que los títulos de grupo de habilidades) */
+        .project-name-title {
+            font-weight: 800; /* Extra-bold */
+            color: #1f2937; /* Gray-800 */
+            font-size: 1.25rem; /* text-xl */
+            margin-bottom: 0.5rem;
+        }
+
+        /* ESTILOS PARA LA LISTA MINIMALISTA DE HABILIDADES (Notion-like) */
+        .skill-list-group {
+            background-color: #ffffff; /* Blanco limpio */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+            min-height: 220px;
+        }
+        /* Estilo para los iconos de la lista de habilidades - Font Awesome */
+        .skill-icon {
+            color: #06B6D4; /* Cian para el color del icono */
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+            font-size: 20px;
+            line-height: 1.2;
+        }
+
+        /* Botón de acento cian con degradado */
+        .btn-cian {
+            background-image: linear-gradient(to right, #06b6d4, #38bdf8); /* Cian a Azul Claro */
+            color: white;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px var(--color-shadow-light);
+        }
+        .btn-cian:hover {
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+            transform: translateY(-1px);
+        }
+
+        /* Botón de contacto flotante */
+        .floating-button {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 50;
+        }
+
+        /* Estilo específico para el bloque de imagen de proyecto: */
+        .project-visual {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            object-fit: cover; /* CRÍTICO: Asegura que la imagen/GIF ocupe todo el contenedor */
+            background-color: #f0f8ff; /* Fondo muy claro para el contenedor de la imagen */
+        }
+
+        /* NUEVOS ESTILOS PARA LOS TAGS DE TECNOLOGÍA (Armónicos con el cian) */
+        .tech-tag {
+            display: inline-flex;
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 600; /* font-semibold */
+            padding: 0.25rem 0.625rem; /* px-2 py-1 */
+            border-radius: 9999px; /* rounded-full */
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+      
+        /* Paleta de colores renovada (¡COLORES VIVOS!) */
+        
+        /* Azul/Cian (Power BI, DAX, QGIS) */
+        .tag-bi {
+            background-color: #cffafe; /* cyan-100 */
+            color: #155e75; /* cyan-900 */
+        }
+        /* Verde (ETL, SQL) */
+        .tag-data {
+            background-color: #d1fae5; /* emerald-100 */
+            color: #065f46; /* emerald-800 */
+        }
+        /* Púrpura (Figma, Diseño) */
+        .tag-design {
+            background-color: #ede9fe; /* violet-100 */
+            color: #5b21b6; /* violet-700 */
+        }
+
+        /* --- ESTILOS DEL MODAL (CRÍTICO) --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
+            backdrop-filter: blur(4px); /* Efecto de borroso en el fondo */
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 9999;
+            display: none; /* Oculto por defecto */
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-content {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            max-width: 90%; /* Ancho máximo en móvil */
+            width: 1100px; /* Ancho deseado en desktop */
+            max-height: 90vh; /* Altura máxima para evitar desbordamiento */
+            overflow: hidden; /* Importante para que el body interno gestione el scroll */
+            transform: scale(0.95);
+            transition: transform 0.3s ease-in-out;
+            /* FIX APLICADO: Hacemos el contenedor principal flexible para que el cuerpo tome el espacio restante */
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-overlay.open {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-overlay.open .modal-content {
+            transform: scale(1);
+        }
+        .dashboard-iframe-container {
+            position: relative;
+            width: 100%;
+            /* Esto define la proporción 16:9, ajusta según el aspecto de tu BI */
+            padding-top: 56.25%;
+        }
+        .dashboard-iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Estilos para que el scroll del contenido no afecte el fondo */
+        .modal-body-scroll {
+            /* FIX APLICADO: Permite que esta sección ocupe el espacio restante y añade el scroll */
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        /* Ajuste para que el header fijo no tape los títulos al hacer scroll */
+        section {
+        scroll-margin-top: 100px; /* ajusta según la altura real de tu header */
+        }
+
+
+        /* --- ESTILOS PARA LA GALERÍA CF VIZTECH (MINIMALISTA) --- */
+
+        .cf-insight-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem; /* rounded-xl */
+            display: block;
+            /* Cambio CRÍTICO: Plano por defecto para más cohesión */
+            box-shadow: none; 
+            border: 1px solid #e5e7eb; /* Borde sutil como el resto de tus tarjetas */
+            background-color: white; 
+            transition: transform 0.3s ease;
+        }
+
+        /* Efecto Hover: se levanta ligeramente y aparece la sombra */
+        .cf-insight-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            border-color: #d1d5db; /* Border un poco más oscuro al hacer hover */
+        }
+
+        .cf-insight-image {
+            width: 100%;
+            /* Proporción 1:1 (cuadrada) para ahorrar espacio vertical */
+            aspect-ratio: 1/1; 
+            object-fit: cover;
+            display: block;
+        }
+
+        .cf-insight-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(6, 182, 212, 0.85); /* Cian semi-transparente */
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s ease;
+            text-align: center;
+            padding: 1rem;
+            cursor: pointer;
+        }
+
+        /* El overlay aparece al hacer hover */
+        .cf-insight-card:hover .cf-insight-overlay {
+            opacity: 1;
+        }
+
+        .cf-insight-title {
+            color: white;
+            font-weight: 700; /* font-bold */
+            /* text-base (más pequeño) */
+            font-size: 1rem; 
+            margin-bottom: 0.5rem;
+        }
+
+        .cf-insight-icon {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+      /* ESTILO EXTRA PARA LOS ICONOS DEL MENÚ MÓVIL (Iconos azul cyan) */
+    .mobile-menu-icon {
+        color: #06B6D4; /* Color Cian (var(--color-cian)) */
+        margin-right: 0.5rem;
+        width: 1.25rem; /* Ajuste para mantener la alineación */
+        text-align: center;
+    }
+
+    .mobile-menu-item:hover .mobile-menu-icon {
+        color: #38bdf8; /* Cian a Azul Claro (transición) */
+        transition: color 0.3s ease;
+    }
+
+    </style>
+</head>
+
+
+    <body class="antialiased">
+
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <header id="main-header" class="mb-12 py-4 sticky top-0 z-30 glass-header rounded-b-xl">
+
+<div class="flex justify-between items-center px-4 max-w-7xl mx-auto">
+    <a href="#hero" class="text-xl font-semibold text-gray-800">
+      <span class="text-cyan-500 mr-1">CF</span> Analytics
+    </a>
+    
+<nav class="space-x-4 sm:space-x-6 hidden sm:block nav-links">
+  <a href="#impact" class="text-sm font-medium text-gray-600 transition duration-150">Impact</a>
+  <a href="#projects" class="text-sm font-medium text-gray-600 transition duration-150">Projects</a>
+  <a href="#about" class="text-sm font-medium text-gray-600 transition duration-150">About Me</a>
+  <a href="#experience" class="text-sm font-medium text-gray-600 transition duration-150">Experience</a>
+  <a href="#skills" class="text-sm font-medium text-gray-600 transition duration-150">Data Skills</a>
+  <a href="#blog" class="text-sm font-medium text-gray-600 transition duration-150">Blog</a>
+  <a href="#contact" class="text-sm font-medium text-gray-600 transition duration-150">Contact</a>
+</nav>
+
+    <button id="menu-toggle" class="sm:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 transition duration-150" aria-label="Abrir Menú de Navegación">
+      <i class="fa-solid fa-bars text-xl"></i>
+    </button>
+  </div>
+</header>
+
+<style>
+/* ===== EFECTO HOVER CON SUBRAYADO ANIMADO ===== */
+.nav-links a {
+  position: relative;
+  color: #4b5563; /* gray-600 */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-cian, #06B6D4);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.nav-links a:hover {
+  color: var(--color-cian, #06B6D4);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ===== SCROLL SUAVE ENTRE SECCIONES ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+</style>
+
+<!-- MOBILE MENU -->
+
+<nav id="mobile-menu" class="fixed top-20 right-4 w-64 bg-white p-6 rounded-xl shadow-2xl border border-gray-200 z-30 transition-all duration-300 ease-in-out transform scale-95 opacity-0 invisible sm:hidden">
+  <div class="flex flex-col space-y-4">
+    <a href="#impact" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item"><i class="fa-solid fa-chart-line mobile-menu-icon"></i> Impact</a>
+    <a href="#projects" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item"><i class="fa-solid fa-folder-open mobile-menu-icon"></i> Projects</a>
+    <a href="#about" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item"><i class="fa-solid fa-user-tie mobile-menu-icon"></i> About Me</a>
+    <a href="#experience" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item"><i class="fa-solid fa-briefcase mobile-menu-icon"></i> Experience</a>
+    <a href="#skills" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item"><i class="fa-solid fa-brain mobile-menu-icon"></i> Data Skills </a>
+    <a href="#blog" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item"><i class="fa-solid fa-pencil mobile-menu-icon"></i> Blog</a>
+    <a href="#contact" class="text-base font-bold text-cyan-600 hover:text-cyan-800 transition duration-150 pt-2 mobile-menu-item"><i class="fa-solid fa-envelope-open-text mobile-menu-icon"></i> Direct Contact</a>
+  </div>
+</nav>
+
+<!-- SECCIÓN 1: HERO SUMMARY -->
+
+        <section id="hero" class="pt-12 pb-20 mb-16 text-center bg-white rounded-2xl shadow-xl border border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="flex justify-center mb-8">
+            <img src="images/Catherine_Farkas_Profile_Picture.jpg"
+                 alt="Catherine Farkas profile picture"
+                 class="rounded-full w-40 h-40 object-cover shadow-xl border-4 border-white transition-all duration-300 hover:shadow-cyan-500/30 hover:scale-105">
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-gray-900 leading-snug mb-4 tracking-tight">
+                Transforming Data Stories into
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
+                    Business Decisions.
+                </span>
+            </h1>
+            
+            <p class="text-xl sm:text-2xl text-gray-600 mb-8 font-light">
+                Business Analyst and BI Consultant, bridging the gap between business needs and data insights—from strategy and governance to user-focused analytics.
+            </p>
+
+            <a href="#projects" class="btn-cian px-10 py-4 text-lg font-semibold rounded-full shadow-lg transition-all duration-300 hover:-translate-y-px">
+                Explore Case Studies
+            </a>
+
+
+            <div class="mt-12 flex justify-center space-x-8">
+                <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/" target="_blank" class="text-gray-400 hover:text-cyan-500 transition duration-300" aria-label="LinkedIn Profile">
+                    <i class="fa-brands fa-linkedin text-3xl"></i>
+                </a>
+                <a href="mailto:catherinefarkas1@gmail.com" class="text-gray-400 hover:text-cyan-500 transition duration-300" aria-label="Send Email">
+                    <i class="fa-solid fa-envelope text-3xl"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SECCIÓN 2: QUANTIFIED IMPACT -->
+       
+        <section id="impact" class="mb-16 max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
+        Quantified Impact
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div class="card-pro p-6 rounded-xl text-center hover:shadow-lg transition-shadow duration-300">
+            <span class="block text-5xl font-bold text-cyan-500 mb-2">35%</span>
+            <p class="text-lg font-semibold text-gray-800">Reduction in Reporting Time</p>
+            <p class="text-sm text-gray-500 mt-1">Streamlined data preparation and automated reporting workflows.</p>
+        </div>
+
+        <div class="card-pro p-6 rounded-xl text-center hover:shadow-lg transition-shadow duration-300">
+            <span class="block text-5xl font-bold text-cyan-500 mb-2">95%</span>
+            <p class="text-lg font-semibold text-gray-800">KPI Consistency</p>
+            <p class="text-sm text-gray-500 mt-1">Defined data quality and governance standards in strategic reports.</p>
+        </div>
+
+        <div class="card-pro p-6 rounded-xl text-center hover:shadow-lg transition-shadow duration-300">
+            <span class="block text-5xl font-bold text-cyan-500 mb-2">+2 Pts</span>
+            <p class="text-lg font-semibold text-gray-800">Improvement in Usability Score (UX)</p>
+            <p class="text-sm text-gray-500 mt-1">Applied UX/UI design principles to executive dashboards.</p>
+        </div>
+    </div>
+</section>
+
+<!-- SECCIÓN 3: PROJECTS & CASES OF STUDIES -->
+
+<!-- SECCIÓN 3: PROJETCO 1 MARKETING DASHBOARD -->
+
+        <section id="projects" class="mb-16">
+    <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
+        Featured Projects
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div
+            class="card-pro p-6 rounded-xl flex flex-col clickable-card"
+            onclick="openModal('dashboard-marketing-modal', 'https://app.powerbi.com/view?r=eyJrIjoiNWRhZDA0NTUtYjlkNi00M2E4LTk3Y2UtNzI1ZDc4N2ZiYWNmIiwidCI6IjA2NjFhYzVkLWI0YTQtNDE1YS05ZWQ5LTZjNmNjZDE4M2UxOCJ9')"
+        >
+            <img
+                src="images/projects/GIF_Marketing_Campaign.gif"
+                alt="Animated preview of the Marketing Campaign Insight dashboard"
+                class="project-visual"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x200/0d9488/ffffff?text=EXECUTIVE+BI+DASHBOARD'"
+            />
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Marketing Campaign Insight</h3>
+            <p class="text-gray-600 flex-grow mb-4">
+                A 360-degree view of marketing performance. This dashboard unifies data from 5 campaigns to track real-time ROI, platform success, and product sales, identifying the most valuable customer segments to <strong>optimize the marketing budget</strong>.
+            </p>
+            <div class="flex flex-wrap mb-4">
+                <span class="tech-tag tag-bi">Power BI</span>
+                <span class="tech-tag tag-data">ETL</span>
+                <span class="tech-tag tag-bi">DAX</span>
+                <span class="tech-tag tag-design">Figma</span>
+            </div>
+            
+            <div class="mt-auto text-sm font-medium text-cyan-600 flex items-center justify-start hover:underline">
+                Explore Project
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </div>
+        </div>
+
+<!-- SECCIÓN 3 PROJECTOS: PROJECTO 2 OPERATIONAL INSIGHT DASHBOARD -->
+
+        <div
+            class="card-pro p-6 rounded-xl flex flex-col clickable-card"
+            onclick="openModal('operational-insights-modal', 'https://app.powerbi.com/view?r=eyJrIjoiOTkyZmQ3ZmUtZDc5Yy00ODk4LTk2M2MtZjFkNDI4ZWRkNGM2IiwidCI6IjA2NjFhYzVkLWI0YTQtNDE1YS05ZWQ5LTZjNmNjZDE4M2UxOCJ9')"
+        >
+            <img
+                src="images/projects/GIF_Operational_Tickets.gif"
+                alt="Animated preview of the Operational Insights dashboard"
+                class="project-visual"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x200/10b981/ffffff?text=OPERATIONS+DASHBOARD'"
+            />
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Operational Insights Dashboard</h3>
+            <p class="text-gray-600 flex-grow mb-4">
+                A Help Desk dashboard designed for managers. It splits the view between <strong>Ticket process KPIs</strong> and <strong>Agent Performance</strong> to quickly identify bottlenecks and team support needs.
+            </p>
+            <div class="flex flex-wrap mb-4">
+                <span class="tech-tag tag-bi">Power BI</span>
+                <span class="tech-tag tag-data">ETL</span>
+                <span class="tech-tag tag-bi">DAX</span>
+                <span class="tech-tag tag-design">Figma</span>
+            </div>
+
+            <div class="mt-auto text-sm font-medium text-cyan-600 flex items-center justify-start hover:underline">
+                Explore Project
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </div>
+        </div>
+   
+<!-- SECCIÓN 3 PROJECTOS: PROJECTO 3 COVID ANALYSIS -->
+
+        <div
+            class="card-pro p-6 rounded-xl flex flex-col clickable-card"
+            onclick="openModal('project-covid-modal', 'https://docs.google.com/presentation/d/1CkJWqZfxVcdNvLhj9RI0QxySiCniHwEF/embed?start=false&loop=false&delayms=3000')"
+        >
+            <img
+                src="images/projects/GIF_COVID_Analysis.gif"
+                alt="Animated preview of the COVID-19 geospatial analysis"
+                class="project-visual"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https...://placehold.co/600x200/3b82f6/ffffff?text=COVID+ANALYSIS'"
+            />
+            <h3 class="text-lg font-bold text-gray-800 mb-2">COVID-19 in Europe: Analysing the Pandemic's Effects</h3>
+            <p class="text-gray-600 flex-grow mb-4">
+                An end-to-end analysis of the COVID-19 pandemic. This project combines <strong>QGIS geospatial mapping</strong> with <strong>Power BI statistical analysis</strong> to identify key trends and critical outliers in Europe.
+            </p>
+            <div class="flex flex-wrap mb-4">
+                <span class="tech-tag tag-bi">QGIS</span>
+                <span class="tech-tag tag-data">ETL</span>
+                <span class="tech-tag tag-bi">Power BI</span>
+            </div>
+
+            <div class="mt-auto text-sm font-medium text-cyan-600 flex items-center justify-start hover:underline">
+                Explore Project
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+            </div>
+        </div>
+
+<!-- SECCIÓN 4 ABOUT ME -->
+
+    </div> </section> <section id="about" class="py-16 mb-16 max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
+        The Story Behind the Analyst </h2>
+    
+    <div class="card-pro p-10 md:p-12 rounded-xl bg-white shadow-lg border border-gray-100 max-w-5xl mx-auto">
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+
+            <div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">
+                    1. The Foundation
+                </h3>
+                <div class="w-16 h-1 bg-cyan-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-gray-600 text-base"> 
+                    My foundation is in communication: learning to investigate, find the most important angle, and build a compelling narrative.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">
+                    2. The Pivot
+                </h3>
+                <div class="w-16 h-1 bg-cyan-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-gray-600 text-base">
+                    But a good story needs proof. My path wasn't linear: I moved to London, dove in, and saw firsthand the gap between businesses and the 'why' of their customers.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="text-xl font-bold text-gray-800 mb-3">
+                    3. The Toolkit
+                </h3>
+                <div class="w-16 h-1 bg-cyan-500 mx-auto rounded-full mb-4"></div>
+                <p class="text-gray-600 text-base">
+                    That 'why' led me to a Master's in Consumer Analytics at Leeds to build the technical toolkit I needed to find the proof and bridge that gap.
+                </p>
+            </div>
+        </div>
+
+        <hr class="my-10 border-gray-200">
+
+        <div class="text-center max-w-3xl mx-auto p-6 bg-gray-50 rounded-lg border border-gray-200">
+            
+            <h3 class="text-xl font-bold text-gray-800 mb-4">
+                That "Communication-First, Data-Powered" background is my competitive edge in BI.
+            </h3>
+            
+            <p class="text-gray-600 text-base mb-4">
+                Whether I'm cleaning a dataset or building a dashboard, my focus is always on the <strong>audience</strong> and the <strong>actionable narrative</strong>.
+            </p>
+            
+            <p class="font-semibold text-cyan-700 text-lg mt-6">
+                Because data is only valuable when it's understood.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- SECCIÓN 5: EXPERIENCE & EDUCATION -->
+
+<section id="experience" class="mb-14">
+ 
+ <h2 class="text-3xl font-bold text-gray-800 text-center mb-10 section-title">
+  Experience & Education
+ </h2>
+
+  <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-md border border-gray-100 p-6">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <div>
+        <h3 class="text-lg font-bold text-gray-800 mb-3 border-b pb-1">Work Experience</h3>
+
+        <div class="timeline-item mb-5 relative pl-6">
+          <div class="timeline-dot absolute left-0 top-1.5 w-2.5 h-2.5 bg-cyan-500 rounded-full"></div>
+          <p class="font-semibold text-gray-900 text-sm">Business Intelligence & Data Analytics</p>
+          <p class="text-xs text-gray-600 italic mb-1">MarkTech Industry | Aug 2021 – Sep 2025. Spain (Remote)</p>
+          
+          <ul class="text-xs text-gray-500 list-disc ml-4 space-y-1.5">
+            <li>
+                <strong>Led the end-to-end technical lifecycle of BI solutions,</strong> focusing on advanced data modeling, complex ETL processes, and the design of high-impact, user-focused visualizations.
+            </li>
+            <li>
+                <strong>Acted as the primary BI partner for stakeholders,</strong> translating complex business needs into technical requirements, defining KPI governance, and delivering strategic, data-driven recommendations.
+            </li>
+          </ul>
+        </div>
+
+        <div class="timeline-item mb-4 relative pl-6">
+          <div class="timeline-dot absolute left-0 top-1.5 w-2.5 h-2.5 bg-cyan-500 rounded-full"></div>
+          <p class="font-semibold text-gray-900 text-sm">Assistant Manager</p>
+          <p class="text-xs text-gray-600 italic mb-1">Fullers | Mar 2017 – Aug 2018. UK (London)</p>
+          <ul class="text-xs text-gray-500 list-disc ml-4 space-y-0.5">
+            <li>Led multicultural teams and enhanced operational efficiency in a high-pressure, English-speaking environment.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold text-gray-800 mb-3 border-b pb-1">Education & Training</h3>
+
+        <div class="timeline-item mb-5 relative pl-6">
+          <div class="timeline-dot absolute left-0 top-1.5 w-2.5 h-2.5 bg-cyan-500 rounded-full"></div>
+          <p class="font-semibold text-gray-900 text-sm">Data Visualization Program</p>
+          <p class="text-xs text-gray-600 italic mb-1">Escuela de Organización Industrial (EOI), Spain | 2023</p>
+          <p class="text-xs text-gray-500">Specialized training in advanced dashboard design and data storytelling.</p>
+        </div>
+
+        <div class="timeline-item mb-5 relative pl-6">
+          <div class="timeline-dot absolute left-0 top-1.5 w-2.5 h-2.5 bg-cyan-500 rounded-full"></div>
+          <p class="font-semibold text-gray-900 text-sm">MsC Consumer Analytics & Marketing Strategy</p>
+          <p class="text-xs text-gray-600 italic mb-1">University of Leeds, UK | 2018 – 2019</p>
+          <p class="text-xs text-gray-500">Focus on predictive models, KPI analysis, and strategic visualization.</p>
+        </div>
+        
+        <div class="timeline-item mb-4 relative pl-6">
+          <div class="timeline-dot absolute left-0 top-1.5 w-2.5 h-2.5 bg-cyan-500 rounded-full"></div>
+          <p class="font-semibold text-gray-900 text-sm">Degree in Journalism & Mass Media</p>
+          <p class="text-xs text-gray-600 italic mb-1">University of La Laguna, Spain | 2009 – 2013</p>
+           <p class="text-xs text-gray-500">Foundation in communication, research, and data analysis.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<style>
+  /* Línea del timeline (sutil y alineada con los puntos) */
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0.75rem;
+    bottom: 0;
+    width: 2px;
+    background-color: #E2E8F0; /* gris */
+  }
+</style>
+
+
+<!-- SECCIÓN 6: SKILLS -->
+
+
+<section id="skills" class="mb-20 scroll-mt-28">
+  <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
+    Data Skills & Consultancy
+  </h2>
+
+  <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+    
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+      
+      <h3 class="text-base font-semibold text-gray-900 pb-2 mb-4 border-b border-gray-200 flex items-center">
+        <i class="fa-solid fa-brain text-cyan-500 text-2xl mr-3 w-8 text-center"></i>
+        <span>Data Strategy</span>
+      </h3>
+      
+      <p class="text-gray-600 text-sm mb-4">
+        I transform data management into a competitive advantage, designing structures and strategies that drive business decisions.
+      </p>
+      
+      <ul class="text-xs space-y-1">
+        <li class="flex items-start text-gray-500 font-medium italic"> <i class="fa-solid fa-check text-cyan-500 mr-2 mt-1 flex-shrink-0"></i> BI Use Cases aligned with business goals</li>
+        <li class="flex items-start text-gray-500 font-medium italic"> <i class="fa-solid fa-check text-cyan-500 mr-2 mt-1 flex-shrink-0"></i> Data Governance and KPI documentation</li>
+        <li class="flex items-start text-gray-500 font-medium italic"> <i class="fa-solid fa-check text-cyan-500 mr-2 mt-1 flex-shrink-0"></i> Analytical maturity assessment</li>
+      </ul>
+    </div>
+
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+      
+      <h3 class="text-base font-semibold text-gray-900 pb-2 mb-4 border-b border-gray-200 flex items-center">
+        <i class="fa-solid fa-gears text-cyan-500 text-2xl mr-3 w-8 text-center"></i>
+        <span>Analytics & Automation</span>
+      </h3>
+      
+      <p class="text-gray-600 text-sm mb-4">
+        I combine technical tools with analytical thinking to convert data into useful information and efficient processes.
+      </p>
+      
+      <ul class="text-xs space-y-1">
+        <li class="flex items-start text-gray-500 font-medium italic"> <i class="fa-solid fa-check text-cyan-500 mr-2 mt-1 flex-shrink-0"></i> Data modeling and advanced SQL</li>
+        <li class="flex items-start text-gray-500 font-medium italic"> <i class="fa-solid fa-check text-cyan-500 mr-2 mt-1 flex-shrink-0"></i> ETL with Power Query and Python</li>
+        <li class="flex items-start text-gray-500 font-medium italic"> <i class="fa-solid fa-check text-cyan-500 mr-2 mt-1 flex-shrink-0"></i> Executive Dashboards in Power BI</li>
+      </ul>
+    </div>
+
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+      
+      <h3 class="text-base font-semibold text-gray-900 pb-2 mb-4 border-b border-gray-200 flex items-center">
+        <i class="fa-solid fa-bullhorn text-cyan-500 text-2xl mr-3 w-8 text-center"></i>
+        <span>Communication & Storytelling</span>
+      </h3>
+
+      <p class="text-gray-600 text-sm mb-4">
+        Data is only useful if it's understood. I specialize in user-centered design to translate complex analysis into clear, actionable insights.
+      </p>
+      
+      <ul class="text-xs space-y-1">
+        <li class="flex items-start text-gray-500 font-medium italic"> <i class="fa-solid fa-check text-cyan-500 mr-2 mt-1 flex-shrink-0"></i> User-centered dashboards (UX BI)</li>
+        <li class="flex items-start text-gray-500 font-medium italic"> <i class="fa-solid fa-check text-cyan-500 mr-2 mt-1 flex-shrink-0"></i> Data storytelling for executive level</li>
+        <li class="flex items-start text-gray-500 font-medium italic"> <i class="fa-solid fa-check text-cyan-500 mr-2 mt-1 flex-shrink-0"></i> Executive results presentations</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECCIÓN 6.1: TECHNICAL STAK -->
+
+<section id="stack" class="mb-20">
+  <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">
+    Tech Stack
+  </h2>
+
+  <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 text-center">
+
+    <div class="p-4 rounded-xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition duration-300">
+      <img src="images/blog/tech_powerbi.png" alt="Power BI logo" class="mx-auto mb-2 w-12 h-12 object-contain transition-transform duration-200 ease-in-out hover:scale-110">
+      <p class="font-semibold text-gray-800 text-sm">Power BI</p>
+      <p class="text-xs text-gray-500">Visualization</p>
+    </div>
+
+    <div class="p-4 rounded-xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition duration-300">
+      <img src="images/blog/tech_excel.png" alt="Excel logo" class="mx-auto mb-2 w-12 h-12 object-contain transition-transform duration-200 ease-in-out hover:scale-110">
+      <p class="font-semibold text-gray-800 text-sm">Excel</p>
+      <p class="text-xs text-gray-500">Analysis · Reporting</p>
+    </div>
+
+    <div class="p-4 rounded-xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition duration-300">
+      <img src="images/blog/tech_sql.png" alt="SQL logo" class="mx-auto mb-2 w-12 h-12 object-contain transition-transform duration-200 ease-in-out hover:scale-110">
+      <p class="font-semibold text-gray-800 text-sm">SQL</p>
+      <p class="text-xs text-gray-500">ETL</p>
+    </div>
+
+    <div class="p-4 rounded-xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition duration-300">
+      <img src="images/blog/tech_python.png" alt="Python logo" class="mx-auto mb-2 w-12 h-12 object-contain transition-transform duration-200 ease-in-out hover:scale-110">
+      <p class="font-semibold text-gray-800 text-sm">Python</p>
+      <p class="text-xs text-gray-500">EDA · Data Prep</p>
+    </div>
+
+    <div class="p-4 rounded-xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition duration-300">
+      <img src="images/blog/tech_jira.png" alt="Jira logo" class="mx-auto mb-2 w-12 h-12 object-contain transition-transform duration-200 ease-in-out hover:scale-110">
+      <p class="font-semibold text-gray-800 text-sm">Jira</p>
+      <p class="text-xs text-gray-500">Agile Management</p>
+    </div>
+
+    <div class="p-4 rounded-xl border border-gray-100 bg-white shadow-sm hover:shadow-md transition duration-300">
+      <img src="images/blog/tech_figma.png" alt="Figma logo" class="mx-auto mb-2 w-12 h-12 object-contain transition-transform duration-200 ease-in-out hover:scale-110">
+      <p class="font-semibold text-gray-800 text-sm">Figma</p>
+      <p class="text-xs text-gray-500">UX/UI Design</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECCIÓN 7: BLOG CF VIZTECH -->
+
+<section id="blog" class="mb-16">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center section-title">
+        My Blog: The "Why" Beyond the Data
+    </h2>
+
+    <p class="text-center text-base text-gray-600 mb-10 max-w-4xl mx-auto">
+        CF VizTech is my personal project focused on <strong class="font-semibold text-gray-800">bridging the gap</strong> between data and decision-makers. My goal isn't just to show <em class="italic">how</em> to build dashboards, but to explore the <em class="italic">why</em> behind them. This is my collection of articles on the <strong class="font-semibold text-gray-800">process, strategy, and design</strong> that bring data to life for any role.
+    </p>
+
+    <div class="relative max-w-6xl mx-auto">
+        <button id="carousel-prev" aria-label="Previous Article" class="absolute top-1/2 left-0 z-30 -translate-y-1-2 -translate-x-4 bg-white/80 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center text-gray-700 shadow-lg hover:bg-white transition duration-300">
+            <i class="fa-solid fa-chevron-left text-lg"></i>
+        </button>
+
+        <div id="carousel-viewport" class="overflow-x-scroll scroll-snap-type-x mandatory scroll-behavior-smooth no-scrollbar">
+            <div class="flex w-max gap-6 px-4 py-4">
+                
+                <div 
+                    onclick="openModal('cfviztech-modal-1', null)"
+                    class="carousel-item flex-shrink-0 w-[280px] bg-white border border-gray-200 shadow-sm p-5 rounded-xl flex flex-col no-underline transition-all duration-300 ease-in-out hover:scale-[1.03] hover:z-20 hover:shadow-xl cursor-pointer"
+                    style="scroll-snap-align: start;"
+                >
+                    <img src="images/blog/Portada_Post1_Parte_1_El_Arte_de_elegir_gráficos.png" alt="Blog post preview: The Art of Choosing Charts (Part I)" class="w-full aspect-ratio-1/1 object-contain rounded-lg mb-4 bg-gray-50"/>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">The Art of Choosing Charts (Part I)</h3>
+                    <p class="text-sm text-gray-600 flex-grow mb-4">
+                        A practical guide to comparative charts.
+                    </p>
+                    <div class="mt-auto text-sm font-medium text-cyan-600 hover:underline">Read Article</div>
+                </div>
+                <div 
+                    onclick="openModal('cfviztech-modal-2', null)"
+                    class="carousel-item flex-shrink-0 w-[280px] bg-white border border-gray-200 shadow-sm p-5 rounded-xl flex flex-col no-underline transition-all duration-300 ease-in-out hover:scale-[1.03] hover:z-20 hover:shadow-xl cursor-pointer"
+                    style="scroll-snap-align: start;"
+                >
+                    <img src="images/blog/Portada_Post2_Parte_2_El_Arte_de_elegir_graficos.png" alt="Blog post preview: The Art of Choosing Charts (Part II)" class="w-full aspect-ratio-1/1 object-contain rounded-lg mb-4 bg-gray-50"/>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">The Art of Choosing Charts (Part II)</h3>
+                    <p class="text-sm text-gray-600 flex-grow mb-4">
+                        Charts for relationship, distribution, and more.
+                    </p>
+                    <div class="mt-auto text-sm font-medium text-cyan-600 hover:underline">Read Article</div>
+                </div>
+                <div 
+                    onclick="openModal('cfviztech-modal-3', null)"
+                    class="carousel-item flex-shrink-0 w-[280px] bg-white border border-gray-200 shadow-sm p-5 rounded-xl flex flex-col no-underline transition-all duration-300 ease-in-out hover:scale-[1.03] hover:z-20 hover:shadow-xl cursor-pointer"
+                    style="scroll-snap-align: start;"
+                >
+                    <img src="images/blog/Portada_Post3_5_Pasos_para_aplicar_storytelling.png" alt="Blog post preview: 5 Steps for Data Storytelling" class="w-full aspect-ratio-1/1 object-contain rounded-lg mb-4 bg-gray-50"/>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">5 Steps for Data Storytelling</h3>
+                    <p class="text-sm text-gray-600 flex-grow mb-4">
+                        Turn your data into stories that persuade.
+                    </p>
+                    <div class="mt-auto text-sm font-medium text-cyan-600 hover:underline">Read Article</div>
+                </div>
+                <div 
+                    onclick="openModal('cfviztech-modal-4', null)"
+                    class="carousel-item flex-shrink-0 w-[280px] bg-white border border-gray-200 shadow-sm p-5 rounded-xl flex flex-col no-underline transition-all duration-300 ease-in-out hover:scale-[1.03] hover:z-20 hover:shadow-xl cursor-pointer"
+                    style="scroll-snap-align: start;"
+                >
+                    <img src="images/blog/Portada_Post4_Tipos_analisis_en_BI.png" alt="Blog post preview: The 3 Types of Analysis in BI" class="w-full aspect-ratio-1/1 object-contain rounded-lg mb-4 bg-gray-50"/>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">The 3 Types of Analysis in BI</h3>
+                    <p class="text-sm text-gray-600 flex-grow mb-4">
+                        From Descriptive to Prescriptive: turn numbers into strategy.
+                    </p>
+                    <div class="mt-auto text-sm font-medium text-cyan-600 hover:underline">Read Article</div>
+                </div>
+                <div 
+                    onclick="openModal('cfviztech-modal-5', null)"
+                    class="carousel-item flex-shrink-0 w-[280px] bg-white border border-gray-200 shadow-sm p-5 rounded-xl flex flex-col no-underline transition-all duration-300 ease-in-out hover:scale-[1.03] hover:z-20 hover:shadow-xl cursor-pointer"
+                    style="scroll-snap-align: start;"
+                >
+                    <img src="images/blog/Portada_Post5_Transformar_grafico_en_4_pasos.png" alt="Blog post preview: How to Transform a Chart in 4 Steps" class="w-full aspect-ratio-1/1 object-contain rounded-lg mb-4 bg-gray-50"/>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">How to Transform a Chart in 4 Steps</h3>
+                    <p class="text-sm text-gray-600 flex-grow mb-4">
+                        A "before and after" to improve your visualization clarity.
+                    </p>
+                    <div class="mt-auto text-sm font-medium text-cyan-600 hover:underline">Read Article</div>
+                </div>
+                </div>
+        </div>
+        
+        <button id="carousel-next" aria-label="Next Article" class="absolute top-1/2 right-0 z-30 -translate-y-1-2 translate-x-4 bg-white/80 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center text-gray-700 shadow-lg hover:bg-white transition duration-300">
+            <i class="fa-solid fa-chevron-right text-lg"></i>
+        </button>
+    </div>
+
+
+<div class="text-center mt-12">
+    <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/recent-activity/all/" 
+       target="_blank" 
+       class="btn-cian px-10 py-3 text-base font-semibold rounded-full shadow-lg inline-flex items-center transition-all duration-300 hover:-translate-y-px">
+        <i class="fa-brands fa-linkedin mr-2"></i>
+        See more on LinkedIn
+    </a>
+</div>
+
+
+</section>
+
+
+<style>
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.aspect-ratio-1\/1 { aspect-ratio: 1 / 1; }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const nextBtn = document.getElementById('carousel-next');
+    const prevBtn = document.getElementById('carousel-prev');
+    const viewport = document.getElementById('carousel-viewport');
+    function scrollCarousel(direction) {
+        if (!viewport) return;
+        const firstCard = viewport.querySelector('.carousel-item');
+        if (!firstCard) return;
+        const gap = 24; 
+        const scrollAmount = firstCard.offsetWidth + gap;
+        viewport.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+    if (nextBtn) { nextBtn.addEventListener('click', () => scrollCarousel(1)); }
+    if (prevBtn) { prevBtn.addEventListener('click', () => scrollCarousel(-1)); }
+});
+</script>
+
+
+
+
+        <section id="contact" class="text-center py-16 mt-16 border-t border-gray-200">
+    <h2 class="text-3xl font-bold text-gray-800 mb-4">Let's talk about your next data challenge.</h2>
+    <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+        I'm actively seeking new opportunities to contribute my blend of data strategy, analytics, and user-focused consulting. I am available for remote or hybrid roles.
+    </p>
+    
+    <a 
+      href="mailto:catherinefarkas1@gmail.com" 
+      class="inline-flex items-center btn-cian px-8 py-3 text-base font-semibold rounded-full shadow-lg mb-10"
+    >
+        <i class="fa-solid fa-envelope mr-2"></i>
+        catherinefarkas1@gmail.com
+    </a>
+
+    <div class="flex justify-center space-x-8">
+        <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/" target="_blank" class="text-gray-400 hover:text-cyan-500 transition duration-300" aria-label="LinkedIn Profile">
+            <i class="fa-brands fa-linkedin text-3xl"></i>
+        </a>
+    </div>
+</section>
+
+    
+<a href="#contact" class="floating-button btn-cian px-6 py-3 font-bold rounded-full text-sm shadow-2xl hover:shadow-cyan-500/50 transition duration-300">
+        Get in Touch
+    </a>
+
+ <!-- ============================================= -->
+    <!-- MODAL 1: Marketing Campaign Dashboard (PROYECTO 1) -->
+    <!-- ============================================= -->
+
+
+    <div id="dashboard-marketing-modal" class="modal-overlay">
+
+        <div class="modal-content">
+
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <h3 class="text-2xl font-bold text-cyan-700">
+                    Case of Study 1: Marketing Campaign Insight
+                </h3>
+                <button onclick="closeModal('dashboard-marketing-modal')" class="text-gray-400 hover:text-gray-700 transition">
+                    <i class="fa-solid fa-times text-2xl"></i>
+                </button>
+            </div>
+
+            <div class="modal-body-scroll grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <div class="lg:col-span-2">
+                    <h4 class="text-xl font-bold text-gray-800 mb-3 border-b pb-2">Interactive Dashboard (Power BI)</h4>
+                    <div class="dashboard-iframe-container rounded-lg overflow-hidden shadow-xl border-gray-200">
+                    <iframe
+                        id="dashboard-marketing-iframe"
+                        src=""
+                        data-src="https://app.powerbi.com/view?r=eyJrIjoiNWRhZDA0NTUtYjlkNi00M2E4LTk3Y2UtNzI1ZDc4N2ZiYWNmIiwidCI6IjA2NjFhYzVkLWI0YTQtNDE1YS05ZWQ5LTZjNmNjZDE4M2UxOCJ9"
+                        title="Executive Marketing Campaign Dashboard"
+                        allowfullscreen="true"
+                        sandbox="allow-scripts allow-same-origin allow-popups"
+                    >
+                    </iframe>
+                    </div>
+
+                    <div class="flex justify-between items-center mt-2">
+                        <a 
+                           href="https://app.powerbi.com/view?r=eyJrIjoiNWRhZDA0NTUtYjlkNi00M2E4LTk3Y2UtNzI1ZDc4N2ZiYWNmIiwidCI6IjA2NjFhYzVkLWI0YTQtNDE1YS05ZWQ5LTZjNmNjZDE4M2UxOCJ9" 
+                           target="_blank" 
+                           class="text-sm text-cyan-600 hover:underline"
+                        >
+                            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>
+                            Open in a new tab for a full view
+                        </a>
+                    </div>
+                    
+                    <p class="mt-1 text-xs text-gray-500">
+                        *Note: You can interact with the filters and slicers directly on the embedded dashboard.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-1">
+                    <h4 class="text-xl font-bold text-gray-800 mb-3 border-b pb-2">The Business Problem & the Approach</h4>
+
+                    <p class="mb-4 text-gray-600">
+                        The objective here was to solve a common business challenge: a Marketing team had data from 5 different campaigns, but no single source of truth. They couldn't see <strong>which</strong> platforms were working, <strong>which</strong> products were selling, or <strong>who</strong> their most valuable customers were.
+                    </p>
+
+                    <p class="mb-4 text-gray-600">
+                        To provide this 360-degree view, I designed this multi-tab dashboard. My process started in <strong>Figma</strong> to prototype a clean, user-focused experience. From there, I engineered a robust data model in Power BI to connect sales data with <strong>customer demographics</strong> (Age, Income, etc.), <strong>campaign performance</strong>, and <strong>product sales</strong>.
+                    </p>
+                    
+                    <p class="mb-4 text-gray-600">
+                        The result is a tool that empowers a manager to stop guessing. They can now instantly see which <strong>campaign</strong> is performing best, which <strong>products</strong> are driving sales, and define the <strong>"Ideal Buyer Persona"</strong>—allowing for highly targeted budget decisions.
+                    </p>
+
+                    <a href="#contact" onclick="closeModal('dashboard-marketing-modal');" class="btn-cian text-sm px-4 py-2 rounded-full mt-4 inline-block">
+                        Discuss This Case Study
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+ <!-- ============================================= -->
+    <!-- MODAL 2: Operational Insights Dashboard (PROYECTO 2) -->
+    <!-- ============================================= -->
+
+
+    <div id="operational-insights-modal" class="modal-overlay">
+
+        <div class="modal-content">
+
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <h3 class="text-2xl font-bold text-cyan-700">
+                    Case of Study 2: Optimizing Help Desk Operations
+                </h3>
+                <button onclick="closeModal('operational-insights-modal')" class="text-gray-400 hover:text-gray-700 transition">
+                    <i class="fa-solid fa-times text-2xl"></i>
+                </button>
+            </div>
+
+            <div class="modal-body-scroll grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <div class="lg:col-span-2">
+                    <h4 class="text-xl font-bold text-gray-800 mb-3 border-b pb-2">Interactive Dashboard (Power BI)</h4>
+                    <div class="dashboard-iframe-container rounded-lg overflow-hidden shadow-xl border-gray-200">
+                        <iframe
+                            id="operational-dashboard-iframe"
+                            src=""
+                            data-src="https://app.powerbi.com/view?r=eyJrIjoiOTkyZmQ3ZmUtZDc5Yy00ODk4LTk2M2MtZjFkNDI4ZWRkNGM2IiwidCI6IjA2NjFhYzVkLWI0YTQtNDE1YS05ZWQ5LTZjNmNjZDE4M2UxOCJ9"
+                            title="Operational Insights Dashboard"
+                            allowfullscreen="true"
+                            sandbox="allow-scripts allow-same-origin allow-popups"
+                        >
+                        </iframe>
+                    </div>
+
+                    <div class="flex justify-between items-center mt-2">
+                        <a 
+                           href="https://app.powerbi.com/view?r=eyJrIjoiOTkyZmQ3ZmUtZDc5Yy00ODk4LTk2M2MtZjFkNDI4ZWRkNGM2IiwidCI6IjA2NjFhYzVkLWI0YTQtNDE1YS05ZWQ5LTZjNmNjZDE4M2UxOCJ9" 
+                           target="_blank" 
+                           class="text-sm text-cyan-600 hover:underline"
+                        >
+                            <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i>
+                            Open in a new tab for a full view
+                        </a>
+                    </div>
+
+                    <p class="mt-1 text-xs text-gray-500">
+                        *Note: You can interact with the filters and slicers directly on the embedded dashboard.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-1">
+                    <h4 class="text-xl font-bold text-gray-800 mb-3 border-b pb-2">The Business Problem & the Approach</h4>
+
+                    <p class="mb-4 text-gray-600">
+                        The objective was to solve a core operational challenge: a Help Desk manager has thousands of tickets but no clear view of team performance. They couldn't easily spot bottlenecks or manage agent workload effectively.
+                    </p>
+
+                    <p class="mb-4 text-gray-600">
+                        To solve this, I designed a dashboard with a strong focus on <strong>data segregation</strong> and <strong>user experience (UX)</strong>. I split the tool into two logical views:
+                        <ul class="list-disc list-inside space-y-1 mt-2 ml-4 text-sm">
+                            <li><strong>Tickets evolution:</strong> To track <strong>process</strong> KPIs (ticket types, priorities, ratings).</li>
+                            <li><strong>Agent Performance:</strong> To manage <strong>people</strong> (a sortable ranking to see top/bottom performers).</li>
+                        </ul>
+                    </p> 
+                    
+                    <div class="my-4"></div>
+                    
+                    <p class="mb-4 text-gray-600">
+                        To improve usability, I also implemented two custom features: a <strong>Dark Mode toggle</strong> for accessibility and a <strong>collapsible Help Guide</strong> that explains every chart and button.
+                    </p>
+                    
+                    <p class="mb-4 text-gray-600">
+                        The result is a tool that empowers a manager to stop analyzing raw data. They can now see the 'big picture' (e.g., <strong>'ticket ratings are dropping'</strong>) and instantly click the 'Agent' tab to see <strong>who</strong> needs support.
+                    </p>
+
+                    <a href="#contact" onclick="closeModal('operational-insights-modal');" class="btn-cian text-sm px-4 py-2 rounded-full mt-4 inline-block">
+                        Discuss This Case Study
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+<!-- ============================================= -->
+    <!-- MODAL 3: PROJECT 2 COVID MODAL (PROYECTO 3) -->
+    <!-- ============================================= -->
+    <div id="project-covid-modal" class="modal-overlay">
+
+        <div class="modal-content">
+
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <h3 class="text-2xl font-bold text-cyan-700">
+                    Case of Study 3: COVID-19 in Europe
+                </h3>
+                <button onclick="closeModal('project-covid-modal')" class="text-gray-400 hover:text-gray-700 transition">
+                    <i class="fa-solid fa-times text-2xl"></i>
+                </button>
+            </div>
+
+            <div class="modal-body-scroll grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                <div class="lg:col-span-2">
+                    <h4 class="text-xl font-bold text-gray-800 mb-3 border-b pb-2">Geospatial & BI Analysis</h4>
+                    <div class="dashboard-iframe-container rounded-lg overflow-hidden shadow-xl border border-gray-200">
+                        <iframe
+                            id="project-covid-iframe"
+                            src=""
+                            data-src="https://docs.google.com/presentation/d/1CkJWqZfxVcdNvLhj9RI0QxySiCniHwEF/embed?start=false&loop=false&delayms=3000"
+                            title="Google Slides Presentation of COVID-19 Analysis"
+                            allowfullscreen="true"
+                            sandbox="allow-scripts allow-same-origin allow-popups"
+                        >
+                        </iframe>
+                    </div>
+                    <p class="mt-2 text-xs text-gray-500">
+                        *Note: This is the full data analysis presentation, hosted on Google Slides.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-1">
+                    <h4 class="text-xl font-bold text-gray-800 mb-3 border-b pb-2">The Business Problem & the Approach</h4>
+
+                    <p class="mb-4 text-gray-600">
+                        The objective was to visualize the worldwide COVID-19 pandemic, with a specific focus on transforming scattered data into a clear analysis of the <strong>impact on European countries</strong>.
+                    </p>
+
+                    <p class="mb-4 text-gray-600">
+                        To achieve this, I implemented a multi-tool workflow. The process began with <strong>geospatial analysis in QGIS</strong> to map the global spread of cases, deaths, and recoveries.
+                    </p>
+                    
+                    <p class="mb-4 text-gray-600">
+                        Following the necessary <strong>ETL (data cleaning and preparation)</strong>, I moved the data into <strong>Power BI</strong>. There, I built bar charts to rank countries and scatter plots to analyze the <strong>statistical correlation</strong> between confirmed cases, fatalities, and recoveries.
+                    </p>
+                    
+                    <p class="mb-4 text-gray-600">
+                        The result is this final presentation, which consolidates the findings from both QGIS and Power BI. It tells a clear data story, allowing stakeholders to grasp the key trends and <strong>critical outliers</strong> (like the low recovery rates in the UK and France) at a glance.
+                    </p>
+
+                    <a href="#contact" onclick="closeModal('project-covid-modal');" class="btn-cian text-sm px-4 py-2 rounded-full mt-4 inline-block">
+                        Discuss This Case Study
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+<!-- ============================================= -->
+    <!-- CFVIZTECH BLOG MODAL BLOG 1--> 
+    <!-- ============================================= -->
+
+    <div id="cfviztech-modal-1" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <h3 class="text-2xl font-bold text-cyan-700">
+                    CF VizTech: The Art of Choosing Charts (Part I)
+                </h3>
+                <button onclick="closeModal('cfviztech-modal-1')" class="text-gray-400 hover:text-gray-700 transition">
+                    <i class="fa-solid fa-times text-2xl"></i>
+                </button>
+            </div>
+
+            <div class="modal-body-scroll">
+                <div class="max-w-3xl mx-auto">
+                    <p class="text-sm font-medium text-cyan-600 mb-4">
+                        By Catherine Farkas (CF VizTech)
+                    </p>
+                    <p class="text-lg text-gray-600 mb-4">
+                        As a Data Analyst, one of the ongoing challenges when building a Power BI dashboard is the "blank canvas." The goal isn't just to <strong>show</strong> data, but to make it <strong>tell a story</strong>.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6">
+                        To do this, mastering the visual language is vital: understanding the types of charts that exist and what each is used for. In this guide, we explore the main types of <strong>comparison charts</strong>.
+                    </p>
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">1. Column Chart</h4>
+                    <p class="mb-3 text-gray-600">Represents data in vertical columns, allowing for comparisons between different categories.</p>
+                    <p class="text-gray-600 mb-4">Each column represents a specific value, making it easy to quickly and clearly compare data based on height.</p>
+                    <img src="images/blog/Grafico_de_columnas.png" alt="Example of a Column Chart" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+                    
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">2. Bar Chart</h4>
+                    <p class="mb-3 text-gray-600">A variation of the column chart that uses horizontal bars to represent data.</p>
+                    <p class="mb-3 text-gray-600">It is ideal for comparing categories with long names or numerous options.</p>
+                    <p class="text-gray-600 font-medium text-cyan-700 mb-4">The choice between columns and bars depends on how you want to present your data and the story you want to tell!</p>
+                    <img src="images/blog/Grafico_de_barras.png" alt="Example of a Bar Chart" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+                    
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">3. Grouped Column Chart</h4>
+                    <p class="mb-3 text-gray-600">Perfect for comparing multiple data series. They show the value of different subcategories (e.g., months) within each category (e.g., products).</p>
+                    <p class="text-gray-600 mb-4">The comparison between groups and subgroups makes it easy to distinguish variations.</p>
+                    <img src="images/blog/Grafico_de_columnas_agrupadas.png" alt="Example of a Grouped Column Chart" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">4. Stacked Column Chart</h4>
+                    <p class="mb-3 text-gray-600">Shows how various parts contribute to the total of a set.</p>
+                    <p class="text-gray-600 mb-4">You can see how sales from different months add up within each product, all in a single column. Ideal for visualizing the total and its constituent parts.</p>
+                    <img src="images/blog/Grafico_de_columnas_apiladas.png" alt="Example of a Stacked Column Chart" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+                    
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">5. 100% Stacked Bar Chart</h4>
+                    <p class="mb-3 text-gray-600">Similar to the stacked column chart, but each bar always sums to 100%.</p>
+                    <p class="text-gray-600 mb-4">It is ideal for comparing the proportions of different subcategories, showing how the parts are distributed relative to the total, regardless of the total size.</p>
+                    <img src="images/blog/Grafico_de_columnas_apiladas_100.png" alt="Example of a 100% Stacked Bar Chart" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">6. Line Chart</h4>
+                    <p class="mb-3 text-gray-600">Shows the evolution of data over time or across categories. It is ideal for visualizing trends and patterns.</p>
+                    <p class="text-gray-600 mb-4">Commonly used to analyze continuous changes.</p>
+                    <img src="images/blog/Grafico_de_lineas.png" alt="Example of a Line Chart" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">7. Column and Line Chart</h4>
+                    <p class="mb-3 text-gray-600">Combines absolute values and trends to compare data on different scales.</p>
+                    <p class="text-gray-600 mb-4">Allows highlighting trends while visualizing exact values, such as sales and percentage growth.</p>
+                    <img src="images/blog/Grafico_de_columnas_lineas.png" alt="Example of a Column and Line Chart" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">8. Radar Chart</h4>
+                    <p class="mb-3 text-gray-600">Represents multiple variables in a polygonal format, where each axis corresponds to a different variable.</p>
+                    <p class="text-gray-600 mb-4">Allows for the visual comparison of several elements in relation to these variables (at least three are needed).</p>
+                    <img src="Grafico_de_radar.png" alt="Example of a Radar Chart" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+                    
+                    <hr class="my-6 border-gray-200">
+                    
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">9. Tables</h4>
+                    <p class="mb-3 text-gray-600">Structure information in rows and columns. They display detailed data, facilitating clear and orderly comparison and analysis.</p>
+                    <p class="text-gray-600 mb-4">Perfect for seeing all the details at a glance!</p>
+                    <img src="images/blog/Grafico_de_tabla.png" alt="Example of a Data Table" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+
+                    <hr class="my-6 border-gray-200">
+
+                    <p class="text-center text-lg font-semibold text-gray-700 mt-8">
+                        Found this useful? Don't miss Part II, where we'll explore more chart types soon!
+                    </p>
+
+                    <p class="text-sm italic text-gray-500 mt-6 mb-2">
+                        *Please note: The original article, including the embedded charts and the downloadable PDF, is in Spanish.
+                    </p>
+
+                    <a 
+                        href="images/pdf/El_Arte_de_elegir_graficos_(Parte_1).pdf" 
+                        target="_blank" 
+                        class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center"
+                    >
+                        <i class="fa-solid fa-file-arrow-down mr-2"></i>
+                        Download Original PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- ============================================= -->
+    <!-- CFVIZTECH BLOG MODAL BLOG 2--> 
+    <!-- ============================================= -->
+
+    <div id="cfviztech-modal-2" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <h3 class="text-2xl font-bold text-cyan-700">
+                    CF VizTech: The Art of Choosing Charts (Part II)
+                </h3>
+                <button onclick="closeModal('cfviztech-modal-2')" class="text-gray-400 hover:text-gray-700 transition">
+                    <i class="fa-solid fa-times text-2xl"></i>
+                </button>
+            </div>
+
+            <div class="modal-body-scroll">
+                <div class="max-w-3xl mx-auto">
+                    <p class="text-sm font-medium text-cyan-600 mb-4">
+                        By Catherine Farkas (CF VizTech)
+                    </p>
+                    <p class="text-lg text-gray-600 mb-4">
+                        In Part I, we laid the foundation for comparison. Now, we continue our journey through the "art of choosing charts."
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6">
+                        In this guide, we dive into visualizations that allow us to discover hidden <strong class="font-semibold text-cyan-700">Relationships</strong>, understand the <strong class="font-semibold text-cyan-700">Distribution</strong> of our data, analyze <strong class="font-semibold text-cyan-700">Segmentation</strong>, and explore <strong class="font-semibold text-cyan-700">Geographical</strong> patterns.
+                    </p>
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">1. Scatter Plot (Relationship)</h4>
+                    <p class="mb-3 text-gray-600">Graphically represents the relationship between two quantitative variables. For example, when analyzing Price and Sales.</p>
+                    <p class="text-gray-600 mb-4">If the points align upwards, it suggests that a higher price might lead to more sales. It's useful for identifying patterns and trends.</p>
+                    <img src="images/blog/Grafico_de_dispersion.png" alt="Example of a Scatter Plot" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+                    
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">2. Bubble Chart (Relationship)</h4>
+                    <p class="mb-3 text-gray-600">Represents three dimensions of data: two on the X and Y axes, and the third through the size of the bubbles.</p>
+                    <p class="text-gray-600 mb-4">Ideal for analyses involving multiple variables, highlighting patterns and relationships.</p>
+                    <img src="images/blog/Grafico_de_burbujas.png" alt="Example of a Bubble Chart" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+                    
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">3. Word Cloud (Relationship)</h4>
+                    <p class="mb-3 text-gray-600">A grouping of key terms related to a topic, where the most important or repeated words are highlighted in a larger size.</p>
+                    <p class="text-gray-600 mb-4">To improve readability, it's recommended to keep the words aligned and use colors that contrast well.</p>
+                    <img src="images/blog/Grafico_de_lluvia_de_palabras.png" alt="Example of a Word Cloud" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">4. Pie Chart (Segmentation)</h4>
+                    <p class="mb-3 text-gray-600">Useful for seeing how parts of a whole are distributed, such as percentages or proportions.</p>
+                    <p class="text-gray-600 mb-4">Be careful! If you have many categories or small differences, it can be hard to read. An alternative is the donut chart.</p>
+                    <img src="images/blog/Grafico_circular.png" alt="Example of a Pie Chart" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+                    
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">5. Treemap (Segmentation)</h4>
+                    <p class="mb-3 text-gray-600">Uses rectangles to represent categories, where the size of each shows its relative importance.</p>
+                    <p class="text-gray-600 mb-4">Colors add more details or differences. It is ideal for visualizing how data is distributed at a single glance.</p>
+                    <img src="images/blog/Grafico_de_tree_map.png" alt="Example of a Treemap Chart" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">6. Funnel Chart (Segmentation)</h4>
+                    <p class="mb-3 text-gray-600">Shows how data narrows through the stages of a process. It starts with a large quantity and ends with a smaller one.</p>
+                    <p class="text-gray-600 mb-4">Ideal for areas like marketing and sales, allowing visualization of the customer journey.</p>
+                    <img src="images/blog/Grafico_de_embudo.png" alt="Example of a Funnel Chart" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+                    
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">7. Box Plot (Distribution)</h4>
+                    <p class="mb-3 text-gray-600">Visualizes the distribution of a dataset, showing the minimum, maximum, median, and quartiles.</p>
+                    <p class="text-gray-600 mb-4">It is ideal for identifying dispersion, detecting outliers, and comparing distributions.</p>
+                    <img src="images/blog/Grafico_de_cajas.png" alt="Example of a Box Plot" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">8. Histogram (Distribution)</h4>
+                    <p class="mb-3 text-gray-600">Represents the frequency distribution of a dataset by grouping values into intervals or ranges.</p>
+                    <p class="text-gray-600 mb-4">It allows identifying patterns such as skewness and concentration in different areas.</p>
+                    <img src="images/blog/Grafico_de_histograma.png" alt="Example of a Histogram" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+                    
+                    <hr class="my-6 border-gray-200">
+                    
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">9. Map (Geographical)</h4>
+                    <p class="mb-3 text-gray-600">Shows the geographical distribution of data. In this case, a bubble map, where the size of each bubble indicates a value.</p>
+                    <p class="text-gray-600 mb-4">It facilitates the comparison of data in different locations and helps identify patterns.</p>
+                    <img src="images/blog/Grafico_de_mapa.png" alt="Example of a Bubble Map" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-4 mt-10 text-center">Visual Summary: Quick Chart Guide</h4>
+                    <p class="text-lg text-gray-600 mb-6 text-center">
+                        Here is a summary of all chart types from Part I and II in a single view.
+                    </p>
+                    <img src="images/blog/Resumen_de_tipos_de_grafico.png" alt="Summary of all chart types" class="rounded-lg shadow-xl border border-gray-200 w-full mx-auto mb-8">
+
+                    <hr class="my-6 border-gray-200">
+
+                    <p class="text-center text-lg font-semibold text-gray-700 mt-8">
+                        There are many more chart types I invite you to explore. Which is your favorite?
+                    </p>
+
+                    <p class="text-sm italic text-gray-500 mt-6 mb-2">
+                        *Please note: The original article, including the embedded charts and the downloadable PDFs, is in Spanish.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <a 
+                            href="images/pdf/El_Arte_de_elegir_graficos_(Parte_2).pdf" 
+                            target="_blank" 
+                            class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center justify-center"
+                        >
+                            <i class="fa-solid fa-file-arrow-down mr-2"></i>
+                            Download PDF (Part II)
+                        </a>
+                        <a 
+                            href="images/pdf/Resumen_de_tipos_de_grafico.pdf" 
+                            target="_blank" 
+                            class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center justify-center"
+                        >
+                            <i class="fa-solid fa-file-arrow-down mr-2"></i>
+                            Download PDF (Summary)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- ============================================= -->
+    <!-- CFVIZTECH BLOG MODAL BLOG 3--> 
+    <!-- ============================================= -->
+    <div id="cfviztech-modal-3" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <h3 class="text-2xl font-bold text-cyan-700">
+                    CF VizTech: 5 Steps for Data Storytelling
+                </h3>
+                <button onclick="closeModal('cfviztech-modal-3')" class="text-gray-400 hover:text-gray-700 transition">
+                    <i class="fa-solid fa-times text-2xl"></i>
+                </button>
+            </div>
+
+            <div class="modal-body-scroll">
+                <div class="max-w-3xl mx-auto">
+                    <p class="text-sm font-medium text-cyan-600 mb-4">
+                        By Catherine Farkas (CF VizTech)
+                    </p>
+                    <p class="text-lg text-gray-600 mb-4">
+                        <strong class="font-semibold text-gray-800">Data is more than just numbers!</strong> Data Storytelling is the art of turning data into visual narratives that inform and inspire decisions, making information more accessible.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Join me as we unravel a real sales case and learn to tell stories with data.
+                    </p>
+
+                    <ol class="space-y-8">
+                        <li class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="md:w-1/4 flex-shrink-0">
+                                <img src="images/blog/post3storytelling_audiencias.png" alt="Audience icon" class="rounded-lg shadow-md border border-gray-100 w-full max-w-[200px] mx-auto">
+                            </div>
+                            <div class="md:w-3/4">
+                                <h4 class="text-2xl font-bold text-gray-800">1. Know Your Audience</h4>
+                                <p class="text-gray-600 mt-2">Before you start, understand who you're addressing. Who will see this sales analysis? The management team? Marketing? You must tailor your story to what they need to know and act upon.</p>
+                            </div>
+                        </li>
+                        <li class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="md:w-1/4 flex-shrink-0">
+                                <img src="images/blog/storytelling_contexto_grafico.png" alt="Q1 sales chart" class="rounded-lg shadow-md border border-gray-100 w-full max-w-[200px] mx-auto">
+                            </div>
+                            <div class="md:w-3/4">
+                                <h4 class="text-2xl font-bold text-gray-800">2. Establish the Context</h4>
+                                <p class="text-gray-600 mt-2">The chart shows sales by region during Q1. Your objective: Investigate the sales drop in Region A. This places your audience in the story from the beginning.</p>
+                            </div>
+                        </li>
+                        <li class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="md:w-1/4 flex-shrink-0">
+                                <img src="images/blog/post3storytelling_caballlero.png" alt="Characters icon" class="rounded-lg shadow-md border border-gray-100 w-full max-w-[200px] mx-auto">
+                            </div>
+                            <div class="md:w-3/4">
+                                <h4 class="text-2xl font-bold text-gray-800">3. Introduce the Characters</h4>
+                                <p class="text-gray-600 mt-2">The key characters in this story are: Sales (protagonist), Region A (where the problem is), and the Marketing team (who has influence). These elements represent the forces at play.</p>
+                            </div>
+                        </li>
+                        <li class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="md:w-1/4 flex-shrink-0">
+                                <img src="images/blog/storytelling_conflicto_grafico.png" alt="Chart showing 59% drop" class="rounded-lg shadow-md border border-gray-100 w-full max-w-[200px] mx-auto">
+                            </div>
+                            <div class="md:w-3/4">
+                                <h4 class="text-2xl font-bold text-gray-800">4. The Conflict</h4>
+                                <p class="text-gray-600 mt-2">Here comes the conflict: Sales in Region A have fallen by 59% during the last two months of Q1. Why? The conflict is what holds interest and guides the investigation.</p>
+                            </div>
+                        </li>
+                        <li class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="md:w-1/4 flex-shrink-0">
+                                <img src="images/blog/post3storytelling_resolucion_conflicto.png" alt="Resolution icon" class="rounded-lg shadow-md border border-gray-100 w-full max-w-[150px] mx-auto">
+                            </div>
+                            <div class="md:w-3/4">
+                                <h4 class="text-2xl font-bold text-gray-800">5. The Resolution</h4>
+                                <p class="text-gray-600 mt-2"><strong class="font-semibold text-gray-800">Resolution:</strong> By digging into the data, you discover the decrease is due to a reduction in the Marketing budget.</p>
+                                <p class="text-gray-600 mt-2"><strong class="font-semibold text-gray-800">Recommendation:</strong> Increase Marketing investment to recover sales. You've told a story that leads to an actionable solution.</p>
+                                <p class="text-gray-600 mt-3">This final step is the most critical. It's where the analyst transforms data "chaos" (the conflict) into "clarity" that provides value. We don't just present a problem; we deliver a clear, data-backed roadmap that the leadership team can execute.</p>
+                            </div>
+                        </li>
+                    </ol>
+
+                    <hr class="my-6 border-gray-200">
+                    
+                    <div class="flex flex-col md:flex-row items-center gap-6 mt-8">
+                        <div class="md:w-1/4 flex-shrink-0">
+                            <img src="images/blog/post3storytelling_recapitulemos.png" alt="Recap icon" class="rounded-lg shadow-md border border-gray-100 w-full max-w-[200px] mx-auto">
+                        </div>
+                        <div class="md:w-3/4">
+                            <h4 class="text-2xl font-bold text-gray-800">Let's Recap</h4>
+                            <p class="text-gray-600 mt-2">Data Storytelling allows you to connect data with strategic decisions, moving from isolated charts to a narrative with:</p>
+                            <ul class="list-disc list-inside text-gray-600 space-y-1 mt-2 ml-4">
+                                <li>Audience</li>
+                                <li>Context</li>
+                                <li>Characters</li>
+                                <li>Conflict</li>
+                                <li>Resolution</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p class="text-center text-lg font-semibold text-gray-700 mt-8">
+                        Do you apply these steps in your analyses?
+                    </p>
+
+                    <p class="text-sm italic text-gray-500 mt-6 mb-2">
+                        *Please note: The original article, including the embedded charts and the downloadable PDF, is in Spanish.
+                    </p>
+
+                    <a 
+                        href="images/pdf/Pasos_para_aplicar_Data_Storytelling.pdf" 
+                        target="_blank" 
+                        class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center"
+                    >
+                        <i class="fa-solid fa-file-arrow-down mr-2"></i>
+                        Download Original PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- ============================================= -->
+    <!-- CFVIZTECH BLOG MODAL BLOG 4--> 
+    <!-- ============================================= -->
+    <div id="cfviztech-modal-4" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <h3 class="text-2xl font-bold text-cyan-700">
+                    CF VizTech: The 3 Types of Analysis in BI
+                </h3>
+                <button onclick="closeModal('cfviztech-modal-4')" class="text-gray-400 hover:text-gray-700 transition">
+                    <i class="fa-solid fa-times text-2xl"></i>
+                </button>
+            </div>
+
+            <div class="modal-body-scroll">
+                <div class="max-w-3xl mx-auto">
+                    <p class="text-sm font-medium text-cyan-600 mb-4">
+                        By Catherine Farkas (CF VizTech)
+                    </p>
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3">From Figures to Strategy</h4>
+                    <p class="text-lg text-gray-600 mb-4">
+                        Business Intelligence (BI) is the key to transforming large volumes of data into valuable information that drives strategic decisions.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Each type of analysis (descriptive, predictive, and prescriptive) provides a unique insight. Discover how each one helps you make smarter decisions!
+                    </p>
+
+                    <ol class="space-y-8">
+                        <li class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="md:w-1/4 flex-shrink-0">
+                                <img src="images/blog/Analisis_descriptivo.png" alt="Descriptive Analysis Icon" class="rounded-lg shadow-md border border-gray-100 w-full max-w-[150px] mx-auto">
+                            </div>
+                            <div class="md:w-3/4">
+                                <h4 class="text-2xl font-bold text-gray-800">1. Descriptive Analysis: What happened?</h4>
+                                <p class="text-gray-600 mt-2">Descriptive analysis tells you what has happened in the past. It's like a summary that helps you understand historical behavior and trends. Perfect for seeing how things have unfolded. It's the foundation on which we build the next analyses.</p>
+                            </div>
+                        </li>
+                        <li class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="md:w-1/4 flex-shrink-0">
+                                <img src="images/blog/Analisis_predictivo.png" alt="Predictive Analysis Icon" class="rounded-lg shadow-md border border-gray-100 w-full max-w-[150px] mx-auto">
+                            </div>
+                            <div class="md:w-3/4">
+                                <h4 class="text-2xl font-bold text-gray-800">2. Predictive Analysis: What could happen?</h4>
+                                <p class="text-gray-600 mt-2">Predictive analysis uses historical data to make predictions about future events. It uses statistical techniques and algorithms to project possible outcomes and trends. It's like having an advance view of what might happen. Ideal for making proactive decisions.</p>
+                            </div>
+                        </li>
+                        <li class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="md:w-1/4 flex-shrink-0">
+                                <img src="images/blog/Analisis_prescriptivo.png" alt="Prescriptive Analysis Icon" class="rounded-lg shadow-md border border-gray-100 w-full max-w-[150px] mx-auto">
+                            </div>
+                            <div class="md:w-3/4">
+                                <h4 class="text-2xl font-bold text-gray-800">3. Prescriptive Analysis: What should we do?</h4>
+                                <p class="text-gray-600 mt-2">It goes beyond predicting; it offers recommendations on the best actions to take to achieve desired results. For example, if data suggests that improving customer service will increase satisfaction, it will recommend implementing certain actions. It's the guide to making effective strategic decisions!</p>
+                            </div>
+                        </li>
+                    </ol>
+
+                    <hr class="my-6 border-gray-200">
+
+                    <div class="mt-8">
+                        <h4 class="text-2xl font-bold text-gray-800 text-center">In Summary</h4>
+                        <ul class="list-none space-y-2 text-gray-600 mt-4 text-center">
+                           <li><strong class="font-semibold text-cyan-700">1. Descriptive:</strong> Summary (past)</li>
+                           <li><strong class="font-semibold text-cyan-700">2. Predictive:</strong> Projection (future)</li>
+                           <li><strong class="font-semibold text-cyan-700">3. Prescriptive:</strong> Recommendation + action</li>
+                        </ul>
+                        <img src="images/blog/Analisis_resumen.png" alt="Analysis summary icon" class="rounded-lg shadow-md border border-gray-100 w-full max-w-xs mx-auto mt-6">
+                    </div>
+
+                    <p class="text-center text-lg font-semibold text-gray-700 mt-8">
+                        Which type of analysis do you find most valuable in your projects?
+                    </p>
+
+                    <p class="text-sm italic text-gray-500 mt-6 mb-2">
+                        *Please note: The original article, including the embedded charts and the downloadable PDF, is in Spanish.
+                    </p>
+
+                    <a 
+                        href="images/pdf/Tipos_de_Análisis_en_BI.pdf" 
+                        target="_blank" 
+                        class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center"
+                    >
+                        <i class="fa-solid fa-file-arrow-down mr-2"></i>
+                        Download Original PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- ============================================= -->
+    <!-- CFVIZTECH BLOG MODAL BLOG 5--> 
+    <!-- ============================================= -->
+    <div id="cfviztech-modal-5" class="modal-overlay">
+        <div class="modal-content">
+            <div class="flex justify-between items-center p-6 border-b border-gray-100">
+                <h3 class="text-2xl font-bold text-cyan-700">
+                    CF VizTech: How to Transform a Chart in 4 Steps
+                </h3>
+                <button onclick="closeModal('cfviztech-modal-5')" class="text-gray-400 hover:text-gray-700 transition">
+                    <i class="fa-solid fa-times text-2xl"></i>
+                </button>
+            </div>
+
+            <div class="modal-body-scroll">
+                <div class="max-w-3xl mx-auto">
+                    <p class="text-sm font-medium text-cyan-600 mb-4">
+                        By Catherine Farkas (CF VizTech)
+                    </p>
+                    <p class="text-lg text-gray-600 mb-6">
+                        A good chart doesn't just show data; it tells a clear story. Often, the default chart is full of "noise." Let's transform this cluttered chart into one that is clean and insight-focused.
+                    </p>
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 text-center">The "Before": A Cluttered Chart</h4>
+                    <p class="text-center text-gray-600 mb-4">Loud colors, background, borders, labels everywhere... It's hard to know what to look at.</p>
+                    <img src="images/blog/transformar_grafico_1.png" alt="Cluttered chart before transformation" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
+                    <hr class="my-6 border-gray-200">
+
+                    <ol class="space-y-8">
+                        <li class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="md:w-1/4 flex-shrink-0">
+                                <img src="images/blog/transformar_grafico_2.png" alt="Step 1 - White background" class="rounded-lg shadow-md border border-gray-100 w-full max-w-[200px] mx-auto">
+                            </div>
+                            <div class="md:w-3/4">
+                                <h4 class="text-2xl font-bold text-gray-800">1. White Background</h4>
+                                <p class="text-gray-600 mt-2">We remove the background color and border. Always use white for the background and a soft gray for secondary elements.</p>
+                            </div>
+                        </li>
+                        <li class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="md:w-1/4 flex-shrink-0">
+                                <img src="images/blog/transformar_grafico_3.png" alt="Step 2 - Uniform color" class="rounded-lg shadow-md border border-gray-100 w-full max-w-[200px] mx-auto">
+                            </div>
+                            <div class="md:w-3/4">
+                                <h4 class="text-2xl font-bold text-gray-800">2. Uniform Bar Color</h4>
+                                <p class="text-gray-600 mt-2">We apply a uniform gray color to all bars. We use color (blue) only to strategically highlight what's important: Product C (most sales) and Product A (the one we want to boost).</p>
+                            </div>
+                        </li>
+                        <li class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="md:w-1/4 flex-shrink-0">
+                                <img src="images/blog/transformar_grafico_4.png" alt="Step 3 - Simplify labels" class="rounded-lg shadow-md border border-gray-100 w-full max-w-[200px] mx-auto">
+                            </div>
+                            <div class="md:w-3/4">
+                                <h4 class="text-2xl font-bold text-gray-800">3. Simplify Labels and Axes</h4>
+                                <p class="text-gray-600 mt-2">We remove unnecessary axis titles (it's already understood). We remove decimals and add the € symbol to the Y-axis. We simplify the bar labels, highlighting only those for products A and C.</p>
+                            </div>
+                        </li>
+                        <li class="flex flex-col md:flex-row items-center gap-6">
+                            <div class="md:w-1/4 flex-shrink-0">
+                                <img src="images/blog/transformar_grafico_5.png" alt="Step 4 - Title with insight" class="rounded-lg shadow-md border border-gray-100 w-full max-w-[200px] mx-auto">
+                            </div>
+                            <div class="md:w-3/4">
+                                <h4 class="text-2xl font-bold text-gray-800">4. Title and Gridlines</h4>
+                                <p class="text-gray-600 mt-2">We soften the gridlines to a very light gray so they don't compete. Finally, we change the generic title ("Sales by categories") to an *actionable insight*: "Product A recovers from last month's drop."</p>
+                            </div>
+                        </li>
+                    </ol>
+
+                    <hr class="my-6 border-gray-200">
+
+                    <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6 text-center">Result: The "After"</h4>
+                    <p class="text-gray-600 mb-4 text-center">This chart is clean, easy to read, and directs the user's attention exactly to the message we want to convey.</p>
+                    <img src="images/blog/transformar_grafico_5.png" alt="Clean chart after transformation" class="rounded-lg shadow-xl border border-gray-200 w-full max-w-md mx-auto mb-8">
+
+                    <div class="text-center bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <h4 class="text-xl font-bold text-gray-800 mb-3">Remember the 4 Steps:</h4>
+                        <ul class="list-none space-y-2 text-gray-600">
+                            <li>1. White background.</li>
+                            <li>2. Uniform bar color (and highlight with color).</li>
+                            <li>3. Simplify labels and axes.</li>
+                            <li>4. Title with an insight (not generic).</li>
+                        </ul>
+                    </div>
+
+                    <p class="text-center text-lg font-semibold text-gray-700 mt-8">
+                        Would you add or remove anything else?
+                    </p>
+
+                    <p class="text-sm italic text-gray-500 mt-6 mb-2">
+                        *Please note: The original article, including the embedded charts and the downloadable PDF, is in Spanish.
+                    </p>
+
+                    <a 
+                        href="images/pdf/Transformar_grafico_en_4_pasos.pdf" 
+                        target="_blank" 
+                        class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center"
+                    >
+                        <i class="fa-solid fa-file-arrow-down mr-2"></i>
+                        Download Original PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        // --- FUNCIÓN DE SEGUIMIENTO (EXISTENTE) ---
+        window.dataLayer = window.dataLayer || [];
+
+        function trackProyecto(url) {
+            if (typeof dataLayer === 'undefined') {
+                console.error('Google Tag Manager (dataLayer) no está inicializado.');
+                return;
+            }
+
+            try {
+                const urlObj = new URL(url);
+                const proyectoId = urlObj.searchParams.get('p') || 'sin-id';
+
+                dataLayer.push({
+                    'event': 'proyecto_visto',
+                    'id_proyecto': proyectoId
+                });
+                console.log('✅ Evento manual "proyecto_visto" disparado con ID:', proyectoId);
+            } catch (e) {
+                console.error('Error al rastrear el proyecto:', e);
+            }
+        }
+
+        // --- LÓGICA DEL MENÚ MÓVIL (¡CORREGIDA!) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            function toggleMenu() {
+                // Alternamos la visibilidad y las clases de animación
+                const isHidden = mobileMenu.classList.toggle('invisible');
+                mobileMenu.classList.toggle('opacity-0');
+                mobileMenu.classList.toggle('scale-95');
+                // ¡ARREGLO! Usamos !isHidden para invertir la lógica
+                mobileMenu.classList.toggle('opacity-100', !isHidden); 
+                mobileMenu.classList.toggle('scale-100', !isHidden);
+
+                // Cambia el icono de hamburguesa a X (fa-times)
+                const icon = menuToggle.querySelector('i');
+                if (mobileMenu.classList.contains('opacity-100')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+
+            menuToggle.addEventListener('click', toggleMenu);
+
+            // Cierra el menú si se hace clic en un enlace (para navegar)
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    // Solo cerramos si el menú está visible
+                    if (mobileMenu.classList.contains('opacity-100')) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            // Lógica para cerrar CUALQUIER modal al hacer clic fuera de él
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal(modal.id);
+                    }
+                });
+            });
+
+        });
+        // --- FIN LÓGICA DEL MENÚ MÓVIL ---
+
+        // --- LÓGICA DEL MODAL (¡CORREGIDA!) ---
+
+        /**
+         * Abre el modal especificado por ID y carga un iframe si se proporciona una URL.
+         * @param {string} modalId - El ID del elemento modal (overlay).
+         * @param {string} iframeSrc - La URL que se debe cargar en el iframe del dashboard (o placeholder).
+         */
+        function openModal(modalId, iframeSrc) {
+            const modal = document.getElementById(modalId);
+
+            if (modal) {
+                // 1. Cargamos el iframe si existe un ID de iframe coincidente dentro del modal
+                // Usamos el modalId para encontrar el iframe correcto
+                let iframeId;
+                
+                // Proyecto 1 (Marketing)
+                if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
+                
+                // Proyecto 2 (Operational)
+                else if (modalId === 'operational-insights-modal') iframeId = 'operational-dashboard-iframe';
+                
+                // Proyecto 3 (Covid)
+                else if (modalId === 'project-covid-modal') iframeId = 'project-covid-iframe';
+
+                
+                const iframe = document.getElementById(iframeId);
+
+                if (iframe) {
+                   // --- ¡LÓGICA DEL LAZY LOAD! ---
+                   // Comprueba si el iframe tiene un 'data-src' (los proyectos)
+                   const dataSrc = iframe.getAttribute('data-src');
+                   if (dataSrc) {
+                       iframe.src = dataSrc; // Carga el iframe AHORA, al hacer clic
+                   } else if (iframeSrc) {
+                       // Esto es para los modales que SÍ pasan un src (los del blog no lo usan)
+                       iframe.src = iframeSrc;
+                   }
+                   // Si es un modal del blog (sin iframeSrc y sin data-src), no hace nada
+                }
+
+                // 2. Abre el modal con animación
+                modal.classList.add('open');
+
+                // 3. Ocultar el scroll del body principal
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        /**
+         * Cierra el modal especificado por ID.
+         * @param {string} modalId - El ID del elemento modal (overlay).
+         */
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+
+            if (modal) {
+                // Cierra el modal con animación
+                modal.classList.remove('open');
+
+                // Muestra el scroll del body principal después de una pequeña espera
+                setTimeout(() => {
+                    // Solo mostramos el scroll del body si NO hay otro modal abierto
+                    if (!document.querySelector('.modal-overlay.open')) {
+                        document.body.style.overflow = '';
+                    }
+                }, 300); // 300ms, que es la duración de la transición
+
+                // --- ¡FIX PARA APAGAR IFRAMES! ---
+                // Pausa el iframe (detiene videos/Power BI)
+                let iframeId;
+                if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
+                else if (modalId === 'operational-insights-modal') iframeId = 'operational-dashboard-iframe';
+                else if (modalId === 'project-covid-modal') iframeId = 'project-covid-iframe';
+                
+                // Los modales del blog no tienen iframes que necesiten apagarse
+                else if (modalId === 'cfviztech-modal-1') iframeId = null;
+                else if (modalId === 'cfviztech-modal-2') iframeId = null;
+                else if (modalId === 'cfviztech-modal-3') iframeId = null;
+                else if (modalId === 'cfviztech-modal-4') iframeId = null;
+                else if (modalId === 'cfviztech-modal-5') iframeId = null;
+
+                const iframe = document.getElementById(iframeId);
+                if (iframe) {
+                    iframe.src = ''; // Limpia el src para detener la carga
+                }
+                // --- FIN DEL FIX ---
+            }
+        }
+
+    </script>
+
+
+    <div id="cookie-consent-banner" class="fixed bottom-0 left-0 w-full bg-gray-800 text-white p-4 z-[10000] hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            
+            <p class="text-sm mb-4 md:mb-0 md:mr-6">
+                This website uses <strong>necessary cookies</strong> to function and <strong>analytics cookies</strong> to help us improve your experience. You can accept all or reject the optional analytics cookies.
+            </p>
+            
+            <div class="flex-shrink-0 flex gap-4">
+                <button id="reject-cookies" class="px-5 py-2 rounded-full font-semibold text-sm bg-gray-600 hover:bg-gray-500 transition-colors">
+                    Reject Analytics
+                </button>
+                <button id="accept-cookies" class="btn-cian px-6 py-2 rounded-full font-semibold text-sm">
+                    Accept All
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- LÓGICA DEL BANNER DE COOKIES (FINAL) ---
+
+        // 1. Función para cargar Google Analytics (esto solo se llamará si aceptan)
+        function loadGoogleAnalytics() {
+            // Pega tu script de GA4 aquí. Por ejemplo:
+            /*
+            const gaScript = document.createElement('script');
+            gaScript.async = true;
+            gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=TU_ID_DE_GA4';
+            document.head.appendChild(gaScript);
+
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'TU_ID_DE_GA4');
+            
+            console.log("GA4 Cargado (Consentimiento Aceptado)");
+            */
+
+            // De momento, solo pondremos un log para que veas que funciona:
+            console.log("Analytics ACEPTADAS. GA4 se cargaría aquí.");
+        }
+
+        // 2. Lógica principal del banner
+        document.addEventListener('DOMContentLoaded', () => {
+            const banner = document.getElementById('cookie-consent-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+            const rejectBtn = document.getElementById('reject-cookies');
+
+            // Revisa el almacenamiento local
+            const consent = localStorage.getItem('cookieConsent');
+
+            if (consent === 'granted') {
+                // Si ya aceptó, carga GA4 directamente
+                loadGoogleAnalytics();
+            } else if (consent === 'denied') {
+                // Si ya rechazó, no hagas nada
+                console.log("Analytics RECHAZADAS (consentimiento previo).");
+            } else {
+                // Si no ha contestado, muestra el banner
+                banner.classList.remove('hidden');
+            }
+
+            // 3. Qué pasa al ACEPTAR
+            acceptBtn.addEventListener('click', () => {
+                localStorage.setItem('cookieConsent', 'granted');
+                banner.classList.add('hidden');
+                loadGoogleAnalytics(); // Carga GA4
+            });
+
+            // 4. Qué pasa al RECHAZAR
+            rejectBtn.addEventListener('click', () => {
+                localStorage.setItem('cookieConsent', 'denied');
+                banner.classList.add('hidden');
+                console.log("Analytics RECHAZADAS (botón).");
+            });
+        });
+    </script>
+    </body>
+</html>
