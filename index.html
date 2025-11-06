@@ -454,7 +454,8 @@ html {
       </a>
       <div class="mt-12 flex justify-center space-x-8">
         <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/" 
-           target="_blank" 
+           target="_blank"
+           rel="noopener noreferrer"
            class="text-gray-400 hover:text-cyan-500 transition duration-300" 
            aria-label="LinkedIn Profile"
            onclick="gtag('event', 'clic_red_social', {'destino': 'linkedin_header'});"
@@ -971,10 +972,11 @@ html {
 <div class="text-center mt-12">
      <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/recent-activity/all/" 
         target="_blank" 
+        rel="noopener noreferrer"
         class="btn-cian px-10 py-3 text-base font-semibold rounded-full shadow-lg inline-flex items-center transition-all duration-300 hover:-translate-y-px"
         onclick="gtag('event', 'clic_red_social', {'destino': 'linkedin_blog_button'});"
-      >
-     <i class="fa-brands fa-linkedin mr-2"></i>
+    >
+    <i class="fa-brands fa-linkedin mr-2" aria-hidden="true"></i>
     See more on LinkedIn
     </a>
 </div>
@@ -1009,12 +1011,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- SECCIÓN 8: CONTACT -->
 
-        <section id="contact" class="text-center py-16 mt-16 border-t border-gray-200">
+       <section id="contact" class="text-center py-16 mt-16 border-t border-gray-200">
     <h2 class="text-3xl font-bold text-gray-800 mb-4">Let's talk about your next data challenge.</h2>
-  <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+    <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
     I’m open to new opportunities where I can combine data strategy, analytics, and storytelling to create business impact.  
     Available for remote or hybrid roles — always happy to discuss how data can tell your next story.
-  </p>
+    </p>
     
     <a 
       href="mailto:catherinefarkas1@gmail.com" 
@@ -1022,19 +1024,24 @@ document.addEventListener('DOMContentLoaded', () => {
       onclick="gtag('event', 'contacto_email', {'boton_destino': 'email_footer'});"
     >
         <i class="fa-solid fa-envelope mr-2"></i>
-    catherinefarkas1@gmail.com
+        catherinefarkas1@gmail.com
     </a>
 
     <div class="flex justify-center space-x-8">
         <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/" 
-           target="_blank" 
+           target="_blank"
+           rel="noopener noreferrer" 
            class="text-gray-400 hover:text-cyan-500 transition duration-300" 
            aria-label="LinkedIn Profile"
            onclick="gtag('event', 'clic_red_social', {'destino': 'linkedin_footer'});"
-     >
-          <i class="fa-brands fa-linkedin text-3xl"></i>
-    </a>
-    </div>
+        >
+            <i class="fa-brands fa-linkedin text-3xl"></i>
+        </a>
+        </div> 
+    <footer class="text-center mt-12 py-4 border-t border-gray-200">
+        <p class="text-xs text-gray-400">&copy; 2025 Catherine Farkas. Desarrollado con ❤️ y código.</p>
+    </footer>
+
 </section>
 </main>
 
@@ -1372,15 +1379,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p class="text-sm italic text-gray-500 mt-6 mb-2">
                         *Please note: The original article, including the embedded charts and the downloadable PDF, is in Spanish.
                     </p>
-
+                    
                     <a 
-                        href="images/pdf/El_Arte_de_elegir_graficos_(Parte_1).pdf" 
-                        target="_blank" 
-                        class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center"
-                    >
-                        <i class="fa-solid fa-file-arrow-down mr-2"></i>
-                        Download Original PDF
-                    </a>
+    href="images/pdf/El_Arte_de_elegir_graficos_(Parte_1).pdf" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center"
+>
+    <i class="fa-solid fa-file-arrow-down mr-2" aria-hidden="true"></i>
+    Download Original PDF
+</a>
+
                 </div>
             </div>
         </div>
@@ -1494,23 +1503,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     </p>
 
                     <div class="flex flex-col sm:flex-row justify-center gap-4">
-                        <a 
-                            href="images/pdf/El_Arte_de_elegir_graficos_(Parte_2).pdf" 
-                            target="_blank" 
-                            class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center justify-center"
-                        >
-                            <i class="fa-solid fa-file-arrow-down mr-2"></i>
-                            Download PDF (Part II)
-                        </a>
-                        <a 
-                            href="images/pdf/Resumen_de_tipos_de_grafico.pdf" 
-                            target="_blank" 
-                            class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center justify-center"
-                        >
-                            <i class="fa-solid fa-file-arrow-down mr-2"></i>
-                            Download PDF (Summary)
-                        </a>
-                    </div>
+    <a 
+        href="images/pdf/El_Arte_de_elegir_graficos_(Parte_2).pdf" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center justify-center"
+    >
+        <i class="fa-solid fa-file-arrow-down mr-2" aria-hidden="true"></i>
+        Download PDF (Part II)
+    </a>
+    <a 
+        href="images/pdf/Resumen_de_tipos_de_grafico.pdf" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center justify-center"
+    >
+        <i class="fa-solid fa-file-arrow-down mr-2" aria-hidden="true"></i>
+        Download PDF (Summary)
+    </a>
+</div>
                 </div>
             </div>
         </div>
@@ -1620,13 +1631,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     </p>
 
                     <a 
-                        href="images/pdf/Pasos_para_aplicar_Data_Storytelling.pdf" 
-                        target="_blank" 
-                        class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center"
-                    >
-                        <i class="fa-solid fa-file-arrow-down mr-2"></i>
-                        Download Original PDF
-                    </a>
+    href="images/pdf/Pasos_para_aplicar_Data_Storytelling.pdf" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center"
+>
+    <i class="fa-solid fa-file-arrow-down mr-2" aria-hidden="true"></i>
+    Download Original PDF
+</a>
                 </div>
             </div>
         </div>
@@ -1711,13 +1723,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     </p>
 
                     <a 
-                        href="images/pdf/Tipos_de_Análisis_en_BI.pdf" 
-                        target="_blank" 
-                        class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center"
-                    >
-                        <i class="fa-solid fa-file-arrow-down mr-2"></i>
-                        Download Original PDF
-                    </a>
+    href="images/pdf/Tipos_de_Análisis_en_BI.pdf" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center"
+>
+    <i class="fa-solid fa-file-arrow-down mr-2" aria-hidden="true"></i>
+    Download Original PDF
+</a>
                 </div>
             </div>
         </div>
@@ -1816,13 +1829,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     </p>
 
                     <a 
-                        href="images/pdf/Transformar_grafico_en_4_pasos.pdf" 
-                        target="_blank" 
-                        class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center"
-                    >
-                        <i class="fa-solid fa-file-arrow-down mr-2"></i>
-                        Download Original PDF
-                    </a>
+    href="images/pdf/Transformar_grafico_en_4_pasos.pdf" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="btn-cian text-sm px-5 py-3 rounded-full inline-flex items-center"
+>
+    <i class="fa-solid fa-file-arrow-down mr-2" aria-hidden="true"></i>
+    Download Original PDF
+</a>
                 </div>
             </div>
         </div>
