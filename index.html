@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>"Catherine Farkas | Data Strategy & BI Consultant"</title>
+    <title>Catherine Farkas | Data Strategy & BI Consultant</title>
 
    <meta name="description" content="Data Strategy & BI Consultant focused on transforming complex information into clear, actionable insights that guide business decisions.">
 
@@ -320,23 +320,44 @@
         <header id="main-header" class="mb-12 py-4 sticky top-0 z-30 glass-header rounded-b-xl">
 
 <div class="flex justify-between items-center px-4 max-w-7xl mx-auto">
-    <a href="#intro" class="text-xl font-semibold text-gray-800">
-      <span class="text-cyan-500 mr-1">CF</span> Analytics
+    <a href="#hero" 
+       class="text-xl font-semibold text-gray-800"
+       onclick="gtag('event', 'nav_clic', {'destino': 'logo_header'});"
+      >
+        <span class="text-cyan-500 mr-1">CF</span> Analytics
     </a>
     
 <nav class="space-x-4 sm:space-x-6 hidden sm:block nav-links">
-  <a href="#impact" class="text-sm font-medium text-gray-600 transition duration-150">Impact</a>
-  <a href="#projects" class="text-sm font-medium text-gray-600 transition duration-150">Projects</a>
-  <a href="#about" class="text-sm font-medium text-gray-600 transition duration-150">About Me</a>
-  <a href="#experience" class="text-sm font-medium text-gray-600 transition duration-150">Experience</a>
-  <a href="#skills" class="text-sm font-medium text-gray-600 transition duration-150">Data Skills</a>
-  <a href="#blog" class="text-sm font-medium text-gray-600 transition duration-150">Blog</a>
-  <a href="#contact" class="text-sm font-medium text-gray-600 transition duration-150">Contact</a>
+    <a href="#impact" 
+       class="text-sm font-medium text-gray-600 transition duration-150"
+       onclick="gtag('event', 'nav_clic', {'destino': 'impact'});">Impact</a>    
+    <a href="#projects" 
+       class="text-sm font-medium text-gray-600 transition duration-150"
+       onclick="gtag('event', 'nav_clic', {'destino': 'projects'});">Projects</a>   
+    <a href="#about" 
+       class="text-sm font-medium text-gray-600 transition duration-150"
+       onclick="gtag('event', 'nav_clic', {'destino': 'about'});">About Me</a>    
+    <a href="#experience" 
+       class="text-sm font-medium text-gray-600 transition duration-150"
+       onclick="gtag('event', 'nav_clic', {'destino': 'experience'});">Experience</a>    
+    <a href="#skills" 
+       class="text-sm font-medium text-gray-600 transition duration-150"
+       onclick="gtag('event', 'nav_clic', {'destino': 'skills'});">Data Skills</a>    
+    <a href="#blog" 
+       class="text-sm font-medium text-gray-600 transition duration-150"
+       onclick="gtag('event', 'nav_clic', {'destino': 'blog'});">Blog</a>   
+    <a href="#contact" 
+       class="text-sm font-medium text-gray-600 transition duration-150"
+       onclick="gtag('event', 'nav_clic', {'destino': 'contact'});">Contact</a>
 </nav>
 
-    <button id="menu-toggle" class="sm:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 transition duration-150" aria-label="Abrir Menú de Navegación">
-      <i class="fa-solid fa-bars text-xl"></i>
-    </button>
+<button id="menu-toggle" 
+        class="sm:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 transition duration-150" 
+        aria-label="Abrir Menú de Navegación"
+        onclick="gtag('event', 'nav_clic', {'destino': 'menu_mobile_toggle'});"
+>
+    <i class="fa-solid fa-bars text-xl"></i>
+</button>
   </div>
 </header>
 
@@ -379,15 +400,23 @@ html {
 <!-- MOBILE MENU -->
 
 <nav id="mobile-menu" class="fixed top-20 right-4 w-64 bg-white p-6 rounded-xl shadow-2xl border border-gray-200 z-30 transition-all duration-300 ease-in-out transform scale-95 opacity-0 invisible sm:hidden">
-  <div class="flex flex-col space-y-4">
-    <a href="#impact" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item"><i class="fa-solid fa-chart-line mobile-menu-icon"></i> Impact</a>
-    <a href="#projects" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item"><i class="fa-solid fa-folder-open mobile-menu-icon"></i> Projects</a>
-    <a href="#about" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item"><i class="fa-solid fa-user-tie mobile-menu-icon"></i> About Me</a>
-    <a href="#experience" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item"><i class="fa-solid fa-briefcase mobile-menu-icon"></i> Experience</a>
-    <a href="#skills" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item"><i class="fa-solid fa-brain mobile-menu-icon"></i> Data Skills </a>
-    <a href="#blog" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item"><i class="fa-solid fa-pencil mobile-menu-icon"></i> Blog</a>
-    <a href="#contact" class="text-base font-bold text-cyan-600 hover:text-cyan-800 transition duration-150 pt-2 mobile-menu-item"><i class="fa-solid fa-envelope-open-text mobile-menu-icon"></i> Direct Contact</a>
-  </div>
+    <div class="flex flex-col space-y-4">
+        
+        <a href="#impact" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item" onclick="gtag('event', 'nav_clic', {'destino': 'mobile_impact'});"><i class="fa-solid fa-chart-line mobile-menu-icon"></i> Impact</a>
+        
+        <a href="#projects" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item" onclick="gtag('event', 'nav_clic', {'destino': 'mobile_projects'});"><i class="fa-solid fa-folder-open mobile-menu-icon"></i> Projects</a>
+        
+        <a href="#about" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item" onclick="gtag('event', 'nav_clic', {'destino': 'mobile_about'});"><i class="fa-solid fa-user-tie mobile-menu-icon"></i> About Me</a>
+        
+        <a href="#experience" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item" onclick="gtag('event', 'nav_clic', {'destino': 'mobile_experience'});"><i class="fa-solid fa-briefcase mobile-menu-icon"></i> Experience</a>
+        
+        <a href="#skills" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item" onclick="gtag('event', 'nav_clic', {'destino': 'mobile_skills'});"><i class="fa-solid fa-brain mobile-menu-icon"></i> Data Skills </a>
+        
+        <a href="#blog" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item" onclick="gtag('event', 'nav_clic', {'destino': 'mobile_blog'});"><i class="fa-solid fa-pencil mobile-menu-icon"></i> Blog</a>
+        
+        <a href="#contact" class="text-base font-bold text-cyan-600 hover:text-cyan-800 transition duration-150 pt-2 mobile-menu-item" onclick="gtag('event', 'clic_contacto_mobile', {'destino': 'mobile_direct_contact'});"><i class="fa-solid fa-envelope-open-text mobile-menu-icon"></i> Direct Contact</a>
+        
+    </div>
 </nav>
 
 <main>
@@ -415,15 +444,26 @@ html {
      Business Analyst and BI Consultant, bridging the gap between business needs and data insights — from strategy and governance to user-focused analytics.
       </p>
 
-      <a href="#projects" class="btn-cian px-10 py-4 text-lg font-semibold rounded-full shadow-lg transition-all duration-300 hover:-translate-y-px">
-        Explore Case Studies
+      <a href="#projects" 
+         class="btn-cian px-10 py-4 text-lg font-semibold rounded-full shadow-lg transition-all duration-300 hover:-translate-y-px"
+         onclick="gtag('event', 'clic_hero', {'boton_destino': 'projects_section'});"
+      >
+      Explore Case Studies
       </a>
-
       <div class="mt-12 flex justify-center space-x-8">
-        <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/" target="_blank" class="text-gray-400 hover:text-cyan-500 transition duration-300" aria-label="LinkedIn Profile">
+        <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/" 
+           target="_blank" 
+           class="text-gray-400 hover:text-cyan-500 transition duration-300" 
+           aria-label="LinkedIn Profile"
+           onclick="gtag('event', 'clic_red_social', {'destino': 'linkedin_header'});"
+          >
           <i class="fa-brands fa-linkedin text-3xl"></i>
         </a>
-        <a href="mailto:catherinefarkas1@gmail.com" class="text-gray-400 hover:text-cyan-500 transition duration-300" aria-label="Send Email">
+        <a href="mailto:catherinefarkas1@gmail.com" 
+           class="text-gray-400 hover:text-cyan-500 transition duration-300" 
+           aria-label="Email Address"
+           onclick="gtag('event', 'clic_red_social', {'destino': 'email_header'});"
+          >
           <i class="fa-solid fa-envelope text-3xl"></i>
         </a>
       </div>
@@ -437,11 +477,6 @@ html {
     <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
         Quantified Impact
     </h2>
-
-    <p class="text-center text-gray-600 mb-10 max-w-3xl mx-auto">
-    Every project is guided by one principle: measurable impact.  
-    Here are a few examples of how strategic BI translates into tangible results.
-    </p>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
@@ -607,7 +642,7 @@ html {
                 </h3>
                 <div class="w-16 h-1 bg-cyan-500 mx-auto rounded-full mb-4"></div>
                 <p class="text-gray-600 text-base">
-                    That realization led me to pursue a <strong>Master’s in Consumer Analytics at the University of Leeds</strong>, where I built the technical toolkit to turn stories into data — and data into clarity.
+                    That realization led me to pursue a <strong>Master’s in Consumer Analytics</strong> at the University of Leeds, where I built the technical toolkit to turn stories into data — and data into clarity.
                 </p>
             </div>
         </div>
@@ -724,10 +759,7 @@ html {
     Data Skills & Consultancy
   </h2>
 
-  <p class="text-center text-gray-600 mb-10 max-w-3xl mx-auto">
-    I combine technical precision with narrative thinking.  
-    These are the three pillars I use to turn data into strategy.
-  </p>
+
 
   <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
     
@@ -925,11 +957,13 @@ html {
 
 
 <div class="text-center mt-12">
-    <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/recent-activity/all/" 
-       target="_blank" 
-       class="btn-cian px-10 py-3 text-base font-semibold rounded-full shadow-lg inline-flex items-center transition-all duration-300 hover:-translate-y-px">
-        <i class="fa-brands fa-linkedin mr-2"></i>
-        See more on LinkedIn
+     <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/recent-activity/all/" 
+        target="_blank" 
+        class="btn-cian px-10 py-3 text-base font-semibold rounded-full shadow-lg inline-flex items-center transition-all duration-300 hover:-translate-y-px"
+        onclick="gtag('event', 'clic_red_social', {'destino': 'linkedin_blog_button'});"
+      >
+     <i class="fa-brands fa-linkedin mr-2"></i>
+    See more on LinkedIn
     </a>
 </div>
 
@@ -973,21 +1007,30 @@ document.addEventListener('DOMContentLoaded', () => {
     <a 
       href="mailto:catherinefarkas1@gmail.com" 
       class="inline-flex items-center btn-cian px-8 py-3 text-base font-semibold rounded-full shadow-lg mb-10"
+      onclick="gtag('event', 'contacto_email', {'boton_destino': 'email_footer'});"
     >
         <i class="fa-solid fa-envelope mr-2"></i>
-        catherinefarkas1@gmail.com
+    catherinefarkas1@gmail.com
     </a>
 
     <div class="flex justify-center space-x-8">
-        <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/" target="_blank" class="text-gray-400 hover:text-cyan-500 transition duration-300" aria-label="LinkedIn Profile">
-            <i class="fa-brands fa-linkedin text-3xl"></i>
-        </a>
+        <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/" 
+           target="_blank" 
+           class="text-gray-400 hover:text-cyan-500 transition duration-300" 
+           aria-label="LinkedIn Profile"
+           onclick="gtag('event', 'clic_red_social', {'destino': 'linkedin_footer'});"
+     >
+          <i class="fa-brands fa-linkedin text-3xl"></i>
+    </a>
     </div>
 </section>
 </main>
 
     
-<a href="#contact" class="floating-button btn-cian px-6 py-3 font-bold rounded-full text-sm shadow-2xl hover:shadow-cyan-500/50 transition duration-300">
+    <a href="#contact" 
+       class="floating-button btn-cian px-6 py-3 font-bold rounded-full text-sm shadow-2xl hover:shadow-cyan-500/50 transition duration-300"
+       onclick="gtag('event', 'contacto_flotante', {'boton_destino': 'contact_section'});"
+        >
         Get in Touch
     </a>
 
@@ -1854,45 +1897,60 @@ document.addEventListener('DOMContentLoaded', () => {
          * @param {string} modalId - El ID del elemento modal (overlay).
          * @param {string} iframeSrc - La URL que se debe cargar en el iframe del dashboard (o placeholder).
          */
-        function openModal(modalId, iframeSrc) {
-            const modal = document.getElementById(modalId);
 
-            if (modal) {
-                // 1. Cargamos el iframe si existe un ID de iframe coincidente dentro del modal
-                // Usamos el modalId para encontrar el iframe correcto
-                let iframeId;
-                
-                // Proyecto 1 (Marketing)
-                if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
-                
-                // Proyecto 2 (Operational)
-                else if (modalId === 'operational-insights-modal') iframeId = 'operational-dashboard-iframe';
-                
-                // Proyecto 3 (Covid)
-                else if (modalId === 'project-covid-modal') iframeId = 'project-covid-iframe';
+          function openModal(modalId, iframeSrc) {
+          const modal = document.getElementById(modalId);
 
-                
-                const iframe = document.getElementById(iframeId);
+           if (modal) {
+        
+        // ************************************************
+        // *** 🎯 CÓDIGO GA4 PARA EL EVENTO DE PROYECTO ***
+        // ************************************************
+        // Verificamos si gtag está cargado (es decir, si aceptaron las cookies)
+        if (typeof gtag === 'function') { 
+            gtag('event', 'proyecto_visto', {
+                'modal_id': modalId, 
+                'iframe_src': iframeSrc 
+            });
+            console.log('✅ GA4 Evento: proyecto_visto', modalId);
+        }
+        // ************************************************
 
-                if (iframe) {
-                   // --- ¡LÓGICA DEL LAZY LOAD! ---
-                   // Comprueba si el iframe tiene un 'data-src' (los proyectos)
-                   const dataSrc = iframe.getAttribute('data-src');
-                   if (dataSrc) {
-                       iframe.src = dataSrc; // Carga el iframe AHORA, al hacer clic
-                   } else if (iframeSrc) {
-                       // Esto es para los modales que SÍ pasan un src (los del blog no lo usan)
-                       iframe.src = iframeSrc;
-                   }
-                   // Si es un modal del blog (sin iframeSrc y sin data-src), no hace nada
-                }
+        // 1. Cargamos el iframe si existe un ID de iframe coincidente dentro del modal
+        // Usamos el modalId para encontrar el iframe correcto
+        let iframeId;
+        
+        // Proyecto 1 (Marketing)
+        if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
+        
+        // Proyecto 2 (Operational)
+        else if (modalId === 'operational-insights-modal') iframeId = 'operational-dashboard-iframe';
+        
+        // Proyecto 3 (Covid)
+        else if (modalId === 'project-covid-modal') iframeId = 'project-covid-iframe';
 
-                // 2. Abre el modal con animación
-                modal.classList.add('open');
+        
+        const iframe = document.getElementById(iframeId);
 
-                // 3. Ocultar el scroll del body principal
-                document.body.style.overflow = 'hidden';
-            }
+        if (iframe) {
+           // --- ¡LÓGICA DEL LAZY LOAD! ---
+           // Comprueba si el iframe tiene un 'data-src' (los proyectos)
+           const dataSrc = iframe.getAttribute('data-src');
+           if (dataSrc) {
+               iframe.src = dataSrc; // Carga el iframe AHORA, al hacer clic
+           } else if (iframeSrc) {
+               // Esto es para los modales que SÍ pasan un src (los del blog no lo usan)
+               iframe.src = iframeSrc;
+           }
+           // Si es un modal del blog (sin iframeSrc y sin data-src), no hace nada
+        }
+
+        // 2. Abre el modal con animación
+        modal.classList.add('open');
+
+        // 3. Ocultar el scroll del body principal
+        document.body.style.overflow = 'hidden';
+           }
         }
 
         /**
@@ -1960,26 +2018,29 @@ document.addEventListener('DOMContentLoaded', () => {
     <script>
         // --- LÓGICA DEL BANNER DE COOKIES (FINAL) ---
 
-        // 1. Función para cargar Google Analytics (esto solo se llamará si aceptan)
-        function loadGoogleAnalytics() {
-            // Pega tu script de GA4 aquí. Por ejemplo:
-            /*
-            const gaScript = document.createElement('script');
-            gaScript.async = true;
-            gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=TU_ID_DE_GA4';
-            document.head.appendChild(gaScript);
+       // 1. Función para cargar Google Analytics (esto solo se llamará si aceptan)
+    function loadGoogleAnalytics() {
+        
+        // --- COMIENZO DEL CÓDIGO DE GA4 (Instalación Manual en JavaScript) ---
 
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'TU_ID_DE_GA4');
-            
-            console.log("GA4 Cargado (Consentimiento Aceptado)");
-            */
+        const gaScript = document.createElement('script');
+        gaScript.async = true;
+        // La URL con tu ID de seguimiento: G-0G3Q7PGYFP
+        gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0G3Q7PGYFP";
+        document.head.appendChild(gaScript);
 
-            // De momento, solo pondremos un log para que veas que funciona:
-            console.log("Analytics ACEPTADAS. GA4 se cargaría aquí.");
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        // El comando 'config' que activa el tracking con tu ID
+        gtag('config', 'G-0G3Q7PGYFP');
+
+        console.log("✅ Analytics ACEPTADAS. GA4 Cargado.");
+        
+        // --- FIN DEL CÓDIGO DE GA4 ---
         }
+
 
         // 2. Lógica principal del banner
         document.addEventListener('DOMContentLoaded', () => {
