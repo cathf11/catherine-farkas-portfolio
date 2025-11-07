@@ -2245,24 +2245,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
-// --- NUEVA FUNCIÓN PARA GESTIONAR EL TOOLTIP DEL BOTÓN FLOTANTE (¡CORREGIDA!) ---
+// --- FUNCIÓN MEJORADA PARA OCULTAR EL TOOLTIP (¡MÁS AGRESIVA!) ---
 function hideFloatingTooltip() {
     const button = document.getElementById('floating-contact-button');
     if (button) {
-        // 1. Guarda el contenido del tooltip original
+        
+        // 1. ¡NUEVO! Quita el foco del botón inmediatamente.
+        // Esto evita que el tooltip se quede "pillado" en estado :focus
+        button.blur(); 
+
+        // 2. Guarda el contenido del tooltip original
         const originalTooltip = button.getAttribute('data-tooltip');
         
-        // 2. Borra el atributo del tooltip temporalmente para esconderlo
+        // 3. Borra el atributo del tooltip temporalmente para esconderlo
         button.setAttribute('data-tooltip', '');
         
-        // 3. Mueve el foco para asegurar que se quita el highlight (solución anterior)
-        document.body.focus(); 
-
-        // 4. Restaura el contenido del tooltip después de un breve momento (50ms)
-        // Esto permite que el tooltip vuelva a funcionar para el hover en desktop
+        // 4. Restaura el contenido del tooltip después de un breve momento (100ms)
+        // Esto permite que vuelva a funcionar para el hover en desktop
         setTimeout(() => {
             button.setAttribute('data-tooltip', originalTooltip);
-        }, 50); 
+        }, 100); // Le damos un pelín más de tiempo
     }
 }
 
