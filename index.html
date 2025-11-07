@@ -2028,7 +2028,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // **************************************************
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date()); // Mantiene el timestamp de inicio
 // **************************************************
 
         // --- FUNCIÓN DE SEGUIMIENTO (EXISTENTE) ---
@@ -2273,8 +2272,10 @@ function hideFloatingTooltip() {
         gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0G3Q7PGYFP";
         document.head.appendChild(gaScript);
 
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        // ¡YA NO REDECLARAMOS gtag()!
+        // Simplemente llamamos a la función global 'gtag' que ya existe
+        // para enviar la configuración.
+        
         gtag('js', new Date());
         
         // El comando 'config' que activa el tracking con tu ID
