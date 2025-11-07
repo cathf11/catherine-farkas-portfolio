@@ -231,23 +231,22 @@
       content: none !important; /* Doble seguro */
   }
 
-  /* Matamos el brillo y el "salto" del hover/focus en móvil */
+  /* Matamos el brillo y el "salto" del hover/focus en móvil (CON !IMPORTANT) */
   .floating-button:hover,
-  .floating-button:focus { /* <-- ¡AÑADIDO :focus AQUÍ! */
-      box-shadow: none;
-      transform: none; 
-      outline: none; /* <-- ¡AÑADIDO PARA MATAR EL BRILLO DE FOCO! */
+  .floating-button:focus { 
+      box-shadow: none !important;  /* <-- ¡NUCLEAR! */
+      transform: none !important;   /* <-- ¡NUCLEAR! */
+      outline: none !important;    /* <-- ¡NUCLEAR! */
   }
 
-  /* Hacemos que SÓLO reaccione al "toque" (active) */
+  /* Hacemos que SÓLO reaccione al "toque" (active) (CON !IMPORTANT) */
   .floating-button:active {
-      transform: scale(1.08); /* Se agranda (¡sin saltar!) */
-      box-shadow: none; /* Sin brillo */
-      outline: none; /* <-- ¡AÑADIDO PARA MATAR EL BRILLO DE FOCO! */
+      transform: scale(1.08) !important; /* <-- ¡NUCLEAR! */
+      box-shadow: none !important;     /* <-- ¡NUCLEAR! */
+      outline: none !important;       /* <-- ¡NUCLEAR! */
   }
 
 } /* <-- ESTE es el ÚNICO cierre del @media */
-
 /* === Tooltip genérico para iconos de email (sale el email arriba del icono) === */
 /* === Tooltip genérico para iconos de redes (posición inferior) === */
 .tooltip {
