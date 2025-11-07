@@ -578,7 +578,7 @@ html {
         
         <a href="#blog" class="text-base font-medium text-gray-700 hover:text-cyan-500 transition duration-150 border-b pb-1 mobile-menu-item" onclick="gtag('event', 'nav_clic', {'destino': 'mobile_blog'});"><i class="fa-solid fa-pencil mobile-menu-icon" aria-hidden="true"></i> Blog</a>
         
-        <a href="#contact" class="text-base font-bold text-cyan-600 hover:text-cyan-800 transition duration-150 pt-2 mobile-menu-item" onclick="gtag('event', 'clic_contacto_mobile', {'destino': 'mobile_direct_contact'});"><i class="fa-solid fa-envelope-open-text mobile-menu-icon" aria-hidden="true"></i> Direct Contact</a>
+        <a href="#contact" class="text-base font-bold text-cyan-600 hover:text-cyan-800 transition duration-150 pt-2 mobile-menu-item" onclick="gtag('event', 'nav_clic', {'destino': 'mobile_contact'});"><i class="fa-solid fa-envelope-open-text mobile-menu-icon" aria-hidden="true"></i> Direct Contact</a>
         
     </div>
 </nav>
@@ -617,7 +617,7 @@ html {
 
         <a href="#projects" 
            class="btn-cian inline-flex items-center px-10 py-3 text-base font-semibold rounded-full shadow-lg"
-           onclick="gtag('event', 'clic_hero', {'boton_destino': 'projects_section'});">
+           onclick="gtag('event', 'clic_intro', {'boton_destino': 'projects_section'});">
           Explore Case Studies
         </a>
         
@@ -635,7 +635,7 @@ html {
    class="text-gray-400 hover:text-cyan-500 transition duration-300 inline-block hover:-translate-y-1 hover:scale-110 tooltip"
    aria-label="Email Address"  
    data-tooltip="catherinefarkas1@gmail.com"
-   onclick="gtag('event', 'clic_red_social', {'destino': 'email_header_copy'});">
+   onclick="gtag('event', 'contacto_email', {'boton_destino': 'email_header_icon'});">
   <i class="fa-solid fa-envelope text-3xl"></i>
 </a>
 
@@ -1245,8 +1245,7 @@ document.addEventListener('DOMContentLoaded', () => {
    class="floating-button"
    aria-label="Get in Touch"
    data-tooltip="Get in Touch"
-   onclick="hideFloatingTooltip()"> 
-   <i class="fa-solid fa-comments text-xl text-white"></i>
+   onclick="gtag('event', 'nav_clic', {'destino': 'floating_button'}); hideFloatingTooltip()"> <i class="fa-solid fa-comments text-xl text-white"></i>
 </a>
 
 
