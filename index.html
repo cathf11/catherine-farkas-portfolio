@@ -28,10 +28,11 @@
 
     <style>
         /* CONFIGURACIÓN BASE Y TIPOGRAFÍA */
+       
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f9fc; /* Fondo blanco muy suave */
-            color: #1f2937; /* Texto principal oscuro */
+        font-family: 'Inter', sans-serif;
+        background-color: #f7f9fc; /* Fondo blanco muy suave */
+        color: #1f2937; /* Texto principal oscuro */
         }
 
         :root {
@@ -110,16 +111,25 @@
         }
 
         /* Botón de acento cian con degradado */
-        .btn-cian {
-            background-image: linear-gradient(to right, #06b6d4, #38bdf8); /* Cian a Azul Claro */
-            color: white;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px var(--color-shadow-light);
-        }
-        .btn-cian:hover {
-            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
-            transform: translateY(-1px);
-        }
+        /* CÓDIGO NUEVO (con más movimiento y brillo) */
+         /* CÓDIGO NUEVO (Equilibrado para fondo claro) */
+.btn-cian {
+    background-image: linear-gradient(to right, #06b6d4, #38bdf8);
+    color: white;
+    transition: all 0.3s ease;
+    /* Volvemos a la sombra base original, que es más sutil */
+    box-shadow: 0 4px 15px var(--color-shadow-light); /* 0.15 opacity */
+}
+.btn-cian:hover {
+    /* 1. Mantenemos el MOVIMIENTO que te gustó */
+    transform: translateY(-3px) scale(1.02); 
+    
+    /* 2. Usamos la sombra de hover original (0.4), que es más suave */
+    box-shadow: 0 7px 20px rgba(6, 182, 212, 0.4); 
+    
+    /* 3. ¡ELIMINADO! Ya no usamos el filtro de brillo */
+    /* filter: brightness(1.1); */
+}
 
         /* Botón de contacto flotante */
         .floating-button {
@@ -334,24 +344,31 @@
 </a>
     
 <nav class="space-x-4 sm:space-x-6 hidden sm:block nav-links">
+    
     <a href="#impact" 
        class="text-sm font-medium text-gray-600 transition duration-150"
        onclick="gtag('event', 'nav_clic', {'destino': 'impact'});">Impact</a>    
+    
     <a href="#projects" 
        class="text-sm font-medium text-gray-600 transition duration-150"
        onclick="gtag('event', 'nav_clic', {'destino': 'projects'});">Projects</a>   
+    
     <a href="#about" 
        class="text-sm font-medium text-gray-600 transition duration-150"
        onclick="gtag('event', 'nav_clic', {'destino': 'about'});">About Me</a>    
+    
     <a href="#experience" 
        class="text-sm font-medium text-gray-600 transition duration-150"
        onclick="gtag('event', 'nav_clic', {'destino': 'experience'});">Experience</a>    
+    
     <a href="#skills" 
        class="text-sm font-medium text-gray-600 transition duration-150"
        onclick="gtag('event', 'nav_clic', {'destino': 'skills'});">Data Skills</a>    
+    
     <a href="#blog" 
        class="text-sm font-medium text-gray-600 transition duration-150"
        onclick="gtag('event', 'nav_clic', {'destino': 'blog'});">Blog</a>   
+    
     <a href="#contact" 
        class="text-sm font-medium text-gray-600 transition duration-150"
        onclick="gtag('event', 'nav_clic', {'destino': 'contact'});">Contact</a>
@@ -425,6 +442,8 @@ html {
     </div>
 </nav>
 
+
+
 <main>
 
 <!-- SECCIÓN 1: INTRO SUMMARY -->
@@ -433,10 +452,16 @@ html {
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="flex justify-center mb-8">
-      <img src="images/Catherine_Farkas_Profile_Picture.jpg"
-           alt="Catherine Farkas profile picture"
-           class="rounded-full w-40 h-40 object-cover shadow-xl border-4 border-white transition-all duration-300 hover:shadow-cyan-500/30 hover:scale-105">
+    
+    <img src="images/Catherine_Farkas_Profile_Picture.jpg"
+         alt="Catherine Farkas profile picture"
+         class="rounded-full w-40 h-40 object-cover 
+                border-4 border-white 
+                shadow-2xl shadow-cyan-500/50"> 
+                </div>
+    
     </div>
+
 
     <div class="max-w-4xl mx-auto">
       <h1 class="text-4xl sm:text-6xl font-extrabold text-gray-900 leading-snug mb-4 tracking-tight">
@@ -450,30 +475,31 @@ html {
      Business Analyst and BI Consultant, bridging the gap between business needs and data insights — from strategy and governance to user-focused analytics.
       </p>
 
-      <a href="#projects" 
-         class="btn-cian px-10 py-4 text-lg font-semibold rounded-full shadow-lg transition-all duration-300 hover:-translate-y-px"
-         onclick="gtag('event', 'clic_hero', {'boton_destino': 'projects_section'});"
-      >
-      Explore Case Studies
-      </a>
-      <div class="mt-12 flex justify-center space-x-8">
-        <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/" 
-           target="_blank"
-           rel="noopener noreferrer"
-           class="text-gray-400 hover:text-cyan-500 transition duration-300" 
-           aria-label="LinkedIn Profile"
-           onclick="gtag('event', 'clic_red_social', {'destino': 'linkedin_header'});"
-          >
-          <i class="fa-brands fa-linkedin text-3xl"></i>
-        </a>
-        <a href="mailto:catherinefarkas1@gmail.com" 
-   class="text-gray-400 hover:text-cyan-500 transition duration-300" 
-   aria-label="Email Address"
-   title="catherinefarkas1@gmail.com"  
-   onclick="gtag('event', 'clic_red_social', {'destino': 'email_header_copy'});"
+
+<a href="#projects" 
+   class="btn-cian inline-flex items-center px-10 py-3 text-base font-semibold rounded-full shadow-lg"
+   onclick="gtag('event', 'clic_hero', {'boton_destino': 'projects_section'});"
 >
-    <i class="fa-solid fa-envelope text-3xl"></i>
+    Explore Case Studies
 </a>
+      <div class="mt-12 flex justify-center space-x-8">
+    <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/" 
+       target="_blank"
+       rel="noopener noreferrer"
+       class="text-gray-400 hover:text-cyan-500 transition duration-300 inline-block hover:-translate-y-1 hover:scale-110" 
+       aria-label="LinkedIn Profile"
+       onclick="gtag('event', 'clic_red_social', {'destino': 'linkedin_header'});"
+      >
+      <i class="fa-brands fa-linkedin text-3xl"></i>
+    </a>
+    <a href="mailto:catherinefarkas1@gmail.com" 
+       class="text-gray-400 hover:text-cyan-500 transition duration-300 inline-block hover:-translate-y-1 hover:scale-110" 
+       aria-label="Email Address"
+       title="catherinefarkas1@gmail.com"  
+       onclick="gtag('event', 'clic_red_social', {'destino': 'email_header_copy'});"
+    >
+      <i class="fa-solid fa-envelope text-3xl"></i>
+    </a>
       </div>
     </div>
   </div>
@@ -974,15 +1000,15 @@ html {
 
 
 <div class="text-center mt-12">
-     <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/recent-activity/all/" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        class="btn-cian px-10 py-3 text-base font-semibold rounded-full shadow-lg inline-flex items-center transition-all duration-300 hover:-translate-y-px"
-        onclick="gtag('event', 'clic_red_social', {'destino': 'linkedin_blog_button'});"
-    >
+ <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/recent-activity/all/" 
+   target="_blank" 
+   rel="noopener noreferrer"
+   class="btn-cian px-10 py-3 text-base font-semibold rounded-full shadow-lg inline-flex items-center"
+   onclick="gtag('event', 'clic_red_social', {'destino': 'linkedin_blog_button'});"
+>
     <i class="fa-brands fa-linkedin mr-2" aria-hidden="true"></i>
     See more on LinkedIn
-    </a>
+</a>
 </div>
 
 
@@ -1032,15 +1058,15 @@ document.addEventListener('DOMContentLoaded', () => {
     </a>
 
     <div class="flex justify-center space-x-8">
-        <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/" 
-           target="_blank"
-           rel="noopener noreferrer" 
-           class="text-gray-400 hover:text-cyan-500 transition duration-300" 
-           aria-label="LinkedIn Profile"
-           onclick="gtag('event', 'clic_red_social', {'destino': 'linkedin_footer'});"
-        >
-            <i class="fa-brands fa-linkedin text-3xl"></i>
-        </a>
+ <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/" 
+   target="_blank"
+   rel="noopener noreferrer" 
+   class="text-gray-400 hover:text-cyan-500 transition duration-300 inline-block hover:-translate-y-1 hover:scale-110" 
+   aria-label="LinkedIn Profile"
+   onclick="gtag('event', 'clic_red_social', {'destino': 'linkedin_footer'});"
+>
+    <i class="fa-brands fa-linkedin text-3xl"></i>
+</a>
         </div> 
 <footer class="text-center mt-12 py-4 border-t border-gray-200">
     <p class="text-xs text-gray-400">&copy; 2025 Catherine Farkas. Developed with <i class="fa-solid fa-heart text-cyan-500"></i> and code.</p>
@@ -1050,12 +1076,15 @@ document.addEventListener('DOMContentLoaded', () => {
 </main>
 
     
-    <a href="#contact" 
-       class="floating-button btn-cian px-6 py-3 font-bold rounded-full text-sm shadow-2xl hover:shadow-cyan-500/50 transition duration-300"
-       onclick="gtag('event', 'contacto_flotante', {'boton_destino': 'contact_section'});"
-        >
-        Get in Touch
-    </a>
+<a href="#contact" 
+   class="floating-button p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 
+          bg-gradient-to-r from-cyan-500 to-blue-500 
+          hover:shadow-cyan-500/50"
+   onclick="gtag('event', 'contacto_flotante', {'boton_destino': 'contact_icon'});"
+   aria-label="Get in Touch"
+>
+    <i class="fa-solid fa-comments text-xl text-white"></i>
+</a>
 
  <!-- ============================================= -->
     <!-- MODAL 1: Marketing Campaign Dashboard (PROYECTO 1) -->
