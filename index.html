@@ -131,13 +131,120 @@
     /* filter: brightness(1.1); */
 }
 
-        /* Botón de contacto flotante */
-        .floating-button {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 50;
-        }
+/* === Botón de contacto flotante === */
+.floating-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 50;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(to right, #06b6d4, #38bdf8);
+  box-shadow: none; /* sin brillo por defecto */
+  color: white;
+  cursor: pointer;
+}
+
+.floating-button.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ✨ Glow solo al pasar el cursor */
+.floating-button:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.6);
+}
+
+/* === Tooltip === */
+.floating-button::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff; /* fondo blanco */
+  color: #1f2937; /* texto gris oscuro */
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Muestra el tooltip solo al pasar el cursor */
+.floating-button:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -4px);
+}
+
+/* Ocultar el tooltip en pantallas táctiles (móviles/tablets) */
+@media (hover: none) {
+  .floating-button::after {
+    display: none;
+  }
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 640px) {
+  .floating-button {
+    width: 44px;
+    height: 44px;
+    bottom: 14px;
+    right: 14px;
+  }
+
+  .floating-button i {
+    font-size: 0.9rem;
+  }
+}
+
+/* === Tooltip genérico para iconos de email (sale el email arriba del icono) === */
+/* === Tooltip genérico para iconos de redes (posición inferior) === */
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 130%; /* 👉 Aparece debajo del icono */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #1f2937;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+  transform: translate(-50%, 4px); /* pequeña animación hacia abajo */
+}
+
+/* Oculta el tooltip en pantallas táctiles */
+@media (hover: none) {
+  .tooltip::after {
+    display: none;
+  }
+}
 
         /* Estilo específico para el bloque de imagen de proyecto: */
         .project-visual {
@@ -448,10 +555,12 @@ html {
 
 <!-- SECCIÓN 1: INTRO SUMMARY -->
 
-<section id="intro" class="pt-12 pb-20 mb-16 text-center bg-white rounded-2xl shadow-xl border border-gray-100">
-  
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="intro" class="max-w-7xl mx-auto px-8 sm:px-12 lg:px-20 py-20">
 
+  <!-- Caja blanca -->
+  <div class="bg-white rounded-3xl shadow-xl p-10 sm:p-14 lg:p-20">
+
+    <div class="text-center">
       <div class="flex justify-center mb-8">
         <img src="images/Catherine_Farkas_Profile_Picture.jpg"
              alt="Catherine Farkas profile picture"
@@ -461,78 +570,98 @@ html {
       </div>
 
       <div class="max-w-4xl mx-auto">
-          <h1 class="text-4xl sm:text-6xl font-extrabold text-gray-900 leading-snug mb-4 tracking-tight">
-            Transforming Data Stories into
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
-              Business Decisions.
-            </span>
-          </h1>
-          
-          <p class="text-xl sm:text-2xl text-gray-600 mb-8 font-light">
-           Business Analyst and BI Consultant, bridging the gap between business needs and data insights — from strategy and governance to user-focused analytics.
-          </p>
+        <h1 class="text-4xl sm:text-6xl font-extrabold text-gray-900 leading-snug mb-4 tracking-tight">
+          Transforming Data Stories into
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
+            Business Decisions.
+          </span>
+        </h1>
+        
+        <p class="text-xl sm:text-2xl text-gray-600 mb-8 font-light">
+         Business Analyst and BI Consultant, bridging the gap between business needs and data insights — from strategy and governance to user-focused analytics.
+        </p>
 
-          <a href="#projects" 
-             class="btn-cian inline-flex items-center px-10 py-3 text-base font-semibold rounded-full shadow-lg"
-             onclick="gtag('event', 'clic_hero', {'boton_destino': 'projects_section'});"
-          >
-            Explore Case Studies
+        <a href="#projects" 
+           class="btn-cian inline-flex items-center px-10 py-3 text-base font-semibold rounded-full shadow-lg"
+           onclick="gtag('event', 'clic_hero', {'boton_destino': 'projects_section'});">
+          Explore Case Studies
+        </a>
+        
+        <div class="mt-12 flex justify-center space-x-8">
+          <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/" 
+             target="_blank"
+             rel="noopener noreferrer"
+             class="text-gray-400 hover:text-cyan-500 transition duration-300 inline-block hover:-translate-y-1 hover:scale-110" 
+             aria-label="LinkedIn Profile"
+             onclick="gtag('event', 'clic_red_social', {'destino': 'linkedin_header'});">
+            <i class="fa-brands fa-linkedin text-3xl"></i>
           </a>
-          
-          <div class="mt-12 flex justify-center space-x-8">
-              <a href="https://www.linkedin.com/in/catherine-farkas-rodriguez/" 
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 class="text-gray-400 hover:text-cyan-500 transition duration-300 inline-block hover:-translate-y-1 hover:scale-110" 
-                 aria-label="LinkedIn Profile"
-                 onclick="gtag('event', 'clic_red_social', {'destino': 'linkedin_header'});"
-              >
-                <i class="fa-brands fa-linkedin text-3xl"></i>
-              </a>
-              <a href="mailto:catherinefarkas1@gmail.com" 
-                 class="text-gray-400 hover:text-cyan-500 transition duration-300 inline-block hover:-translate-y-1 hover:scale-110" 
-                 aria-label="Email Address"
-                 title="catherinefarkas1@gmail.com"  
-                 onclick="gtag('event', 'clic_red_social', {'destino': 'email_header_copy'});"
-              >
-                <i class="fa-solid fa-envelope text-3xl"></i>
-              </a>
-          </div>
-      </div> </div> </section>
-<!-- SECCIÓN 2: QUANTIFIED IMPACT -->
-       
-        <section id="impact" class="mb-16 max-w-5xl mx-auto">
-    <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
-        Quantified Impact
-    </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<a href="mailto:catherinefarkas1@gmail.com" 
+   class="text-gray-400 hover:text-cyan-500 transition duration-300 inline-block hover:-translate-y-1 hover:scale-110 tooltip"
+   aria-label="Email Address"  
+   data-tooltip="catherinefarkas1@gmail.com"
+   onclick="gtag('event', 'clic_red_social', {'destino': 'email_header_copy'});">
+  <i class="fa-solid fa-envelope text-3xl"></i>
+</a>
 
-        <div class="card-pro p-6 rounded-xl text-center hover:shadow-lg transition-shadow duration-300">
-            <span class="block text-5xl font-bold text-cyan-500 mb-2">35%</span>
-            <p class="text-lg font-semibold text-gray-800">Reduction in Reporting Time</p>
-            <p class="text-sm text-gray-500 mt-1">Streamlined data preparation and automated reporting workflows.</p>
         </div>
-
-        <div class="card-pro p-6 rounded-xl text-center hover:shadow-lg transition-shadow duration-300">
-            <span class="block text-5xl font-bold text-cyan-500 mb-2">95%</span>
-            <p class="text-lg font-semibold text-gray-800">KPI Consistency</p>
-            <p class="text-sm text-gray-500 mt-1">Defined data quality and governance standards in strategic reports.</p>
-        </div>
-
-        <div class="card-pro p-6 rounded-xl text-center hover:shadow-lg transition-shadow duration-300">
-            <span class="block text-5xl font-bold text-cyan-500 mb-2">+2 Pts</span>
-            <p class="text-lg font-semibold text-gray-800">Improvement in Usability Score (UX)</p>
-            <p class="text-sm text-gray-500 mt-1">Applied UX/UI design principles to executive dashboards.</p>
-        </div>
+      </div>
     </div>
+
+  </div>
+  <!-- Fin caja blanca -->
+
 </section>
+
+
+</section>
+
+<!-- SECCIÓN 2: QUANTIFIED IMPACT -->
+<section id="impact" class="mb-20 max-w-7xl mx-auto px-8 sm:px-12 lg:px-24">
+
+  <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center section-title">
+      Quantified Impact
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    
+      <div class="card-pro p-8 rounded-2xl text-center bg-white hover:shadow-xl transition-all duration-300">
+          <span class="block text-5xl font-bold text-cyan-500 mb-2">35%</span>
+          <p class="text-lg font-semibold text-gray-800">Reduction in Reporting Time</p>
+          <p class="text-sm text-gray-500 mt-2">
+            Streamlined data preparation and automated reporting workflows.
+          </p>
+      </div>
+
+      <div class="card-pro p-8 rounded-2xl text-center bg-white hover:shadow-xl transition-all duration-300">
+          <span class="block text-5xl font-bold text-cyan-500 mb-2">95%</span>
+          <p class="text-lg font-semibold text-gray-800">KPI Consistency</p>
+          <p class="text-sm text-gray-500 mt-2">
+            Defined data quality and governance standards in strategic reports.
+          </p>
+      </div>
+
+      <div class="card-pro p-8 rounded-2xl text-center bg-white hover:shadow-xl transition-all duration-300">
+          <span class="block text-5xl font-bold text-cyan-500 mb-2">+2 Pts</span>
+          <p class="text-lg font-semibold text-gray-800">Improvement in Usability Score (UX)</p>
+          <p class="text-sm text-gray-500 mt-2">
+            Applied UX/UI design principles to executive dashboards.
+          </p>
+      </div>
+  </div>
+
+</section>
+
+
+
+
 
 <!-- SECCIÓN 3: PROJECTS & CASES OF STUDIES -->
 
 <!-- SECCIÓN 3: PROJECT 1 MARKETING INSIGHT DASHBOARD -->
 
-        <section id="projects" class="mb-16">
+        <section id="projects" class="mb-16 max-w-6xl mx-auto px-6 sm:px-8 lg:px-16">
     <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
         Featured Projects
     </h2>
@@ -643,9 +772,10 @@ html {
             </div>
         </div>
 
+
 <!-- SECCIÓN 4 ABOUT ME -->
 
-    </div> </section> <section id="about" class="py-16 mb-16 max-w-7xl mx-auto">
+    </div> </section> <section id="about" class="mb-16 max-w-6xl mx-auto px-6 sm:px-8 lg:px-16">
     <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
         The Story Behind the Analyst </h2>
     
@@ -706,7 +836,7 @@ html {
 
 <!-- SECCIÓN 5: EXPERIENCE & EDUCATION -->
 
-<section id="experience" class="mb-14">
+<section id="experience" class="mb-16 max-w-6xl mx-auto px-6 sm:px-8 lg:px-16">
  
  <h2 class="text-3xl font-bold text-gray-800 text-center mb-10 section-title">
   Experience & Education
@@ -791,7 +921,7 @@ html {
 <!-- SECCIÓN 6: SKILLS -->
 
 
-<section id="skills" class="mb-20 scroll-mt-28">
+<section id="skills" class="mb-16 max-w-6xl mx-auto px-6 sm:px-8 lg:px-16">
   <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
     Data Skills & Consultancy
   </h2>
@@ -859,7 +989,7 @@ html {
 
 <!-- SECCIÓN 6.1: TECHNICAL STAK -->
 
-<section id="stack" class="mb-20">
+<section id="stack" class="mb-16 max-w-7xl mx-auto px-8 sm:px-12 lg:px-20">
   <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">
     Tech Stack
   </h2>
@@ -907,15 +1037,20 @@ html {
 
 <!-- SECCIÓN 7: BLOG CF VIZTECH -->
 
+
 <section id="blog" class="mb-16">
+  <!-- Contenedor SOLO para el título y subtítulo -->
+  <div class="px-8 sm:px-12 lg:px-20">
     <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center section-title">
-        My Blog: The "Why" Beyond the Data
+      My Blog: The "Why" Beyond the Data
     </h2>
 
     <p class="text-center text-base text-gray-600 mb-10 max-w-4xl mx-auto">
-        CF VizTech is my personal project  — a space to <strong class="font-semibold text-gray-600">bridge the gap</strong> between data and decision-makers. My goal isn't just to show <em class="italic">how</em> to build dashboards, but to explore the <em class="italic">why</em> behind them. This is my collection of articles on the <strong class="font-semibold text-gray-600">process, strategy, and design</strong> that bring data to life for any role.
+      CF VizTech is my personal project — a space to <strong class="font-semibold text-gray-600">bridge the gap</strong> between data and decision-makers. My goal isn't just to show <em class="italic">how</em> to build dashboards, but to explore the <em class="italic">why</em> behind them. This is my collection of articles on the <strong class="font-semibold text-gray-600">process, strategy, and design</strong> that bring data to life for any role.
     </p>
+  </div>
 
+  <!-- Carrusel sin cambios -->
     <div class="relative max-w-6xl mx-auto">
         <button id="carousel-prev" aria-label="Previous Article" class="absolute top-1/2 left-0 z-30 -translate-y-1-2 -translate-x-4 bg-white/80 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center text-gray-700 shadow-lg hover:bg-white transition duration-300">
             <i class="fa-solid fa-chevron-left text-lg"></i>
@@ -1035,7 +1170,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- SECCIÓN 8: CONTACT -->
 
-       <section id="contact" class="text-center py-16 mt-16 border-t border-gray-200">
+       <section id="contact" class="text-center py-16 mt-16 border-t border-gray-200 max-w-6xl mx-auto px-6 sm:px-8 lg:px-16">
+
     <h2 class="text-3xl font-bold text-gray-800 mb-4">Let's talk about your next data challenge.</h2>
     <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
     I’m open to new opportunities where I can combine data strategy, analytics, and storytelling to create business impact.  
@@ -1070,15 +1206,13 @@ document.addEventListener('DOMContentLoaded', () => {
 </main>
 
     
-<a href="#contact" 
-   class="floating-button p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 
-          bg-gradient-to-r from-cyan-500 to-blue-500 
-          hover:shadow-cyan-500/50"
-   onclick="gtag('event', 'contacto_flotante', {'boton_destino': 'contact_icon'});"
+<a href="#contact"
+   class="floating-button"
    aria-label="Get in Touch"
->
-    <i class="fa-solid fa-comments text-xl text-white"></i>
+   data-tooltip="Get in Touch">
+   <i class="fa-solid fa-comments text-xl text-white"></i>
 </a>
+
 
  <!-- ============================================= -->
     <!-- MODAL 1: Marketing Campaign Dashboard (PROYECTO 1) -->
@@ -2138,6 +2272,73 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log("Analytics RECHAZADAS (botón).");
             });
         });
+ 
+         // === Mejora del botón flotante (scroll + responsive + hover animado) ===
+        document.addEventListener("DOMContentLoaded", () => {
+          const button = document.querySelector(".floating-button");
+          const intro = document.querySelector("#intro");
+          const header = document.querySelector("#main-header");
+          if (!button || !intro) return;
+
+          function checkButtonVisibility() {
+            const introRect = intro.getBoundingClientRect();
+            const headerHeight = header ? header.offsetHeight : 0;
+            const shouldShow = (introRect.bottom - headerHeight) <= 0;
+            if (shouldShow) {
+              button.classList.add("visible");
+            } else {
+              button.classList.remove("visible");
+            }
+          }
+
+          checkButtonVisibility();
+          window.addEventListener("scroll", () => requestAnimationFrame(checkButtonVisibility), { passive: true });
+          window.addEventListener("resize", checkButtonVisibility);
+        });
     </script>
- </div></body>
+
+<style>
+ .floating-button {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(to right, #06b6d4, #38bdf8);
+  /* 🔹 sin glow inicial */
+  box-shadow: none;
+  color: white;
+  cursor: pointer;
+}
+
+.floating-button.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ✨ Glow solo en hover */
+.floating-button:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.6);
+}
+
+@media (max-width: 640px) {
+  .floating-button {
+    width: 48px;
+    height: 48px;
+    bottom: 16px;
+    right: 16px;
+  }
+  .floating-button i {
+    font-size: 1rem;
+  }
+}
+</style>
+
+</div>
+</body>
 </html>
