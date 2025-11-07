@@ -2024,10 +2024,33 @@ document.addEventListener('DOMContentLoaded', () => {
     <script>
 
 // **************************************************
-// *** 🛠️ FIX INICIO GA4 (NECESARIO PARA EL CONSENTIMIENTO) ***
+// *** 🛠️ FIX INICIO GA4 (CON CONSENT MODE V2) ***
 // **************************************************
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
+
+// --- NUEVO CONSENT MODE V2 ---
+// 1. Define el estado de consentimiento POR DEFECTO (denegado).
+//    Esto tiene que ocurrir en CADA carga de página.
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied'
+});
+
+// 2. Carga el script de gtag.js INMEDIATAMENTE.
+//    El script se cargará, pero NO enviará nada porque
+//    el consentimiento está 'denied'.
+const gaScript = document.createElement('script');
+gaScript.async = true;
+gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0G3Q7PGYFP";
+document.head.appendChild(gaScript);
+
+// 3. Envía el 'config' AHORA.
+//    gtag.js lo recibirá, pero lo "retendrá" (no enviará el 'collect')
+//    hasta que el consentimiento cambie a 'granted'.
+gtag('js', new Date());
+gtag('config', 'G-0G3Q7PGYFP');
+// --- FIN NUEVO CONSENT MODE ---
 // **************************************************
 
         // --- FUNCIÓN DE SEGUIMIENTO (EXISTENTE) ---
@@ -2261,29 +2284,22 @@ function hideFloatingTooltip() {
     <script>
         // --- LÓGICA DEL BANNER DE COOKIES (FINAL) ---
 
-       // 1. Función para cargar Google Analytics (esto solo se llamará si aceptan)
+       // 1. Función para (ahora) SOLO ACTUALIZAR EL CONSENTIMIENTO
     function loadGoogleAnalytics() {
         
-        // --- COMIENZO DEL CÓDIGO DE GA4 (Instalación Manual en JavaScript) ---
+        // --- NUEVO CONSENT MODE V2 ---
+        // El script ya está cargado (desde el FIX INICIO).
+        // El 'config' ya está en la cola (desde el FIX INICIO).
 
-        const gaScript = document.createElement('script');
-        gaScript.async = true;
-        // La URL con tu ID de seguimiento: G-0G3Q7PGYFP
-        gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0G3Q7PGYFP";
-        document.head.appendChild(gaScript);
+        // 4. Actualiza el consentimiento.
+        //    Esto le dice a gtag: "¡luz verde! envía el 'config'
+        //    y todo lo demás que tengas en cola".
+        gtag('consent', 'update', {
+          'analytics_storage': 'granted'
+        });
+        // --- FIN NUEVO CONSENT MODE ---
 
-        // ¡YA NO REDECLARAMOS gtag()!
-        // Simplemente llamamos a la función global 'gtag' que ya existe
-        // para enviar la configuración.
-        
-        gtag('js', new Date());
-        
-        // El comando 'config' que activa el tracking con tu ID
-        gtag('config', 'G-0G3Q7PGYFP');
-
-        console.log("✅ Analytics ACEPTADAS. GA4 Cargado.");
-        
-        // --- FIN DEL CÓDIGO DE GA4 ---
+        console.log("✅ Analytics ACEPTADAS. Consentimiento 'granted'.");
         }
 
 
