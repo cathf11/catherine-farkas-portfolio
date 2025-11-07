@@ -447,7 +447,25 @@
     }
 
     </style>
+
+
+<script>
+    // 1. Crea la "cola" (dataLayer) y la función gtag
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    // 2. Define el estado de consentimiento POR DEFECTO (denegado)
+    //    ¡Esto se ejecuta ANTES que nada!
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied'
+    });
+</script>
 </head>
+
+
+
+
 
 
     <body class="antialiased">
@@ -2024,33 +2042,21 @@ document.addEventListener('DOMContentLoaded', () => {
     <script>
 
 // **************************************************
-// *** 🛠️ FIX INICIO GA4 (CON CONSENT MODE V2) ***
+// *** 🛠️ CARGA DE GA4 (EL SCRIPT ESTÁ EN EL HEAD) ***
 // **************************************************
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
 
-// --- NUEVO CONSENT MODE V2 ---
-// 1. Define el estado de consentimiento POR DEFECTO (denegado).
-//    Esto tiene que ocurrir en CADA carga de página.
-gtag('consent', 'default', {
-  'analytics_storage': 'denied',
-  'ad_storage': 'denied'
-});
-
-// 2. Carga el script de gtag.js INMEDIATAMENTE.
-//    El script se cargará, pero NO enviará nada porque
-//    el consentimiento está 'denied'.
+// 3. Carga el script de gtag.js INMEDIATAMENTE
+//    (gtag y el consent 'denied' ya se definieron en el <head>)
 const gaScript = document.createElement('script');
 gaScript.async = true;
-gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0G3Q7PGYFP";
+gaScript.src = "https/www.googletagmanager.com/gtag/js?id=G-0G3Q7PGYFP";
 document.head.appendChild(gaScript);
 
-// 3. Envía el 'config' AHORA.
-//    gtag.js lo recibirá, pero lo "retendrá" (no enviará el 'collect')
-//    hasta que el consentimiento cambie a 'granted'.
+// 4. Envía el 'config' AHORA.
+//    gtag.js lo recibirá y lo retendrá (porque el 'denied' del head)
 gtag('js', new Date());
 gtag('config', 'G-0G3Q7PGYFP');
-// --- FIN NUEVO CONSENT MODE ---
+
 // **************************************************
 
         // --- FUNCIÓN DE SEGUIMIENTO (EXISTENTE) ---
