@@ -191,8 +191,24 @@
 
 /* Ocultar el tooltip en pantallas táctiles (móviles/tablets) */
 @media (hover: none) {
+  .floating-button {
+    /* Opcional: Elimina la fuente de texto principal si el navegador la lee */
+    content: none !important;
+  }
+  
   .floating-button::after {
-    display: none;
+    /* CRÍTICO: Elimina el contenido del pseudo-elemento que muestra el texto */
+    content: none !important; 
+    /* Oculta la caja de texto por completo */
+    display: none !important; 
+  }
+  
+  /* CUBRIR ESTADOS DE TOUCH: Se activa al tocar y mantiene el foco */
+  .floating-button:hover::after,
+  .floating-button:active::after,
+  .floating-button:focus::after {
+      content: none !important;
+      display: none !important;
   }
 }
 
@@ -1207,9 +1223,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
 <a href="#contact"
+   id="floating-contact-button"
    class="floating-button"
    aria-label="Get in Touch"
-   data-tooltip="Get in Touch">
+   data-tooltip="Get in Touch"
+   onclick="hideFloatingTooltip()"> 
    <i class="fa-solid fa-comments text-xl text-white"></i>
 </a>
 
@@ -2189,6 +2207,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 // --- FIN DEL FIX ---
             }
         }
+
+
+// --- NUEVA FUNCIÓN PARA GESTIONAR EL TOOLTIP DEL BOTÓN FLOTANTE (¡CORREGIDA!) ---
+function hideFloatingTooltip() {
+    const button = document.getElementById('floating-contact-button');
+    if (button) {
+        // 1. Guarda el contenido del tooltip original
+        const originalTooltip = button.getAttribute('data-tooltip');
+        
+        // 2. Borra el atributo del tooltip temporalmente para esconderlo
+        button.setAttribute('data-tooltip', '');
+        
+        // 3. Mueve el foco para asegurar que se quita el highlight (solución anterior)
+        document.body.focus(); 
+
+        // 4. Restaura el contenido del tooltip después de un breve momento (50ms)
+        // Esto permite que el tooltip vuelva a funcionar para el hover en desktop
+        setTimeout(() => {
+            button.setAttribute('data-tooltip', originalTooltip);
+        }, 50); 
+    }
+}
 
     </script>
 
