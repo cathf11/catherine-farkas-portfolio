@@ -224,6 +224,12 @@
   .floating-button i {
     font-size: 0.9rem;
   }
+
+  /* ¡NUEVO! Oculta el tooltip por completo en pantallas pequeñas */
+  .floating-button::after {
+      display: none !important;
+      content: none !important; /* Doble seguro */
+  }
 }
 
 /* === Tooltip genérico para iconos de email (sale el email arriba del icono) === */
