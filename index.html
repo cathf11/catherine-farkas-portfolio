@@ -225,27 +225,28 @@
     font-size: 0.9rem;
   }
 
-  /* ¡NUEVO! Oculta el tooltip por completo en pantallas pequeñas */
+  /* Oculta el tooltip por completo en pantallas pequeñas */
   .floating-button::after {
       display: none !important;
       content: none !important; /* Doble seguro */
   }
 
-
-
-/* ¡NUEVO! Matamos el brillo y el "salto" del hover en móvil */
-  .floating-button:hover {
+  /* Matamos el brillo y el "salto" del hover/focus en móvil */
+  .floating-button:hover,
+  .floating-button:focus { /* <-- ¡AÑADIDO :focus AQUÍ! */
       box-shadow: none;
-      transform: none; /* No hagas NADA en hover (que se queda pillado) */
+      transform: none; 
+      outline: none; /* <-- ¡AÑADIDO PARA MATAR EL BRILLO DE FOCO! */
   }
 
-  /* ¡NUEVO! Hacemos que SÓLO reaccione al "toque" (active) */
+  /* Hacemos que SÓLO reaccione al "toque" (active) */
   .floating-button:active {
       transform: scale(1.08); /* Se agranda (¡sin saltar!) */
       box-shadow: none; /* Sin brillo */
+      outline: none; /* <-- ¡AÑADIDO PARA MATAR EL BRILLO DE FOCO! */
   }
 
-} /* <-- EL CIERRE DEL @media */
+} /* <-- ESTE es el ÚNICO cierre del @media */
 
 /* === Tooltip genérico para iconos de email (sale el email arriba del icono) === */
 /* === Tooltip genérico para iconos de redes (posición inferior) === */
