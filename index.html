@@ -230,7 +230,22 @@
       display: none !important;
       content: none !important; /* Doble seguro */
   }
-}
+
+
+
+/* ¡NUEVO! Matamos el brillo y el "salto" del hover en móvil */
+  .floating-button:hover {
+      box-shadow: none;
+      transform: none; /* No hagas NADA en hover (que se queda pillado) */
+  }
+
+  /* ¡NUEVO! Hacemos que SÓLO reaccione al "toque" (active) */
+  .floating-button:active {
+      transform: scale(1.08); /* Se agranda (¡sin saltar!) */
+      box-shadow: none; /* Sin brillo */
+  }
+
+} /* <-- EL CIERRE DEL @media */
 
 /* === Tooltip genérico para iconos de email (sale el email arriba del icono) === */
 /* === Tooltip genérico para iconos de redes (posición inferior) === */
