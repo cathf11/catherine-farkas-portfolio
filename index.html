@@ -7,15 +7,12 @@
 
    <meta name="description" content="Data Strategy & BI Consultant focused on transforming complex information into clear, actionable insights that guide business decisions.">
 
-  <!-- Open Graph / LinkedIn / Social Media -->
   <meta property="og:title" content="Catherine Farkas | Data Strategy & BI Consultant">
   <meta property="og:description" content="Transforming data stories into business decisions — connecting analytics, strategy, and storytelling to create measurable impact.">
   <meta property="og:image" content="https://catherine-farkas.netlify.app/images/og-catherine-farkas.png">
   <meta property="og:url" content="https://catherine-farkas.netlify.app/">
   <meta property="og:type" content="website">
-<!-- Open Graph FIN -->
-
-    <link rel="icon" type="image/png" href="images/favicon-cf.png">
+<link rel="icon" type="image/png" href="images/favicon-cf.png">
 
     <link rel="dns-prefetch" href="https://app.powerbi.com">
     <link rel="dns-prefetch" href="https://docs.google.com">
@@ -26,448 +23,7 @@
 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
 
-    <style>
-        /* CONFIGURACIÓN BASE Y TIPOGRAFÍA */
-       
-        body {
-        font-family: 'Inter', sans-serif;
-        background-color: #f7f9fc; /* Fondo blanco muy suave */
-        color: #1f2937; /* Texto principal oscuro */
-        }
-
-        :root {
-            --color-cian: #06B6D4; /* Tailwind cyan-500 */
-            --color-shadow-light: rgba(6, 182, 212, 0.15); /* Sombra suave cian */
-        }
-
-        /* EFECTO DE VIDRIO ESMERILADO (Para header/nav) */
-        .glass-header {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        }
-
-        /* Estilo para las tarjetas (Notion-Like: limpio y con sombra sutil) */
-        .card-pro {
-            background-color: #ffffff;
-            border: 1px solid #e5e7eb; /* Borde muy claro */
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03); /* Sombra muy sutil */
-        }
-
-        /* CLASE CRÍTICA: La tarjeta del proyecto 1 es clickeable entera */
-        .clickable-card:hover {
-            /* EFECTO GLOW AÑADIDO (Resplandor cian) */
-            cursor: pointer; /* Indica interactividad */
-            transform: translateY(-4px); /* Se levanta un poco más */
-            border-color: var(--color-cian); /* Borde se vuelve cian para destacar */
-            /* Sombra que incluye el resplandor del color principal */
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2), 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Títulos de sección con una línea de acento */
-        .section-title {
-            position: relative;
-            display: inline-block;
-            padding-bottom: 0.5rem;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 3px;
-            background-color: var(--color-cian);
-            border-radius: 9999px;
-        }
-
-        /* Estilo para el nombre del proyecto (Igual que los títulos de grupo de habilidades) */
-        .project-name-title {
-            font-weight: 800; /* Extra-bold */
-            color: #1f2937; /* Gray-800 */
-            font-size: 1.25rem; /* text-xl */
-            margin-bottom: 0.5rem;
-        }
-
-        /* ESTILOS PARA LA LISTA MINIMALISTA DE HABILIDADES (Notion-like) */
-        .skill-list-group {
-            background-color: #ffffff; /* Blanco limpio */
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-            min-height: 220px;
-        }
-        /* Estilo para los iconos de la lista de habilidades - Font Awesome */
-        .skill-icon {
-            color: #06B6D4; /* Cian para el color del icono */
-            margin-right: 0.75rem;
-            flex-shrink: 0;
-            font-size: 20px;
-            line-height: 1.2;
-        }
-
-        /* Botón de acento cian con degradado */
-        /* CÓDIGO NUEVO (con más movimiento y brillo) */
-         /* CÓDIGO NUEVO (Equilibrado para fondo claro) */
-.btn-cian {
-    background-image: linear-gradient(to right, #06b6d4, #38bdf8);
-    color: white;
-    transition: all 0.3s ease;
-    /* Volvemos a la sombra base original, que es más sutil */
-    box-shadow: 0 4px 15px var(--color-shadow-light); /* 0.15 opacity */
-}
-.btn-cian:hover {
-    /* 1. Mantenemos el MOVIMIENTO que te gustó */
-    transform: translateY(-3px) scale(1.02); 
-    
-    /* 2. Usamos la sombra de hover original (0.4), que es más suave */
-    box-shadow: 0 7px 20px rgba(6, 182, 212, 0.4); 
-    
-    /* 3. ¡ELIMINADO! Ya no usamos el filtro de brillo */
-    /* filter: brightness(1.1); */
-}
-
-/* === Botón de contacto flotante === */
-.floating-button {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 50;
-
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  width: 64px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(to right, #06b6d4, #38bdf8);
-  box-shadow: none; /* sin brillo por defecto */
-  color: white;
-  cursor: pointer;
-}
-
-.floating-button.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ✨ Glow solo al pasar el cursor */
-.floating-button:hover {
-  transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.6);
-}
-
-/* === Tooltip === */
-.floating-button::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff; /* fondo blanco */
-  color: #1f2937; /* texto gris oscuro */
-  font-size: 0.75rem;
-  padding: 4px 8px;
-  border-radius: 6px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* Muestra el tooltip solo al pasar el cursor */
-.floating-button:hover::after {
-  opacity: 1;
-  transform: translate(-50%, -4px);
-}
-
-/* Ocultar el tooltip en pantallas táctiles (móviles/tablets) */
-@media (hover: none) {
-  .floating-button {
-    /* Opcional: Elimina la fuente de texto principal si el navegador la lee */
-    content: none !important;
-  }
-  
-  .floating-button::after {
-    /* CRÍTICO: Elimina el contenido del pseudo-elemento que muestra el texto */
-    content: none !important; 
-    /* Oculta la caja de texto por completo */
-    display: none !important; 
-  }
-  
-  /* CUBRIR ESTADOS DE TOUCH: Se activa al tocar y mantiene el foco */
-  .floating-button:hover::after,
-  .floating-button:active::after,
-  .floating-button:focus::after {
-      content: none !important;
-      display: none !important;
-  }
-}
-
-/* Ajustes para pantallas pequeñas */
-@media (max-width: 640px) {
-  .floating-button {
-    width: 44px;
-    height: 44px;
-    bottom: 14px;
-    right: 14px;
-  }
-
-  .floating-button i {
-    font-size: 0.9rem;
-  }
-
-  /* Oculta el tooltip por completo en pantallas pequeñas */
-  .floating-button::after {
-      display: none !important;
-      content: none !important; /* Doble seguro */
-  }
-
-  /* Matamos el brillo y el "salto" del hover/focus en móvil (CON !IMPORTANT) */
-  .floating-button:hover,
-  .floating-button:focus { 
-      box-shadow: none !important;  /* <-- ¡NUCLEAR! */
-      transform: none !important;   /* <-- ¡NUCLEAR! */
-      outline: none !important;    /* <-- ¡NUCLEAR! */
-  }
-
-  /* Hacemos que SÓLO reaccione al "toque" (active) (CON !IMPORTANT) */
-  .floating-button:active {
-      transform: scale(1.08) !important; /* <-- ¡NUCLEAR! */
-      box-shadow: none !important;     /* <-- ¡NUCLEAR! */
-      outline: none !important;       /* <-- ¡NUCLEAR! */
-  }
-
-} /* <-- ESTE es el ÚNICO cierre del @media */
-/* === Tooltip genérico para iconos de email (sale el email arriba del icono) === */
-/* === Tooltip genérico para iconos de redes (posición inferior) === */
-.tooltip {
-  position: relative;
-}
-
-.tooltip::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  top: 130%; /* 👉 Aparece debajo del icono */
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  color: #1f2937;
-  font-size: 0.75rem;
-  padding: 4px 8px;
-  border-radius: 6px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.tooltip:hover::after {
-  opacity: 1;
-  transform: translate(-50%, 4px); /* pequeña animación hacia abajo */
-}
-
-/* Oculta el tooltip en pantallas táctiles */
-@media (hover: none) {
-  .tooltip::after {
-    display: none;
-  }
-}
-
-        /* Estilo específico para el bloque de imagen de proyecto: */
-        .project-visual {
-            width: 100%;
-            height: 200px;
-            margin-bottom: 1rem;
-            border-radius: 0.5rem;
-            object-fit: cover; /* CRÍTICO: Asegura que la imagen/GIF ocupe todo el contenedor */
-            background-color: #f0f8ff; /* Fondo muy claro para el contenedor de la imagen */
-        }
-
-        /* NUEVOS ESTILOS PARA LOS TAGS DE TECNOLOGÍA (Armónicos con el cian) */
-        .tech-tag {
-            display: inline-flex;
-            font-size: 0.75rem; /* text-xs */
-            font-weight: 600; /* font-semibold */
-            padding: 0.25rem 0.625rem; /* px-2 py-1 */
-            border-radius: 9999px; /* rounded-full */
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-      
-        /* Paleta de colores renovada (¡COLORES VIVOS!) */
-        
-        /* Azul/Cian (Power BI, DAX, QGIS) */
-        .tag-bi {
-            background-color: #cffafe; /* cyan-100 */
-            color: #155e75; /* cyan-900 */
-        }
-        /* Verde (ETL, SQL) */
-        .tag-data {
-            background-color: #d1fae5; /* emerald-100 */
-            color: #065f46; /* emerald-800 */
-        }
-        /* Púrpura (Figma, Diseño) */
-        .tag-design {
-            background-color: #ede9fe; /* violet-100 */
-            color: #5b21b6; /* violet-700 */
-        }
-
-        /* --- ESTILOS DEL MODAL (CRÍTICO) --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
-            backdrop-filter: blur(4px); /* Efecto de borroso en el fondo */
-            -webkit-backdrop-filter: blur(4px);
-            z-index: 9999;
-            display: none; /* Oculto por defecto */
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-        .modal-content {
-            background-color: white;
-            border-radius: 1rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-            max-width: 90%; /* Ancho máximo en móvil */
-            width: 1100px; /* Ancho deseado en desktop */
-            max-height: 90vh; /* Altura máxima para evitar desbordamiento */
-            overflow: hidden; /* Importante para que el body interno gestione el scroll */
-            transform: scale(0.95);
-            transition: transform 0.3s ease-in-out;
-            /* FIX APLICADO: Hacemos el contenedor principal flexible para que el cuerpo tome el espacio restante */
-            display: flex;
-            flex-direction: column;
-        }
-        .modal-overlay.open {
-            display: flex;
-            opacity: 1;
-        }
-        .modal-overlay.open .modal-content {
-            transform: scale(1);
-        }
-        .dashboard-iframe-container {
-            position: relative;
-            width: 100%;
-            /* Esto define la proporción 16:9, ajusta según el aspecto de tu BI */
-            padding-top: 56.25%;
-        }
-        .dashboard-iframe-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Estilos para que el scroll del contenido no afecte el fondo */
-        .modal-body-scroll {
-            /* FIX APLICADO: Permite que esta sección ocupe el espacio restante y añade el scroll */
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 1.5rem;
-        }
-
-        /* Ajuste para que el header fijo no tape los títulos al hacer scroll */
-        section {
-        scroll-margin-top: 100px; /* ajusta según la altura real de tu header */
-        }
-
-
-        /* --- ESTILOS PARA LA GALERÍA CF VIZTECH (MINIMALISTA) --- */
-
-        .cf-insight-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 0.75rem; /* rounded-xl */
-            display: block;
-            /* Cambio CRÍTICO: Plano por defecto para más cohesión */
-            box-shadow: none; 
-            border: 1px solid #e5e7eb; /* Borde sutil como el resto de tus tarjetas */
-            background-color: white; 
-            transition: transform 0.3s ease;
-        }
-
-        /* Efecto Hover: se levanta ligeramente y aparece la sombra */
-        .cf-insight-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            border-color: #d1d5db; /* Border un poco más oscuro al hacer hover */
-        }
-
-        .cf-insight-image {
-            width: 100%;
-            /* Proporción 1:1 (cuadrada) para ahorrar espacio vertical */
-            aspect-ratio: 1/1; 
-            object-fit: cover;
-            display: block;
-        }
-
-        .cf-insight-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(6, 182, 212, 0.85); /* Cian semi-transparente */
-            opacity: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.3s ease;
-            text-align: center;
-            padding: 1rem;
-            cursor: pointer;
-        }
-
-        /* El overlay aparece al hacer hover */
-        .cf-insight-card:hover .cf-insight-overlay {
-            opacity: 1;
-        }
-
-        .cf-insight-title {
-            color: white;
-            font-weight: 700; /* font-bold */
-            /* text-base (más pequeño) */
-            font-size: 1rem; 
-            margin-bottom: 0.5rem;
-        }
-
-        .cf-insight-icon {
-            color: white;
-            font-size: 1.5rem;
-        }
-
-      /* ESTILO EXTRA PARA LOS ICONOS DEL MENÚ MÓVIL (Iconos azul cyan) */
-    .mobile-menu-icon {
-        color: #06B6D4; /* Color Cian (var(--color-cian)) */
-        margin-right: 0.5rem;
-        width: 1.25rem; /* Ajuste para mantener la alineación */
-        text-align: center;
-    }
-
-    .mobile-menu-item:hover .mobile-menu-icon {
-        color: #38bdf8; /* Cian a Azul Claro (transición) */
-        transition: color 0.3s ease;
-    }
-
-    </style>
+    <link rel="stylesheet" href="styles.css">
 
 
 <script>
@@ -484,12 +40,7 @@
 </script>
 </head>
 
-
-
-
-
-
-    <body class="antialiased">
+<body class="antialiased">
 
     <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
 
@@ -497,7 +48,6 @@
 
 <div class="flex justify-between items-center px-4 max-w-7xl mx-auto">
     
-
 <a href="#intro" 
    class="p-2 rounded-md text-xl font-semibold text-gray-800 hover:bg-gray-100 transition duration-150"
    onclick="gtag('event', 'nav_clic', {'destino': 'logo_header'});"
@@ -546,44 +96,6 @@
   </div>
 </header>
 
-<style>
-/* ===== EFECTO HOVER CON SUBRAYADO ANIMADO ===== */
-.nav-links a {
-  position: relative;
-  color: #4b5563; /* gray-600 */
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0%;
-  height: 2px;
-  background-color: var(--color-cian, #06B6D4);
-  transition: width 0.3s ease;
-  border-radius: 2px;
-}
-
-.nav-links a:hover {
-  color: var(--color-cian, #06B6D4);
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* ===== SCROLL SUAVE ENTRE SECCIONES ===== */
-html {
-  scroll-behavior: smooth;
-}
-
-</style>
-
-<!-- MOBILE MENU -->
-
 <nav id="mobile-menu" class="fixed top-20 right-4 w-64 bg-white p-6 rounded-xl shadow-2xl border border-gray-200 z-30 transition-all duration-300 ease-in-out transform scale-95 opacity-0 invisible sm:hidden">
     <div class="flex flex-col space-y-4">
         
@@ -608,11 +120,8 @@ html {
 
 <main>
 
-<!-- SECCIÓN 1: INTRO SUMMARY -->
-
 <section id="intro" class="max-w-7xl mx-auto sm:px-12 lg:px-20 py-20">
 
-  <!-- Caja blanca -->
   <div class="bg-white rounded-3xl shadow-xl p-10 sm:p-12 lg:p-20">
 
     <div class="text-center">
@@ -665,14 +174,11 @@ html {
     </div>
 
   </div>
-  <!-- Fin caja blanca -->
-
-</section>
+  </section>
 
 
 </section>
 
-<!-- SECCIÓN 2: QUANTIFIED IMPACT -->
 <section id="impact" class="mb-20 max-w-7xl mx-auto sm:px-12 lg:px-24">
 
   <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center section-title">
@@ -712,11 +218,7 @@ html {
 
 
 
-<!-- SECCIÓN 3: PROJECTS & CASES OF STUDIES -->
-
-<!-- SECCIÓN 3: PROJECT 1 MARKETING INSIGHT DASHBOARD -->
-
-        <section id="projects" class="mb-16 max-w-6xl mx-auto sm:px-8 lg:px-16">
+<section id="projects" class="mb-16 max-w-6xl mx-auto sm:px-8 lg:px-16">
     <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
         Featured Projects
     </h2>
@@ -757,9 +259,7 @@ html {
             </div>
         </div>
 
-<!-- SECCION 3 PROJECTS: PROJECT 2 HELP DESK PERFORMANCE DASHBOARD DASHBOARD -->
-
-        <div
+<div
             class="card-pro p-6 rounded-xl flex flex-col clickable-card"
             onclick="openModal('operational-insights-modal', 'https://app.powerbi.com/view?r=eyJrIjoiOTkyZmQ3ZmUtZDc5Yy00ODk4LTk2M2MtZjFkNDI4ZWRkNGM2IiwidCI6IjA2NjFhYzVkLWI0YTQtNDE1YS05ZWQ5LTZjNmNjZDE4M2UxOCJ9')"
         >
@@ -792,9 +292,7 @@ html {
             </div>
         </div>
    
-<!-- SECCIÓN 3 PROJECTOS: PROJECTO 3 COVID ANALYSIS -->
-
-        <div
+<div
             class="card-pro p-6 rounded-xl flex flex-col clickable-card"
             onclick="openModal('project-covid-modal', 'https://docs.google.com/presentation/d/1CkJWqZfxVcdNvLhj9RI0QxySiCniHwEF/embed?start=false&loop=false&delayms=3000')"
         >
@@ -828,9 +326,7 @@ html {
         </div>
 
 
-<!-- SECCIÓN 4 ABOUT ME -->
-
-    </div> </section> <section id="about" class="mb-16 max-w-6xl mx-auto sm:px-8 lg:px-16">
+</div> </section> <section id="about" class="mb-16 max-w-6xl mx-auto sm:px-8 lg:px-16">
     <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
         The Story Behind the Analyst </h2>
     
@@ -888,8 +384,6 @@ html {
 
     </div>
 </section>
-
-<!-- SECCIÓN 5: EXPERIENCE & EDUCATION -->
 
 <section id="experience" class="mb-16 max-w-6xl mx-auto sm:px-8 lg:px-16">
  
@@ -958,24 +452,6 @@ html {
   </div>
 </section>
 
-
-<style>
-  /* Línea del timeline (sutil y alineada con los puntos) */
-  .timeline-item::before {
-    content: "";
-    position: absolute;
-    left: 4px;
-    top: 0.75rem;
-    bottom: 0;
-    width: 2px;
-    background-color: #E2E8F0; /* gris */
-  }
-</style>
-
-
-<!-- SECCIÓN 6: SKILLS -->
-
-
 <section id="skills" class="mb-16 max-w-6xl mx-auto sm:px-8 lg:px-16">
   <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
     Data Skills & Consultancy
@@ -1042,8 +518,6 @@ html {
   </div>
 </section>
 
-<!-- SECCIÓN 6.1: TECHNICAL STAK -->
-
 <section id="stack" class="mb-16 max-w-7xl mx-auto sm:px-12 lg:px-20">
   <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">
     Tech Stack
@@ -1090,11 +564,7 @@ html {
   </div>
 </section>
 
-<!-- SECCIÓN 7: BLOG CF VIZTECH -->
-
-
 <section id="blog" class="mb-16">
-  <!-- Contenedor SOLO para el título y subtítulo -->
   <div class="sm:px-12 lg:px-20">
     <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center section-title">
       My Blog: The "Why" Beyond the Data
@@ -1105,8 +575,7 @@ html {
     </p>
   </div>
 
-  <!-- Carrusel sin cambios -->
-    <div class="relative max-w-6xl mx-auto">
+  <div class="relative max-w-6xl mx-auto">
         <button id="carousel-prev" aria-label="Previous Article" class="absolute top-1/2 left-0 z-30 -translate-y-1-2 -translate-x-4 bg-white/80 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center text-gray-700 shadow-lg hover:bg-white transition duration-300">
             <i class="fa-solid fa-chevron-left text-lg"></i>
         </button>
@@ -1198,34 +667,7 @@ html {
 
 </section>
 
-
-<style>
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-.aspect-ratio-1\/1 { aspect-ratio: 1 / 1; }
-</style>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const nextBtn = document.getElementById('carousel-next');
-    const prevBtn = document.getElementById('carousel-prev');
-    const viewport = document.getElementById('carousel-viewport');
-    function scrollCarousel(direction) {
-        if (!viewport) return;
-        const firstCard = viewport.querySelector('.carousel-item');
-        if (!firstCard) return;
-        const gap = 24; 
-        const scrollAmount = firstCard.offsetWidth + gap;
-        viewport.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-    }
-    if (nextBtn) { nextBtn.addEventListener('click', () => scrollCarousel(1)); }
-    if (prevBtn) { prevBtn.addEventListener('click', () => scrollCarousel(-1)); }
-});
-</script>
-
-
-<!-- SECCIÓN 8: CONTACT -->
-
-       <section id="contact" class="text-center py-16 mt-16 border-t border-gray-200 max-w-6xl mx-auto px-4 sm:px-8 lg:px-16">
+<section id="contact" class="text-center py-16 mt-16 border-t border-gray-200 max-w-6xl mx-auto px-4 sm:px-8 lg:px-16">
 
     <h2 class="text-3xl font-bold text-gray-800 mb-4">Let's talk about your next data challenge.</h2>
     <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -1270,12 +712,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </a>
 
 
- <!-- ============================================= -->
-    <!-- MODAL 1: Marketing Campaign Dashboard (PROYECTO 1) -->
-    <!-- ============================================= -->
-
-
-    <div id="dashboard-marketing-modal" class="modal-overlay">
+ <div id="dashboard-marketing-modal" class="modal-overlay">
 
         <div class="modal-content">
 
@@ -1345,12 +782,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 
- <!-- ============================================= -->
-    <!-- MODAL 2: Help Desk Performance Dashboard (PROYECTO 2) -->
-    <!-- ============================================= -->
-
-
-    <div id="operational-insights-modal" class="modal-overlay">
+ <div id="operational-insights-modal" class="modal-overlay">
 
         <div class="modal-content">
 
@@ -1430,10 +862,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 
-<!-- ============================================= -->
-    <!-- MODAL 3: PROJECT 2 COVID MODAL (PROYECTO 3) -->
-    <!-- ============================================= -->
-    <div id="project-covid-modal" class="modal-overlay">
+<div id="project-covid-modal" class="modal-overlay">
 
         <div class="modal-content">
 
@@ -1497,11 +926,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-<!-- ============================================= -->
-    <!-- CFVIZTECH BLOG MODAL BLOG 1--> 
-    <!-- ============================================= -->
-
-    <div id="cfviztech-modal-1" class="modal-overlay">
+<div id="cfviztech-modal-1" class="modal-overlay">
         <div class="modal-content">
             <div class="flex justify-between items-center p-6 border-b border-gray-100">
                 <h3 class="text-2xl font-bold text-cyan-700">
@@ -1559,6 +984,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p class="text-gray-600 mb-4">It is ideal for comparing the proportions of different subcategories, showing how the parts are distributed relative to the total, regardless of the total size.</p>
                     <img src="images/blog/Grafico_de_columnas_apiladas_100.png" alt="Example of a 100% Stacked Bar Chart" class="rounded-lg shadow-md border border-gray-100 w-full max-w-md mx-auto mb-6">
 
+
                     <hr class="my-6 border-gray-200">
 
                     <h4 class="text-2xl font-bold text-gray-800 mb-3 mt-6">6. Line Chart</h4>
@@ -1612,11 +1038,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 
-<!-- ============================================= -->
-    <!-- CFVIZTECH BLOG MODAL BLOG 2--> 
-    <!-- ============================================= -->
-
-    <div id="cfviztech-modal-2" class="modal-overlay">
+<div id="cfviztech-modal-2" class="modal-overlay">
         <div class="modal-content">
             <div class="flex justify-between items-center p-6 border-b border-gray-100">
                 <h3 class="text-2xl font-bold text-cyan-700">
@@ -1744,10 +1166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 
-<!-- ============================================= -->
-    <!-- CFVIZTECH BLOG MODAL BLOG 3--> 
-    <!-- ============================================= -->
-    <div id="cfviztech-modal-3" class="modal-overlay">
+<div id="cfviztech-modal-3" class="modal-overlay">
         <div class="modal-content">
             <div class="flex justify-between items-center p-6 border-b border-gray-100">
                 <h3 class="text-2xl font-bold text-cyan-700">
@@ -1862,10 +1281,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 
 
-<!-- ============================================= -->
-    <!-- CFVIZTECH BLOG MODAL BLOG 4--> 
-    <!-- ============================================= -->
-    <div id="cfviztech-modal-4" class="modal-overlay">
+<div id="cfviztech-modal-4" class="modal-overlay">
         <div class="modal-content">
             <div class="flex justify-between items-center p-6 border-b border-gray-100">
                 <h3 class="text-2xl font-bold text-cyan-700">
@@ -1954,10 +1370,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 
 
-<!-- ============================================= -->
-    <!-- CFVIZTECH BLOG MODAL BLOG 5--> 
-    <!-- ============================================= -->
-    <div id="cfviztech-modal-5" class="modal-overlay">
+<div id="cfviztech-modal-5" class="modal-overlay">
         <div class="modal-content">
             <div class="flex justify-between items-center p-6 border-b border-gray-100">
                 <h3 class="text-2xl font-bold text-cyan-700">
@@ -2059,239 +1472,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
     </div>
 
-    <script>
-
-// **************************************************
-// *** 🛠️ CARGA DE GA4 (EL SCRIPT ESTÁ EN EL HEAD) ***
-// **************************************************
-
-// 3. Carga el script de gtag.js INMEDIATAMENTE
-//    (gtag y el consent 'denied' ya se definieron en el <head>)
-const gaScript = document.createElement('script');
-gaScript.async = true;
-gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0G3Q7PGYFP";
-document.head.appendChild(gaScript);
-
-
-// 4. Envía el 'config' AHORA.
-//    gtag.js lo recibirá y lo retendrá (porque el 'denied' del head)
-gtag('js', new Date());
-gtag('config', 'G-0G3Q7PGYFP');
-
-// **************************************************
-
-        // --- FUNCIÓN DE SEGUIMIENTO (EXISTENTE) ---
-        window.dataLayer = window.dataLayer || [];
-
-        function trackProyecto(url) {
-            if (typeof dataLayer === 'undefined') {
-                console.error('Google Tag Manager (dataLayer) no está inicializado.');
-                return;
-            }
-
-            try {
-                const urlObj = new URL(url);
-                const proyectoId = urlObj.searchParams.get('p') || 'sin-id';
-
-                dataLayer.push({
-                    'event': 'proyecto_visto',
-                    'id_proyecto': proyectoId
-                });
-                console.log('✅ Evento manual "proyecto_visto" disparado con ID:', proyectoId);
-            } catch (e) {
-                console.error('Error al rastrear el proyecto:', e);
-            }
-        }
-
-        // --- LÓGICA DEL MENÚ MÓVIL (¡CORREGIDA!) ---
-        // --- LÓGICA DEL MENÚ MÓVIL (FINAL Y UNIFICADA) ---
-
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Definición de variables
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    // 2. Función principal para abrir/cerrar el menú
-    function toggleMenu() {
-        const isHidden = mobileMenu.classList.toggle('invisible');
-        mobileMenu.classList.toggle('opacity-0');
-        mobileMenu.classList.toggle('scale-95');
-
-        mobileMenu.classList.toggle('opacity-100', !isHidden);
-        mobileMenu.classList.toggle('scale-100', !isHidden);
-
-        const icon = menuToggle.querySelector('i');
-        if (mobileMenu.classList.contains('opacity-100')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    }
-
-    // --- EVENT LISTENERS ---
-
-    // 3. Clic en el botón de hamburguesa/X
-    menuToggle.addEventListener('click', toggleMenu);
-
-    // 4. Clic en un enlace dentro del menú (para navegar)
-    mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('opacity-100')) {
-                toggleMenu();
-            }
-        });
-    });
-
-    // 5. ¡NUEVA LÓGICA! Cierra el menú al hacer clic fuera
-    document.addEventListener('click', (e) => {
-        // Solo actúa si el menú está visible
-        if (mobileMenu.classList.contains('opacity-100')) {
-            const isClickInsideMenu = mobileMenu.contains(e.target);
-            const isClickOnToggle = menuToggle.contains(e.target);
-
-            // Si el clic NO fue dentro del menú Y NO fue en el botón de alternar
-            if (!isClickInsideMenu && !isClickOnToggle) {
-                toggleMenu();
-            }
-        }
-    });
-});
-
-// --- FIN LÓGICA DEL MENÚ MÓVIL (FINAL Y UNIFICADA) ---
-
-        // --- LÓGICA DEL MODAL (¡CORREGIDA!) ---
-
-        /**
-         * Abre el modal especificado por ID y carga un iframe si se proporciona una URL.
-         * @param {string} modalId - El ID del elemento modal (overlay).
-         * @param {string} iframeSrc - La URL que se debe cargar en el iframe del dashboard (o placeholder).
-         */
-
-          function openModal(modalId, iframeSrc) {
-          const modal = document.getElementById(modalId);
-
-           if (modal) {
-        
-        // ************************************************
-        // *** 🎯 CÓDIGO GA4 PARA EL EVENTO DE PROYECTO ***
-        // ************************************************
-        // Verificamos si gtag está cargado (es decir, si aceptaron las cookies)
-        if (typeof gtag === 'function') { 
-            gtag('event', 'proyecto_visto', {
-                'modal_id': modalId, 
-                'iframe_src': iframeSrc 
-            });
-            console.log('✅ GA4 Evento: proyecto_visto', modalId);
-        }
-        // ************************************************
-
-        // 1. Cargamos el iframe si existe un ID de iframe coincidente dentro del modal
-        // Usamos el modalId para encontrar el iframe correcto
-        let iframeId;
-        
-        // Proyecto 1 (Marketing)
-        if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
-        
-        // Proyecto 2 (Operational)
-        else if (modalId === 'operational-insights-modal') iframeId = 'operational-dashboard-iframe';
-        
-        // Proyecto 3 (Covid)
-        else if (modalId === 'project-covid-modal') iframeId = 'project-covid-iframe';
-
-        
-        const iframe = document.getElementById(iframeId);
-
-        if (iframe) {
-           // --- ¡LÓGICA DEL LAZY LOAD! ---
-           // Comprueba si el iframe tiene un 'data-src' (los proyectos)
-           const dataSrc = iframe.getAttribute('data-src');
-           if (dataSrc) {
-               iframe.src = dataSrc; // Carga el iframe AHORA, al hacer clic
-           } else if (iframeSrc) {
-               // Esto es para los modales que SÍ pasan un src (los del blog no lo usan)
-               iframe.src = iframeSrc;
-           }
-           // Si es un modal del blog (sin iframeSrc y sin data-src), no hace nada
-        }
-
-        // 2. Abre el modal con animación
-        modal.classList.add('open');
-
-        // 3. Ocultar el scroll del body principal
-        document.body.style.overflow = 'hidden';
-           }
-        }
-
-        /**
-         * Cierra el modal especificado por ID.
-         * @param {string} modalId - El ID del elemento modal (overlay).
-         */
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-
-            if (modal) {
-                // Cierra el modal con animación
-                modal.classList.remove('open');
-
-                // Muestra el scroll del body principal después de una pequeña espera
-                setTimeout(() => {
-                    // Solo mostramos el scroll del body si NO hay otro modal abierto
-                    if (!document.querySelector('.modal-overlay.open')) {
-                        document.body.style.overflow = '';
-                    }
-                }, 300); // 300ms, que es la duración de la transición
-
-                // --- ¡FIX PARA APAGAR IFRAMES! ---
-                // Pausa el iframe (detiene videos/Power BI)
-                let iframeId;
-                if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
-                else if (modalId === 'operational-insights-modal') iframeId = 'operational-dashboard-iframe';
-                else if (modalId === 'project-covid-modal') iframeId = 'project-covid-iframe';
-                
-                // Los modales del blog no tienen iframes que necesiten apagarse
-                else if (modalId === 'cfviztech-modal-1') iframeId = null;
-                else if (modalId === 'cfviztech-modal-2') iframeId = null;
-                else if (modalId === 'cfviztech-modal-3') iframeId = null;
-                else if (modalId === 'cfviztech-modal-4') iframeId = null;
-                else if (modalId === 'cfviztech-modal-5') iframeId = null;
-
-                const iframe = document.getElementById(iframeId);
-                if (iframe) {
-                    iframe.src = ''; // Limpia el src para detener la carga
-                }
-                // --- FIN DEL FIX ---
-            }
-        }
-
-
-// --- FUNCIÓN MEJORADA PARA OCULTAR EL TOOLTIP (¡MÁS AGRESIVA!) ---
-function hideFloatingTooltip() {
-    const button = document.getElementById('floating-contact-button');
-    if (button) {
-        
-        // 1. ¡NUEVO! Quita el foco del botón inmediatamente.
-        // Esto evita que el tooltip se quede "pillado" en estado :focus
-        button.blur(); 
-
-        // 2. Guarda el contenido del tooltip original
-        const originalTooltip = button.getAttribute('data-tooltip');
-        
-        // 3. Borra el atributo del tooltip temporalmente para esconderlo
-        button.setAttribute('data-tooltip', '');
-        
-        // 4. Restaura el contenido del tooltip después de un breve momento (100ms)
-        // Esto permite que vuelva a funcionar para el hover en desktop
-        setTimeout(() => {
-            button.setAttribute('data-tooltip', originalTooltip);
-        }, 100); // Le damos un pelín más de tiempo
-    }
-}
-
-    </script>
-
-
     <div id="cookie-consent-banner" class="fixed bottom-0 left-0 w-full bg-gray-800 text-white p-4 z-[10000] hidden">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
             
@@ -2309,130 +1489,10 @@ function hideFloatingTooltip() {
             </div>
         </div>
     </div>
+    
+    </div>
 
-    <script>
-        // --- LÓGICA DEL BANNER DE COOKIES (FINAL) ---
+<script src="scripts.js" defer></script>
 
-       // 1. Función para (ahora) SOLO ACTUALIZAR EL CONSENTIMIENTO
-    function loadGoogleAnalytics() {
-        
-        // --- NUEVO CONSENT MODE V2 ---
-        // El script ya está cargado (desde el FIX INICIO).
-        // El 'config' ya está en la cola (desde el FIX INICIO).
-
-        // 4. Actualiza el consentimiento.
-        //    Esto le dice a gtag: "¡luz verde! envía el 'config'
-        //    y todo lo demás que tengas en cola".
-        gtag('consent', 'update', {
-          'analytics_storage': 'granted'
-        });
-        // --- FIN NUEVO CONSENT MODE ---
-
-        console.log("✅ Analytics ACEPTADAS. Consentimiento 'granted'.");
-        }
-
-
-        // 2. Lógica principal del banner
-        document.addEventListener('DOMContentLoaded', () => {
-            const banner = document.getElementById('cookie-consent-banner');
-            const acceptBtn = document.getElementById('accept-cookies');
-            const rejectBtn = document.getElementById('reject-cookies');
-
-            // Revisa el almacenamiento local
-            const consent = localStorage.getItem('cookieConsent');
-
-            if (consent === 'granted') {
-                // Si ya aceptó, carga GA4 directamente
-                loadGoogleAnalytics();
-            } else if (consent === 'denied') {
-                // Si ya rechazó, no hagas nada
-                console.log("Analytics RECHAZADAS (consentimiento previo).");
-            } else {
-                // Si no ha contestado, muestra el banner
-                banner.classList.remove('hidden');
-            }
-
-            // 3. Qué pasa al ACEPTAR
-            acceptBtn.addEventListener('click', () => {
-                localStorage.setItem('cookieConsent', 'granted');
-                banner.classList.add('hidden');
-                loadGoogleAnalytics(); // Carga GA4
-            });
-
-            // 4. Qué pasa al RECHAZAR
-            rejectBtn.addEventListener('click', () => {
-                localStorage.setItem('cookieConsent', 'denied');
-                banner.classList.add('hidden');
-                console.log("Analytics RECHAZADAS (botón).");
-            });
-        });
- 
-         // === Mejora del botón flotante (scroll + responsive + hover animado) ===
-        document.addEventListener("DOMContentLoaded", () => {
-          const button = document.querySelector(".floating-button");
-          const intro = document.querySelector("#intro");
-          const header = document.querySelector("#main-header");
-          if (!button || !intro) return;
-
-          function checkButtonVisibility() {
-            const introRect = intro.getBoundingClientRect();
-            const headerHeight = header ? header.offsetHeight : 0;
-            const shouldShow = (introRect.bottom - headerHeight) <= 0;
-            if (shouldShow) {
-              button.classList.add("visible");
-            } else {
-              button.classList.remove("visible");
-            }
-          }
-
-          checkButtonVisibility();
-          window.addEventListener("scroll", () => requestAnimationFrame(checkButtonVisibility), { passive: true });
-          window.addEventListener("resize", checkButtonVisibility);
-        });
-    </script>
-
-<style>
- .floating-button {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  width: 64px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(to right, #06b6d4, #38bdf8);
-  /* 🔹 sin glow inicial */
-  box-shadow: none;
-  color: white;
-  cursor: pointer;
-}
-
-.floating-button.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ✨ Glow solo en hover */
-.floating-button:hover {
-  transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.6);
-}
-
-@media (max-width: 640px) {
-  .floating-button {
-    width: 48px;
-    height: 48px;
-    bottom: 16px;
-    right: 16px;
-  }
-  .floating-button i {
-    font-size: 1rem;
-  }
-}
-</style>
-
-</div>
 </body>
 </html>
