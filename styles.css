@@ -714,3 +714,53 @@ background-color: #E2E8F0; /* gris */
     color: #94a3b8 !important;
   }
 }
+
+/* ========================================================= */
+/* === 🌙 FIX ESPECÍFICO: Títulos en Experience & Skills ==== */
+/* ========================================================= */
+@media (prefers-color-scheme: dark) {
+
+  /* ==== Experience & Education ==== */
+  /* Título de sección (Experience & Education) */
+  #experience > h2,
+  /* Subtítulos dentro de experience (ej. "Work Experience", "Education & Training") */
+  #experience h3,
+  /* Títulos de puesto / formación (p.font-semibold text-sm en tu HTML) */
+  #experience p.font-semibold,
+  /* Cualquier texto con clases text-gray-900 o text-gray-800 dentro de la sección */
+  #experience .text-gray-900,
+  #experience .text-gray-800 {
+    color: #e2e8f0 !important; /* texto claro principal */
+  }
+
+  /* Descripciones, fechas y texto secundario dentro de experience */
+  #experience .text-gray-500,
+  #experience .text-xs,
+  #experience li,
+  #experience p.text-gray-500 {
+    color: #cbd5e1 !important; /* gris claro secundario */
+  }
+
+  /* ==== Data Skills & Consultancy ==== */
+  /* Títulos de las tres cajas: "Data Strategy", "Analytics & Automation", "Communication & Storytelling" */
+  #skills h3,
+  /* También aplica si tienen .font-semibold o .text-gray-900 */
+  #skills .font-semibold,
+  #skills .text-gray-900,
+  #skills .text-gray-800 {
+    color: #e2e8f0 !important;
+  }
+
+  /* Texto de lista / items dentro de skills */
+  #skills .text-gray-600,
+  #skills .text-gray-500,
+  #skills li {
+    color: #cbd5e1 !important;
+  }
+
+  /* Por si alguna tarjeta usa estilos más específicos */
+  .card-pro h3, 
+  .card-pro p.font-semibold {
+    color: #e2e8f0 !important;
+  }
+}
