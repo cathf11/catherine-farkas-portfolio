@@ -529,6 +529,33 @@ background-color: #E2E8F0; /* gris */
   }
 }
 
+/* ========================================================= */
+/* === FIX UX MÓVIL: Íconos Cian Fijos en Pantallas Táctiles === */
+/* (Se activa solo en dispositivos táctiles en MODO CLARO) */
+/* ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+    
+    /* 1. Íconos en la sección INTRO (LinkedIn y Email) */
+    #intro .fa-brands.fa-linkedin,
+    #intro .fa-solid.fa-envelope {
+        /* Aplicamos el color cian fijo */
+        color: #06B6D4 !important; /* Tailwind cyan-500 */
+        transition: color 0.1s ease;
+    }
+    
+    /* 2. Íconos en el FOOTER */
+    #contact a .fa-brands.fa-linkedin {
+        /* Aplicamos el color cian fijo */
+        color: #06B6D4 !important; /* Tailwind cyan-500 */
+        transition: color 0.1s ease;
+    }
+    
+    /* Aseguramos que la flecha dentro del botón flotante se vea blanca */
+    .floating-button i {
+        color: white !important; 
+    }
+}
 
 /* ========================================================= */
 /* === 3. 🌙 MODO OSCURO AUTOMÁTICO (UNIFICADO) ============= */
@@ -556,17 +583,17 @@ background-color: #E2E8F0; /* gris */
   .card-pro,
   .modal-content {
     background-color: #1e293b; /* fondo gris oscuro */
-    border-color: #334155; /* borde gris azulado */
+    border-color: #0f172a; /* borde gris azulado */
     color: #e2e8f0; /* texto claro */
   }
   
   .carousel-item {
     background-color: #1e293b;
-    border-color: #334155;
+    border-color: #27374D;
   }
   
   footer {
-    border-color: #334155;
+    border-color: #0f172a;
     color: #94a3b8;
     background-color: #0f172a !important;
   }
@@ -601,19 +628,19 @@ background-color: #E2E8F0; /* gris */
   .timeline-item,
   .bg-white.border {
     background-color: #1e293b !important;
-    border-color: #334155 !important;
+    border-color: #0f172a !important;
     color: #e2e8f0 !important;
   }
 
   .bg-white.p-6,
   .bg-white.p-8 {
     background-color: #1e293b !important;
-    border-color: #334155 !important;
+    border-color: #0f172a !important;
   }
 
   .carousel-item {
     background-color: #1e293b !important;
-    border-color: #334155 !important;
+    border-color: #0f172a !important;
   }
 
   .bg-gray-50,
@@ -623,13 +650,13 @@ background-color: #E2E8F0; /* gris */
 
   .border-gray-100,
   .border-gray-200 {
-    border-color: #334155 !important;
+    border-color: #0f172a !important;
   }
 
   hr,
   .border-t,
   .border-b {
-    border-color: #334155 !important;
+    border-color: #0f172a !important;
   }
 
   .hover\:bg-gray-100:hover {
@@ -721,16 +748,17 @@ background-color: #E2E8F0; /* gris */
     color: #cbd5e1 !important; 
   }
 
+
   /* --- Fix: Botones Carrusel Blog --- */
   #carousel-prev,
   #carousel-next {
     background-color: #1e293b !important; 
-    border-color: #334155 !important;
+    border-color: #0f172a !important;
   }
   #carousel-prev:hover,
   #carousel-next:hover {
     background-color: #0f172a !important; 
-    border-color: #475569 !important;
+    border-color: #27374D !important;
   }
   #carousel-prev i,
   #carousel-next i {
@@ -740,7 +768,7 @@ background-color: #E2E8F0; /* gris */
   /* --- Fix: Bloque destacado en sección #about --- */
   section#about .card-pro .bg-gray-50 {
     background-color: #27374D !important; 
-    border-color: #334155 !important;
+    border-color: #27374D !important;
   }
   section#about .card-pro .bg-gray-50 h3,
   section#about .card-pro .bg-gray-50 p {
