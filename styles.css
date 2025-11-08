@@ -530,6 +530,35 @@ background-color: #E2E8F0; /* gris */
 }
 
 /* ========================================================= */
+/* === FIX UX MÓVIL: Íconos Cian Fijos en Pantallas Táctiles === */
+/* (Se activa solo en dispositivos táctiles en MODO CLARO) */
+/* ========================================================= */
+
+@media (hover: none) and (pointer: coarse) {
+    
+    /* 1. Íconos en la sección INTRO (LinkedIn y Email) */
+    #intro .fa-brands.fa-linkedin,
+    #intro .fa-solid.fa-envelope {
+        /* Aplicamos el color cian fijo */
+        color: #06B6D4 !important; /* Tailwind cyan-500 */
+        transition: color 0.1s ease;
+    }
+    
+    /* 2. Íconos en el FOOTER */
+    #contact a .fa-brands.fa-linkedin,
+    #contact a .fa-solid.fa-envelope {
+        /* Aplicamos el color cian fijo */
+        color: #06B6D4 !important; /* Tailwind cyan-500 */
+        transition: color 0.1s ease;
+    }
+    
+    /* Aseguramos que la flecha dentro del botón flotante se vea blanca */
+    .floating-button i {
+        color: white !important; 
+    }
+}
+
+/* ========================================================= */
 /* === 🌙 MODO OSCURO AUTOMÁTICO (CF VizTech) =============== */
 /* ========================================================= */
 
