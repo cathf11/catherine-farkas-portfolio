@@ -2,7 +2,7 @@
        
 body {
 font-family: 'Inter', sans-serif;
-background-color: #f7f9fc; /* Fondo blanco muy suave */
+background-color: #F3F4F6; /* Fondo blanco muy suave */
 color: #1f2937; /* Texto principal oscuro */
 }
 
@@ -13,7 +13,7 @@ color: #1f2937; /* Texto principal oscuro */
 
 /* EFECTO DE VIDRIO ESMERILADO (Para header/nav) */
 .glass-header {
-    background-color: rgba(255, 255, 255, 0.95);
+background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -21,7 +21,7 @@ color: #1f2937; /* Texto principal oscuro */
 
 /* Estilo para las tarjetas (Notion-Like: limpio y con sombra sutil) */
 .card-pro {
-    background-color: #ffffff;
+    background-color: #F8FAFC;
     border: 1px solid #e5e7eb; /* Borde muy claro */
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03); /* Sombra muy sutil */
@@ -765,26 +765,3 @@ background-color: #E2E8F0; /* gris */
   }
 }
 
-/* ========================================================= */
-/* === 🌙 FIX VISUAL: Bloque principal sección hero ======== */
-/* (Usando estilos consistentes con .card-pro) */
-/* ========================================================= */
-@media (prefers-color-scheme: dark) {
-  /* 🎯 Selector(es) de tu bloque principal / hero */
-  #hero,
-  .hero-section,
-  .intro-block,
-  .main-highlight {
-    /* Color de fondo consistente con las tarjetas (.card-pro) */
-    background-color: #1e293b !important;
-
-    /* Borde consistente */
-    border: 1px solid #334155 !important;
-
-    /* Sombra que eleva el bloque del fondo #0f172a */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-
-    /* Aseguramos el color de texto principal */
-    color: #e2e8f0 !important;
-  }
-}
