@@ -1,5 +1,7 @@
-/* CONFIGURACIÓN BASE Y TIPOGRAFÍA */
-       
+/* ========================================================= */
+/* === 1. CONFIGURACIÓN BASE Y MODO CLARO ================== */
+/* ========================================================= */
+
 body {
 font-family: 'Inter', sans-serif;
 background-color: #F3F4F6; /* Fondo blanco muy suave */
@@ -7,471 +9,347 @@ color: #1f2937; /* Texto principal oscuro */
 }
 
 :root {
-    --color-cian: #06B6D4; /* Tailwind cyan-500 */
-    --color-shadow-light: rgba(6, 182, 212, 0.15); /* Sombra suave cian */
+    --color-cian: #06B6D4; /* Tailwind cyan-500 */
+    --color-shadow-light: rgba(6, 182, 212, 0.15); /* Sombra suave cian */
 }
 
-/* EFECTO DE VIDRIO ESMERILADO (Para header/nav) */
+/* === Componentes Base (Modo Claro) === */
+
 .glass-header {
 background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-/* Estilo para las tarjetas (Notion-Like: limpio y con sombra sutil) */
 .card-pro {
-    background-color: #F8FAFC;
-    border: 1px solid #e5e7eb; /* Borde muy claro */
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03); /* Sombra muy sutil */
+    background-color: #F8FAFC;
+    border: 1px solid #e5e7eb; /* Borde muy claro */
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03); /* Sombra muy sutil */
 }
 
-/* CLASE CRÍTICA: La tarjeta del proyecto 1 es clickeable entera */
 .clickable-card:hover {
-    /* EFECTO GLOW AÑADIDO (Resplandor cian) */
-    cursor: pointer; /* Indica interactividad */
-    transform: translateY(-4px); /* Se levanta un poco más */
-    border-color: var(--color-cian); /* Borde se vuelve cian para destacar */
-    /* Sombra que incluye el resplandor del color principal */
-    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2), 0 4px 15px rgba(0, 0, 0, 0.05);
+    cursor: pointer; 
+    transform: translateY(-4px); 
+    border-color: var(--color-cian); 
+    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2), 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-/* Títulos de sección con una línea de acento */
 .section-title {
-    position: relative;
-    display: inline-block;
-    padding-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
 }
 .section-title::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 3px;
-    background-color: var(--color-cian);
-    border-radius: 9999px;
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 3px;
+    background-color: var(--color-cian);
+    border-radius: 9999px;
 }
 
-/* Estilo para el nombre del proyecto (Igual que los títulos de grupo de habilidades) */
 .project-name-title {
-    font-weight: 800; /* Extra-bold */
-    color: #1f2937; /* Gray-800 */
-    font-size: 1.25rem; /* text-xl */
-    margin-bottom: 0.5rem;
+    font-weight: 800; 
+    color: #1f2937; 
+    font-size: 1.25rem; 
+    margin-bottom: 0.5rem;
 }
 
-/* ESTILOS PARA LA LISTA MINIMALISTA DE HABILIDADES (Notion-like) */
 .skill-list-group {
-    background-color: #ffffff; /* Blanco limpio */
-    border-radius: 0.75rem;
-    padding: 1.5rem;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-    min-height: 220px;
-}
-/* Estilo para los iconos de la lista de habilidades - Font Awesome */
-.skill-icon {
-    color: #06B6D4; /* Cian para el color del icono */
-    margin-right: 0.75rem;
-    flex-shrink: 0;
-    font-size: 20px;
-    line-height: 1.2;
+    background-color: #ffffff; 
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    min-height: 220px;
 }
 
-/* Botón de acento cian con degradado */
-/* CÓDIGO NUEVO (con más movimiento y brillo) */
- /* CÓDIGO NUEVO (Equilibrado para fondo claro) */
+.skill-icon {
+    color: #06B6D4; 
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+    font-size: 20px;
+    line-height: 1.2;
+}
+
 .btn-cian {
-    background-image: linear-gradient(to right, #06b6d4, #38bdf8);
-    color: white;
-    transition: all 0.3s ease;
-    /* Volvemos a la sombra base original, que es más sutil */
-    box-shadow: 0 4px 15px var(--color-shadow-light); /* 0.15 opacity */
+    background-image: linear-gradient(to right, #06b6d4, #38bdf8);
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--color-shadow-light); 
 }
 .btn-cian:hover {
-    /* 1. Mantenemos el MOVIMIENTO que te gustó */
-    transform: translateY(-3px) scale(1.02); 
-    
-    /* 2. Usamos la sombra de hover original (0.4), que es más suave */
-    box-shadow: 0 7px 20px rgba(6, 182, 212, 0.4); 
-    
-    /* 3. ¡ELIMINADO! Ya no usamos el filtro de brillo */
-    /* filter: brightness(1.1); */
+    transform: translateY(-3px) scale(1.02); 
+    box-shadow: 0 7px 20px rgba(6, 182, 212, 0.4); 
 }
 
-/* === Botón de contacto flotante === */
 .floating-button {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 50;
-
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  width: 64px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(to right, #06b6d4, #38bdf8);
-  box-shadow: none; /* sin brillo por defecto */
-  color: white;
-  cursor: pointer;
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 50;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(to right, #06b6d4, #38bdf8);
+  box-shadow: none; 
+  color: white;
+  cursor: pointer;
 }
 
 .floating-button.visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* ✨ Glow solo al pasar el cursor */
 .floating-button:hover {
-  transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.6);
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.6);
 }
 
-/* === Tooltip === */
 .floating-button::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff; /* fondo blanco */
-  color: #1f2937; /* texto gris oscuro */
-  font-size: 0.75rem;
-  padding: 4px 8px;
-  border-radius: 6px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff; 
+  color: #1f2937; 
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Muestra el tooltip solo al pasar el cursor */
 .floating-button:hover::after {
-  opacity: 1;
-  transform: translate(-50%, -4px);
+  opacity: 1;
+  transform: translate(-50%, -4px);
 }
 
-/* Ocultar el tooltip en pantallas táctiles (móviles/tablets) */
-@media (hover: none) {
-  .floating-button {
-    /* Opcional: Elimina la fuente de texto principal si el navegador la lee */
-    content: none !important;
-  }
-  
-  .floating-button::after {
-    /* CRÍTICO: Elimina el contenido del pseudo-elemento que muestra el texto */
-    content: none !important; 
-    /* Oculta la caja de texto por completo */
-    display: none !important; 
-  }
-  
-  /* CUBRIR ESTADOS DE TOUCH: Se activa al tocar y mantiene el foco */
-  .floating-button:hover::after,
-  .floating-button:active::after,
-  .floating-button:focus::after {
-      content: none !important;
-      display: none !important;
-  }
-}
-
-/* Ajustes para pantallas pequeñas */
-@media (max-width: 640px) {
-  .floating-button {
-    width: 44px;
-    height: 44px;
-    bottom: 14px;
-    right: 14px;
-  }
-
-  .floating-button i {
-    font-size: 0.9rem;
-  }
-
-  /* Oculta el tooltip por completo en pantallas pequeñas */
-  .floating-button::after {
-      display: none !important;
-      content: none !important; /* Doble seguro */
-  }
-
-  /* Matamos el brillo y el "salto" del hover/focus en móvil (CON !IMPORTANT) */
-  .floating-button:hover,
-  .floating-button:focus { 
-      box-shadow: none !important;  /* <-- ¡NUCLEAR! */
-      transform: none !important;   /* <-- ¡NUCLEAR! */
-      outline: none !important;    /* <-- ¡NUCLEAR! */
-  }
-
-  /* Hacemos que SÓLO reaccione al "toque" (active) (CON !IMPORTANT) */
-  .floating-button:active {
-      transform: scale(1.08) !important; /* <-- ¡NUCLEAR! */
-      box-shadow: none !important;     /* <-- ¡NUCLEAR! */
-      outline: none !important;       /* <-- ¡NUCLEAR! */
-  }
-
-} /* <-- ESTE es el ÚNICO cierre del @media */
-/* === Tooltip genérico para iconos de email (sale el email arriba del icono) === */
-/* === Tooltip genérico para iconos de redes (posición inferior) === */
 .tooltip {
-  position: relative;
+  position: relative;
 }
 
 .tooltip::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  top: 130%; /* 👉 Aparece debajo del icono */
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff;
-  color: #1f2937;
-  font-size: 0.75rem;
-  padding: 4px 8px;
-  border-radius: 6px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 130%; 
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  color: #1f2937;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .tooltip:hover::after {
-  opacity: 1;
-  transform: translate(-50%, 4px); /* pequeña animación hacia abajo */
+  opacity: 1;
+  transform: translate(-50%, 4px); 
 }
 
-/* Oculta el tooltip en pantallas táctiles */
-@media (hover: none) {
-  .tooltip::after {
-    display: none;
-  }
-}
-
-/* Estilo específico para el bloque de imagen de proyecto: */
 .project-visual {
-    width: 100%;
-    height: 200px;
-    margin-bottom: 1rem;
-    border-radius: 0.5rem;
-    object-fit: cover; /* CRÍTICO: Asegura que la imagen/GIF ocupe todo el contenedor */
-    background-color: #f0f8ff; /* Fondo muy claro para el contenedor de la imagen */
+    width: 100%;
+    height: 200px;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    object-fit: cover; 
+    background-color: #f0f8ff; 
 }
 
-/* NUEVOS ESTILOS PARA LOS TAGS DE TECNOLOGÍA (Armónicos con el cian) */
 .tech-tag {
-    display: inline-flex;
-    font-size: 0.75rem; /* text-xs */
-    font-weight: 600; /* font-semibold */
-    padding: 0.25rem 0.625rem; /* px-2 py-1 */
-    border-radius: 9999px; /* rounded-full */
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
+    display: inline-flex;
+    font-size: 0.75rem; 
+    font-weight: 600; 
+    padding: 0.25rem 0.625rem; 
+    border-radius: 9999px; 
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
-/* Paleta de colores renovada (¡COLORES VIVOS!) */
-
-/* Azul/Cian (Power BI, DAX, QGIS) */
 .tag-bi {
-    background-color: #cffafe; /* cyan-100 */
-    color: #155e75; /* cyan-900 */
+    background-color: #cffafe; 
+    color: #155e75; 
 }
-/* Verde (ETL, SQL) */
 .tag-data {
-    background-color: #d1fae5; /* emerald-100 */
-    color: #065f46; /* emerald-800 */
+    background-color: #d1fae5; 
+    color: #065f46; 
 }
-/* Púrpura (Figma, Diseño) */
 .tag-design {
-    background-color: #ede9fe; /* violet-100 */
-    color: #5b21b6; /* violet-700 */
+    background-color: #ede9fe; 
+    color: #5b21b6; 
 }
 
-/* --- ESTILOS DEL MODAL (CRÍTICO) --- */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
-    backdrop-filter: blur(4px); /* Efecto de borroso en el fondo */
-    -webkit-backdrop-filter: blur(4px);
-    z-index: 9999;
-    display: none; /* Oculto por defecto */
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    backdrop-filter: blur(4px); 
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: none; 
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 .modal-content {
-    background-color: white;
-    border-radius: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    max-width: 90%; /* Ancho máximo en móvil */
-    width: 1100px; /* Ancho deseado en desktop */
-    max-height: 90vh; /* Altura máxima para evitar desbordamiento */
-    overflow: hidden; /* Importante para que el body interno gestione el scroll */
-    transform: scale(0.95);
-    transition: transform 0.3s ease-in-out;
-    /* FIX APLICADO: Hacemos el contenedor principal flexible para que el cuerpo tome el espacio restante */
-    display: flex;
-    flex-direction: column;
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    max-width: 90%; 
+    width: 1100px; 
+    max-height: 90vh; 
+    overflow: hidden; 
+    transform: scale(0.95);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
 }
 .modal-overlay.open {
-    display: flex;
-    opacity: 1;
+    display: flex;
+    opacity: 1;
 }
 .modal-overlay.open .modal-content {
-    transform: scale(1);
+    transform: scale(1);
 }
 .dashboard-iframe-container {
-    position: relative;
-    width: 100%;
-    /* Esto define la proporción 16:9, ajusta según el aspecto de tu BI */
-    padding-top: 56.25%;
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
 }
 .dashboard-iframe-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
-
-/* Estilos para que el scroll del contenido no afecte el fondo */
 .modal-body-scroll {
-    /* FIX APLICADO: Permite que esta sección ocupe el espacio restante y añade el scroll */
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 1.5rem;
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
 }
 
-/* Ajuste para que el header fijo no tape los títulos al hacer scroll */
 section {
-scroll-margin-top: 100px; /* ajusta según la altura real de tu header */
+scroll-margin-top: 100px; 
 }
-
-
-/* --- ESTILOS PARA LA GALERÍA CF VIZTECH (MINIMALISTA) --- */
 
 .cf-insight-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 0.75rem; /* rounded-xl */
-    display: block;
-    /* Cambio CRÍTICO: Plano por defecto para más cohesión */
-    box-shadow: none; 
-    border: 1px solid #e5e7eb; /* Borde sutil como el resto de tus tarjetas */
-    background-color: white; 
-    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem; 
+    display: block;
+    box-shadow: none; 
+    border: 1px solid #e5e7eb; 
+    background-color: white; 
+    transition: transform 0.3s ease;
 }
-
-/* Efecto Hover: se levanta ligeramente y aparece la sombra */
 .cf-insight-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    border-color: #d1d5db; /* Border un poco más oscuro al hacer hover */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    border-color: #d1d5db; 
 }
-
 .cf-insight-image {
-    width: 100%;
-    /* Proporción 1:1 (cuadrada) para ahorrar espacio vertical */
-    aspect-ratio: 1/1; 
-    object-fit: cover;
-    display: block;
+    width: 100%;
+    aspect-ratio: 1/1; 
+    object-fit: cover;
+    display: block;
 }
-
 .cf-insight-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(6, 182, 212, 0.85); /* Cian semi-transparente */
-    opacity: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.3s ease;
-    text-align: center;
-    padding: 1rem;
-    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(6, 182, 212, 0.85); 
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    padding: 1rem;
+    cursor: pointer;
 }
-
-/* El overlay aparece al hacer hover */
 .cf-insight-card:hover .cf-insight-overlay {
-    opacity: 1;
+    opacity: 1;
 }
-
 .cf-insight-title {
-    color: white;
-    font-weight: 700; /* font-bold */
-    /* text-base (más pequeño) */
-    font-size: 1rem; 
-    margin-bottom: 0.5rem;
+    color: white;
+    font-weight: 700; 
+    font-size: 1rem; 
+    margin-bottom: 0.5rem;
 }
-
 .cf-insight-icon {
-    color: white;
-    font-size: 1.5rem;
+    color: white;
+    font-size: 1.5rem;
 }
 
-/* ESTILO EXTRA PARA LOS ICONOS DEL MENÚ MÓVIL (Iconos azul cyan) */
 .mobile-menu-icon {
-color: #06B6D4; /* Color Cian (var(--color-cian)) */
+color: #06B6D4; 
 margin-right: 0.5rem;
-width: 1.25rem; /* Ajuste para mantener la alineación */
+width: 1.25rem; 
 text-align: center;
 }
-
 .mobile-menu-item:hover .mobile-menu-icon {
-color: #38bdf8; /* Cian a Azul Claro (transición) */
+color: #38bdf8; 
 transition: color 0.3s ease;
 }
 
-/* ===== EFECTO HOVER CON SUBRAYADO ANIMADO ===== */
 .nav-links a {
-  position: relative;
-  color: #4b5563; /* gray-600 */
-  text-decoration: none;
-  transition: color 0.3s ease;
+  position: relative;
+  color: #4b5563; 
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
-
 .nav-links a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0%;
-  height: 2px;
-  background-color: var(--color-cian, #06B6D4);
-  transition: width 0.3s ease;
-  border-radius: 2px;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-cian, #06B6D4);
+  transition: width 0.3s ease;
+  border-radius: 2px;
 }
-
 .nav-links a:hover {
-  color: var(--color-cian, #06B6D4);
+  color: var(--color-cian, #06B6D4);
 }
-
 .nav-links a:hover::after {
-  width: 100%;
+  width: 100%;
 }
 
-/* ===== SCROLL SUAVE ENTRE SECCIONES ===== */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
-/* Línea del timeline (sutil y alineada con los puntos) */
 .timeline-item::before {
 content: "";
 position: absolute;
@@ -479,117 +357,104 @@ left: 4px;
 top: 0.75rem;
 bottom: 0;
 width: 2px;
-background-color: #E2E8F0; /* gris */
+background-color: #E2E8F0; 
 }
 
-/* Estilos del carrusel del Blog */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 .aspect-ratio-1\/1 { aspect-ratio: 1 / 1; }
 
 /* ESTILO BASE (MODO CLARO) - Botones Carrusel Blog */
-
 #carousel-prev,
 #carousel-next {
-    /* Recreamos el fondo blanco/transparente */
-    background-color: rgba(255, 255, 255, 0.8) !important; 
-    backdrop-filter: blur(8px) !important;
-    -webkit-backdrop-filter: blur(8px) !important;
-    
-    border: 1px solid #e5e7eb !important; 
+    background-color: rgba(255, 255, 255, 0.8) !important; 
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid #e5e7eb !important; 
 }
-
 #carousel-prev:hover,
 #carousel-next:hover {
-    /* Recreamos el hover blanco */
-    background-color: #ffffff !important; 
+    background-color: #ffffff !important; 
 }
-
-/* Color de la flecha (icono) en MODO CLARO */
 #carousel-prev i,
 #carousel-next i {
-     color: #4b5563 !important; /* Recreamos el text-gray-700 */
+     color: #4b5563 !important; 
 }
 
 
-/* Estilos del botón flotante (duplicados por seguridad, ya estaban arriba) */
- .floating-button {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  width: 64px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(to right, #06b6d4, #38bdf8);
-  /* 🔹 sin glow inicial */
-  box-shadow: none;
-  color: white;
-  cursor: pointer;
-}
+/* ========================================================= */
+/* === 2. AJUSTES RESPONSIVOS Y UX MÓVIL (MODO CLARO) ====== */
+/* ========================================================= */
 
-.floating-button.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ✨ Glow solo en hover */
-.floating-button:hover {
-  transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.6);
-}
-
+/* === Ajustes para Botón Flotante en Móvil === */
 @media (max-width: 640px) {
-  .floating-button {
-    width: 48px;
-    height: 48px;
-    bottom: 16px;
-    right: 16px;
-  }
-  .floating-button i {
-    font-size: 1rem;
-  }
+  .floating-button {
+    width: 44px;
+    height: 44px;
+    bottom: 14px;
+    right: 14px;
+  }
+  .floating-button i {
+    font-size: 0.9rem;
+  }
+  .floating-button::after {
+      display: none !important;
+      content: none !important; 
+  }
+  .floating-button:hover,
+  .floating-button:focus { 
+      box-shadow: none !important;  
+      transform: none !important;   
+      outline: none !important;    
+  }
+  .floating-button:active {
+      transform: scale(1.08) !important; 
+      box-shadow: none !important;     
+      outline: none !important;       
+  }
+} 
+
+/* === Ocultar Tooltips en Táctil === */
+@media (hover: none) {
+  .floating-button::after {
+    content: none !important; 
+    display: none !important; 
+  }
+  .floating-button:hover::after,
+  .floating-button:active::after,
+  .floating-button:focus::after {
+      content: none !important;
+      display: none !important;
+  }
+  .tooltip::after {
+    display: none;
+  }
 }
 
-/* ========================================================= */
 /* === FIX UX MÓVIL: Íconos Cian Fijos en Pantallas Táctiles === */
-/* (Se activa solo en dispositivos táctiles en MODO CLARO) */
-/* ========================================================= */
-
 @media (hover: none) and (pointer: coarse) {
-    
-    /* 1. Íconos en la sección INTRO (LinkedIn y Email) */
-    #intro .fa-brands.fa-linkedin,
-    #intro .fa-solid.fa-envelope {
-        /* Aplicamos el color cian fijo */
-        color: #06B6D4 !important; /* Tailwind cyan-500 */
-        transition: color 0.1s ease;
-    }
-    
-    /* 2. Íconos en el FOOTER */
-    #contact a .fa-brands.fa-linkedin,
-    #contact a .fa-solid.fa-envelope {
-        /* Aplicamos el color cian fijo */
-        color: #06B6D4 !important; /* Tailwind cyan-500 */
-        transition: color 0.1s ease;
-    }
-    
-    /* Aseguramos que la flecha dentro del botón flotante se vea blanca */
-    .floating-button i {
-        color: white !important; 
-    }
+    #intro .fa-brands.fa-linkedin,
+    #intro .fa-solid.fa-envelope {
+        color: #06B6D4 !important; 
+        transition: color 0.1s ease;
+    }
+    #contact a .fa-brands.fa-linkedin,
+  S   #contact a .fa-solid.fa-envelope {
+        color: #06B6D4 !important; 
+        transition: color 0.1s ease;
+    }
+    .floating-button i {
+        color: white !important; 
+    }
 }
 
 /* ========================================================= */
-/* === 🌙 MODO OSCURO AUTOMÁTICO (CF VizTech) =============== */
+/* === 3. 🌙 MODO OSCURO AUTOMÁTICO (UNIFICADO) ============= */
 /* ========================================================= */
 
-/* Detecta automáticamente el modo oscuro del sistema y aplica estilos */
 @media (prefers-color-scheme: dark) {
 
-  /* === Fondo general y texto === */
+  /* === 3.1 Fondo general y transiciones === */
   body {
     background-color: #0f172a; /* gris-azulado muy oscuro */
     color: #e2e8f0; /* texto claro */
@@ -599,26 +464,41 @@ background-color: #E2E8F0; /* gris */
     transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
   }
 
-  /* === Header (efecto vidrio adaptado) === */
+  /* === 3.2 Componentes Principales === */
+  
   .glass-header {
     background-color: rgba(30, 41, 59, 0.9);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   }
 
-  /* === Tarjetas, secciones, modales === */
   .card-pro,
   .modal-content {
     background-color: #1e293b; /* fondo gris oscuro */
     border-color: #334155; /* borde gris azulado */
     color: #e2e8f0; /* texto claro */
   }
+  
+  .carousel-item {
+    background-color: #1e293b;
+    border-color: #334155;
+  }
+  
+  footer {
+    border-color: #334155;
+    color: #94a3b8;
+    background-color: #0f172a !important;
+  }
 
-  /* === Títulos y textos === */
+  /* === 3.3 Estilos de Texto === */
   h1, h2, h3, h4, h5, h6, p, a {
     color: #e2e8f0;
   }
+  a:hover {
+    color: #67e8f9; /* cian claro */
+  }
 
-  /* === Textos secundarios === */
+  /* === 3.4 Sobreescritura de Clases (Tailwind/Utilities) === */
+
   .text-gray-600,
   .text-gray-700,
   .text-gray-800,
@@ -626,79 +506,13 @@ background-color: #E2E8F0; /* gris */
     color: #cbd5e1 !important;
   }
 
-  /* === Enlaces y botones === */
-  a:hover {
-    color: #67e8f9; /* cian claro */
-  }
-
-  .btn-cian {
-    color: white;
-    box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
-  }
-
-  .btn-cian:hover {
-    box-shadow: 0 7px 25px rgba(6, 182, 212, 0.5);
-  }
-
-  /* === Fondo de imágenes o contenedores visuales === */
-  .project-visual {
-    background-color: #1e293b;
-  }
-
-  /* === Etiquetas de tecnología === */
-  .tag-bi {
-    background-color: #164e63; /* cyan oscuro */
-    color: #a5f3fc; /* texto cyan claro */
-  }
-
-  .tag-data {
-    background-color: #064e3b; /* verde oscuro */
-    color: #6ee7b7; /* verde claro */
-  }
-
-  .tag-design {
-    background-color: #4c1d95; /* violeta oscuro */
-    color: #ddd6fe; /* violeta claro */
-  }
-
-  /* === Blog cards === */
-  .carousel-item {
-    background-color: #1e293b;
-    border-color: #334155;
-  }
-
-  /* === Footer === */
-  footer {
-    border-color: #334155;
-    color: #94a3b8;
-  }
-
-  /* === Iconos y botones flotantes === */
-  .floating-button {
-    background: linear-gradient(to right, #0891b2, #38bdf8);
-    box-shadow: 0 6px 20px rgba(6, 182, 212, 0.3);
-  }
-
-  .floating-button:hover {
-    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.6);
-  }
-}
-
-/* ========================================================= */
-/* === 🌙 COMPLEMENTO MODO OSCURO — Cajas y secciones ======= */
-/* ========================================================= */
-
-@media (prefers-color-scheme: dark) {
-
-  /* Corrige secciones con fondo blanco */
   section,
   .bg-white,
   .bg-gray-50 {
-    background-color: #0f172a !important; /* fondo base oscuro */
+    background-color: #0f172a !important; 
     color: #e2e8f0 !important;
   }
 
-  /* Tarjetas internas (Impact, Experience, Skills, Blog, etc.) */
   .card-pro,
   .skill-list-group,
   .cf-insight-card,
@@ -709,150 +523,149 @@ background-color: #E2E8F0; /* gris */
     color: #e2e8f0 !important;
   }
 
-  /* Bloques de habilidades y mini-cards */
   .bg-white.p-6,
   .bg-white.p-8 {
     background-color: #1e293b !important;
     border-color: #334155 !important;
   }
 
-  /* Blog cards y carrusel */
   .carousel-item {
     background-color: #1e293b !important;
     border-color: #334155 !important;
   }
 
-  /* Cajas de texto gris claro */
   .bg-gray-50,
   .bg-gray-100 {
     background-color: #1e293b !important;
   }
 
-  /* Borde de inputs o contenedores sutiles */
   .border-gray-100,
   .border-gray-200 {
     border-color: #334155 !important;
   }
 
-  /* Líneas divisorias (hr, secciones, etc.) */
   hr,
   .border-t,
   .border-b {
     border-color: #334155 !important;
   }
 
-  /* Hover states */
   .hover\:bg-gray-100:hover {
     background-color: #1e293b !important;
   }
 
-  /* Botón LinkedIn y contacto */
+  /* === 3.5 Componentes Específicos === */
+
   .btn-cian {
     background-image: linear-gradient(to right, #0891b2, #38bdf8);
     color: white;
     box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
   }
+  .btn-cian:hover {
+    box-shadow: 0 7px 25px rgba(6, 182, 212, 0.5);
+  }
 
-  /* Tooltip fondo */
+  .floating-button {
+    background: linear-gradient(to right, #0891b2, #38bdf8);
+    box-shadow: 0 6px 20px rgba(6, 182, 212, 0.3);
+  }
+  .floating-button:hover {
+    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.6);
+  }
+  
+  .project-visual {
+    background-color: #1e293b;
+  }
+
+  .tag-bi {
+    background-color: #164e63; /* cyan oscuro */
+    color: #a5f3fc; /* texto cyan claro */
+  }
+  .tag-data {
+    background-color: #064e3b; /* verde oscuro */
+    color: #6ee7b7; /* verde claro */
+  }
+  .tag-design {
+    background-color: #4c1d95; /* violeta oscuro */
+    color: #ddd6fe; /* violeta claro */
+  }
+
   .tooltip::after {
     background: #1e293b !important;
     color: #e2e8f0 !important;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   }
+  
+  /* ========================================================= */
+  /* === 3.6 🌙 FIXES ESPECÍFICOS (Sección por Sección) ========= */
+  /* ========================================================= */
 
-  /* Footer */
-  footer {
-    background-color: #0f172a !important;
-    border-color: #334155 !important;
-    color: #94a3b8 !important;
-  }
-}
-
-/* ========================================================= */
-/* === 🌙 FIX ESPECÍFICO: Títulos en Experience & Skills ==== */
-/* ========================================================= */
-@media (prefers-color-scheme: dark) {
-
-  /* ==== Experience & Education ==== */
-  /* Título de sección (Experience & Education) */
+  /* --- Fix: Títulos en Experience & Skills --- */
   #experience > h2,
-  /* Subtítulos dentro de experience (ej. "Work Experience", "Education & Training") */
   #experience h3,
-  /* Títulos de puesto / formación (p.font-semibold text-sm en tu HTML) */
   #experience p.font-semibold,
-  /* Cualquier texto con clases text-gray-900 o text-gray-800 dentro de la sección */
   #experience .text-gray-900,
   #experience .text-gray-800 {
-    color: #e2e8f0 !important; /* texto claro principal */
+    color: #e2e8f0 !important; 
   }
-
-  /* Descripciones, fechas y texto secundario dentro de experience */
   #experience .text-gray-500,
   #experience .text-xs,
   #experience li,
   #experience p.text-gray-500 {
-    color: #cbd5e1 !important; /* gris claro secundario */
+    color: #cbd5e1 !important; 
   }
-
-  /* ==== Data Skills & Consultancy ==== */
-  /* Títulos de las tres cajas: "Data Strategy", "Analytics & Automation", "Communication & Storytelling" */
   #skills h3,
-  /* También aplica si tienen .font-semibold o .text-gray-900 */
   #skills .font-semibold,
   #skills .text-gray-900,
   #skills .text-gray-800 {
     color: #e2e8f0 !important;
   }
-
-  /* Texto de lista / items dentro de skills */
   #skills .text-gray-600,
   #skills .text-gray-500,
   #skills li {
     color: #cbd5e1 !important;
   }
-
-  /* Por si alguna tarjeta usa estilos más específicos */
   .card-pro h3, 
   .card-pro p.font-semibold {
     color: #e2e8f0 !important;
   }
-}
 
-/* === 🌙 FIX ESPECÍFICO: Títulos del Bloque Intro (Hero) ==== */
+  /* --- Fix: Títulos del Bloque Intro (Hero) --- */
+  #intro h1,
+  #intro .text-gray-900 { 
+    color: #e2e8f0 !important;
+  }
+  #intro p.text-gray-600 {
+    color: #cbd5e1 !important; 
+  }
 
-@media (prefers-color-scheme: dark) {
+  /* --- Fix: Botones Carrusel Blog --- */
+  #carousel-prev,
+  #carousel-next {
+    background-color: #1e293b !important; 
+    border-color: #334155 !important;
+  }
+  #carousel-prev:hover,
+  #carousel-next:hover {
+    background-color: #0f172a !important; 
+    border-color: #475569 !important;
+  }
+  #carousel-prev i,
+  #carousel-next i {
+    color: #e2e8f0 !important; /* Flecha clara */
+  }
 
-    
-    
-    /* Target: El título H1 dentro de la sección Intro */
-    #intro h1,
-    #intro .text-gray-900 { 
-        /* Forzamos el color claro para que se vea */
-        color: #e2e8f0 !important;
-    }
-    
-    /* También revisamos el párrafo introductorio debajo del H1 */
-    #intro p.text-gray-600 {
-        color: #cbd5e1 !important; /* Gris claro secundario */
-    }
+  /* --- Fix: Bloque destacado en sección #about --- */
+  section#about .card-pro .bg-gray-50 {
+    background-color: #27374D !important; 
+    border-color: #334155 !important;
+  }
+  section#about .card-pro .bg-gray-50 h3,
+  section#about .card-pro .bg-gray-50 p {
+    color: #e2e8f0 !important; 
+  }
+  section#about .card-pro .bg-gray-50 .text-cyan-700 {
+    color: #67e8f9 !important; 
+  }
 
-  /* === 2. ESTILO OSCURO - Botones Carrusel Blog === */
-
-    #carousel-prev,
-    #carousel-next {
-        background-color: #1e293b !important; 
-        border-color: #334155 !important;
-    }
-
-    #carousel-prev:hover,
-    #carousel-next:hover {
-        background-color: #0f172a !important; 
-        border-color: #475569 !important;
-    }
-
-    #carousel-prev i,
-    #carousel-next i {
-         color: #e2e8f0 !important; /* Flecha clara */
-    }
-
-}
+} /* <-- FIN DEL MODO OSCURO UNIFICADO */
