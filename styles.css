@@ -487,6 +487,30 @@ background-color: #E2E8F0; /* gris */
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 .aspect-ratio-1\/1 { aspect-ratio: 1 / 1; }
 
+/* ESTILO BASE (MODO CLARO) - Botones Carrusel Blog */
+
+#carousel-prev,
+#carousel-next {
+    /* Recreamos el fondo blanco/transparente */
+    background-color: rgba(255, 255, 255, 0.8) !important; 
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    
+    border: 1px solid #e5e7eb !important; 
+}
+
+#carousel-prev:hover,
+#carousel-next:hover {
+    /* Recreamos el hover blanco */
+    background-color: #ffffff !important; 
+}
+
+/* Color de la flecha (icono) en MODO CLARO */
+#carousel-prev i,
+#carousel-next i {
+     color: #4b5563 !important; /* Recreamos el text-gray-700 */
+}
+
 
 /* Estilos del botón flotante (duplicados por seguridad, ya estaban arriba) */
  .floating-button {
@@ -794,3 +818,41 @@ background-color: #E2E8F0; /* gris */
   }
 }
 
+/* === 🌙 FIX ESPECÍFICO: Títulos del Bloque Intro (Hero) ==== */
+
+@media (prefers-color-scheme: dark) {
+
+    
+    
+    /* Target: El título H1 dentro de la sección Intro */
+    #intro h1,
+    #intro .text-gray-900 { 
+        /* Forzamos el color claro para que se vea */
+        color: #e2e8f0 !important;
+    }
+    
+    /* También revisamos el párrafo introductorio debajo del H1 */
+    #intro p.text-gray-600 {
+        color: #cbd5e1 !important; /* Gris claro secundario */
+    }
+
+  /* === 2. ESTILO OSCURO - Botones Carrusel Blog === */
+
+    #carousel-prev,
+    #carousel-next {
+        background-color: #1e293b !important; 
+        border-color: #334155 !important;
+    }
+
+    #carousel-prev:hover,
+    #carousel-next:hover {
+        background-color: #0f172a !important; 
+        border-color: #475569 !important;
+    }
+
+    #carousel-prev i,
+    #carousel-next i {
+         color: #e2e8f0 !important; /* Flecha clara */
+    }
+
+}
