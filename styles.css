@@ -767,15 +767,24 @@ background-color: #E2E8F0; /* gris */
 
 /* ========================================================= */
 /* === 🌙 FIX VISUAL: Bloque principal sección hero ======== */
+/* (Usando estilos consistentes con .card-pro) */
 /* ========================================================= */
 @media (prefers-color-scheme: dark) {
-  /* Ajuste del bloque cuadrado/hero en la sección 1 */
-  #hero, /* si tu sección principal tiene id="hero" */
-  .hero-section,
-  .intro-block,
-  .main-highlight {
-    background-color: #1b2535 !important; /* un tono más claro que el fondo */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* sutil sombra para separarlo */
-    border: 1px solid #2e3a4a;
-  }
+  /* 🎯 Selector(es) de tu bloque principal / hero */
+  #hero,
+  .hero-section,
+  .intro-block,
+  .main-highlight {
+    /* Color de fondo consistente con las tarjetas (.card-pro) */
+    background-color: #1e293b !important;
+
+    /* Borde consistente */
+    border: 1px solid #334155 !important;
+
+    /* Sombra que eleva el bloque del fondo #0f172a */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+
+    /* Aseguramos el color de texto principal */
+    color: #e2e8f0 !important;
+  }
 }
