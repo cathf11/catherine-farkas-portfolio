@@ -672,6 +672,7 @@ background-color: #E2E8F0; /* gris */
   }
   .btn-cian:hover {
     box-shadow: 0 7px 25px rgba(6, 182, 212, 0.5);
+color: white !important; /* <-- ¡AÑADE ESTA LÍNEA! */
   }
 
   .floating-button {
