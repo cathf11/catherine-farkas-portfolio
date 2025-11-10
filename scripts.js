@@ -274,6 +274,11 @@ function loadGoogleAnalytics() {
           'analytics_storage': 'granted'
         });
         console.log("✅ Analytics ACEPTADAS. Consentimiento 'granted'.");
+    // *** NUEVO: Evento para rastrear la aceptación ***
+        gtag('event', 'consent_acceptance', {
+            'consent_action': 'accepted' 
+        });
+    // **********************************************
     } else {
         console.warn("gtag no está definido al intentar actualizar el consentimiento.");
     }
@@ -322,6 +327,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 banner.classList.add('hidden');
             }
             console.log("Analytics RECHAZADAS (botón).");
+    // *** NUEVO: Evento para rastrear el rechazo ***
+            if (typeof gtag === 'function') {
+                gtag('event', 'consent_rejection', {
+                    'consent_action': 'rejected'
+                });
+            }
+    // **********************************************
         });
     }
 });
