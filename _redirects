@@ -1,0 +1,35 @@
+# ===================================================
+# === REDIRECCIONES DE CAMPAÑA (UTM TRACKING) ===
+# (Versión final 100% codificada)
+# ===================================================
+
+# === 1. Fuente: CV Principal (s01) ===
+# Medium: QR (mqr)
+/s01mqrces    /?utm_source=s01&utm_medium=mqr&utm_content=ces    301
+/s01mqrcen    /?utm_source=s01&utm_medium=mqr&utm_content=cen    301
+
+# Medium: Link Texto S01 (mlk_s01)
+/s01mlk_s01ces    /?utm_source=s01&utm_medium=mlk_s01&utm_content=ces    301
+/s01mlk_s01cen    /?utm_source=s01&utm_medium=mlk_s01&utm_content=cen    301
+
+
+# === 2. Fuente: CV ATS (s02) ===
+# Medium: Link Texto S02 (mlk_s02)
+/s02mlk_s02ces    /?utm_source=s02&utm_medium=mlk_s02&utm_content=ces    301
+/s02mlk_s02cen    /?utm_source=s02&utm_medium=mlk_s02&utm_content=cen    301
+
+# Medium: ATS Plataforma 1 (mlk_inf)
+/s02mlk_infces /?utm_source=s02&utm_medium=mlk_inf&utm_content=ces    301
+/s02mlk_infcen /?utm_source=s02&utm_medium=mlk_inf&utm_content=cen    301
+
+# Medium: ATS Plataforma 2 (mlk_tec)
+/s02mlk_tecces /?utm_source=s02&utm_medium=mlk_tec&utm_content=ces    301
+/s02mlk_teccen /?utm_source=s02&utm_medium=mlk_tec&utm_content=cen    301
+
+
+# === 3. Fuente: LinkedIn (s03) ===
+# Medium: Bio Link (mlk_bio)
+/s03mlk_bioces    /?utm_source=s03&utm_medium=mlk_bio&utm_content=ces    301
+
+# Medium: Post Link (mlk_po)
+/s03mlk_poces    /?utm_source=s03&utm_medium=mlk_po&utm_content=ces    301
