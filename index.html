@@ -1474,19 +1474,23 @@
         </div>
     </div>
 
-<div id="cookie-consent-banner">
-  <div class="content">
-    <p>
-      This website uses <strong>necessary cookies</strong> to function and 
-      <strong>analytics cookies</strong> to help us improve your experience.
-      You can accept all or reject the optional analytics cookies.
-    </p>
-    <div>
-      <button id="reject-cookies">Reject Analytics</button>
-      <button id="accept-cookies">Accept All</button>
+    <div id="cookie-consent-banner" class="fixed bottom-0 left-0 w-full bg-gray-800 text-white p-4 z-[10000] hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            
+            <p class="text-sm mb-4 md:mb-0 md:mr-6">
+                This website uses <strong>necessary cookies</strong> to function and <strong>analytics cookies</strong> to help us improve your experience. You can accept all or reject the optional analytics cookies.
+            </p>
+            
+            <div class="flex-shrink-0 flex gap-4">
+                <button id="reject-cookies" class="px-5 py-2 rounded-full font-semibold text-sm bg-gray-600 hover:bg-gray-500 transition-colors">
+                    Reject Analytics
+                </button>
+                <button id="accept-cookies" class="btn-cian px-6 py-2 rounded-full font-semibold text-sm">
+                    Accept All
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
     
     </div>
 

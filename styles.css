@@ -529,90 +529,32 @@ background-color: #E2E8F0; /* gris */
   }
 }
 
-/* === BANNER DE COOKIES (versión final) === */
-#cookie-consent-banner {
-  position: fixed;
-  bottom: 20px; /* 🔹 lo subimos un poco del borde */
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(31, 41, 55, 0.95); /* gris oscuro con transparencia */
-  backdrop-filter: blur(8px);
-  color: #fff;
-  border-radius: 16px;
-  padding: 1.5rem 2rem;
-  width: 90%;
-  max-width: 720px; /* 🔹 un ancho más natural */
-  text-align: center;
-  z-index: 9999;
-  display: none;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-}
+/* ========================================================= */
+/* === FIX UX MÓVIL: Íconos Cian Fijos en Pantallas Táctiles === */
+/* (Se activa solo en dispositivos táctiles en MODO CLARO) */
+/* ========================================================= */
 
-#cookie-consent-banner.show {
-  display: block;
-  opacity: 1;
-  pointer-events: all;
-  transform: translate(-50%, 0);
-}
-
-/* 🔹 Estructura interna */
-#cookie-consent-banner .content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-/* 🔹 En pantallas grandes, el texto y los botones en fila */
-@media (min-width: 768px) {
-  #cookie-consent-banner .content {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    text-align: left;
-  }
-}
-
-#cookie-consent-banner p {
-  font-size: 0.95rem;
-  line-height: 1.4;
-  margin: 0;
-  max-width: 520px;
-}
-
-/* 🔹 Botones */
-#cookie-consent-banner button {
-  margin: 0.25rem;
-  padding: 0.6rem 1.4rem;
-  border-radius: 999px;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  transition: all 0.3s ease;
-}
-
-#accept-cookies {
-  background-color: #06B6D4;
-  color: #fff;
-}
-
-#accept-cookies:hover {
-  background-color: #0891b2;
-}
-
-#reject-cookies {
-  background: transparent;
-  border: 1px solid #9CA3AF;
-  color: #E5E7EB;
-}
-
-#reject-cookies:hover {
-  border-color: #d1d5db;
-  color: white;
+@media (hover: none) and (pointer: coarse) {
+    
+    /* 1. Íconos en la sección INTRO (LinkedIn y Email) */
+    #intro .fa-brands.fa-linkedin,
+    #intro .fa-solid.fa-envelope {
+        /* Aplicamos el color cian fijo */
+        color: #06B6D4 !important; /* Tailwind cyan-500 */
+        transition: color 0.1s ease;
+    }
+    
+    /* 2. Íconos en el FOOTER */
+    #contact a .fa-brands.fa-linkedin {
+        /* Aplicamos el color cian fijo */
+        color: #06B6D4 !important; /* Tailwind cyan-500 */
+        transition: color 0.1s ease;
+    }
+    
+    /* Aseguramos que la flecha dentro del botón flotante se vea blanca */
+    .floating-button i {
+        color: white !important; 
+    }
 }
 
 /* ========================================================= */

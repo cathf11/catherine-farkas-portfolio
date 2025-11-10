@@ -257,24 +257,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (prevBtn) { prevBtn.addEventListener('click', () => scrollCarousel(-1)); }
 });
 
-// --- LÓGICA DEL BANNER DE COOKIES (FINAL Y CORREGIDA) ---
+// --- LÓGICA DEL BANNER DE COOKIES (FINAL) ---
 
-// 1. Función para ACTUALIZAR EL CONSENTIMIENTO
+// 1. Función para (ahora) SOLO ACTUALIZAR EL CONSENTIMIENTO
 function loadGoogleAnalytics() {
+
     // --- NUEVO CONSENT MODE V2 ---
+    // El script ya está cargado (desde el FIX INICIO).
+    // El 'config' ya está en la cola (desde el FIX INICIO).
+
+    // 4. Actualiza el consentimiento.
+    //    Esto le dice a gtag: "¡luz verde! envía el 'config'
+    //    y todo lo demás que tengas en cola".
     if (typeof gtag === 'function') {
         gtag('consent', 'update', {
-            'analytics_storage': 'granted'
+          'analytics_storage': 'granted'
         });
         console.log("✅ Analytics ACEPTADAS. Consentimiento 'granted'.");
-        // Evento para rastrear aceptación
-        gtag('event', 'consent_acceptance', {
-            'consent_action': 'accepted'
-        });
     } else {
-        console.warn("⚠️ gtag no está definido al intentar actualizar el consentimiento.");
+        console.warn("gtag no está definido al intentar actualizar el consentimiento.");
     }
+    // --- FIN NUEVO CONSENT MODE ---
 }
+
 
 // 2. Lógica principal del banner
 document.addEventListener('DOMContentLoaded', () => {
@@ -282,13 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const acceptBtn = document.getElementById('accept-cookies');
     const rejectBtn = document.getElementById('reject-cookies');
 
-    // ✅ Aseguramos que el banner exista
-    if (!banner) {
-        console.error("❌ No se encontró el banner de cookies en el DOM.");
-        return;
-    }
-
-    // 2.1 Revisa el almacenamiento local
+    // Revisa el almacenamiento local
     const consent = localStorage.getItem('cookieConsent');
 
     if (consent === 'granted') {
@@ -296,20 +295,21 @@ document.addEventListener('DOMContentLoaded', () => {
         loadGoogleAnalytics();
     } else if (consent === 'denied') {
         // Si ya rechazó, no hagas nada
-        console.log("ℹ️ Analytics rechazadas previamente.");
+        console.log("Analytics RECHAZADAS (consentimiento previo).");
     } else {
-        // ✅ Si no ha contestado, muestra el banner y bloquea scroll
-        banner.classList.add('show'); // sólo esta clase, no .hidden
-        document.body.style.overflow = 'hidden'; // bloquea el scroll
-        console.log("📢 Mostrando banner de cookies.");
+        // Si no ha contestado, muestra el banner
+        if (banner) {
+            banner.classList.remove('hidden');
+        }
     }
 
     // 3. Qué pasa al ACEPTAR
     if (acceptBtn) {
         acceptBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'granted');
-            banner.classList.remove('show');
-            document.body.style.overflow = 'auto'; // desbloquea scroll
+            if (banner) {
+                banner.classList.add('hidden');
+            }
             loadGoogleAnalytics(); // Carga GA4
         });
     }
@@ -318,20 +318,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (rejectBtn) {
         rejectBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'denied');
-            banner.classList.remove('show');
-            document.body.style.overflow = 'auto'; // desbloquea scroll
-            console.log("❌ Analytics RECHAZADAS (botón).");
-            
-            // Evento opcional para rastrear el rechazo
-            if (typeof gtag === 'function') {
-                gtag('event', 'consent_rejection', {
-                    'consent_action': 'rejected'
-                });
+            if (banner) {
+                banner.classList.add('hidden');
             }
+            console.log("Analytics RECHAZADAS (botón).");
         });
     }
 });
-
 
  // === Mejora del botón flotante (scroll + responsive + hover animado) ===
 document.addEventListener("DOMContentLoaded", () => {
