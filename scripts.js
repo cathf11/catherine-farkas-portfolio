@@ -261,14 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 1. Función para (ahora) SOLO ACTUALIZAR EL CONSENTIMIENTO
 function loadGoogleAnalytics() {
-
-    // --- NUEVO CONSENT MODE V2 ---
-    // El script ya está cargado (desde el FIX INICIO).
-    // El 'config' ya está en la cola (desde el FIX INICIO).
-
-    // 4. Actualiza el consentimiento.
-    //    Esto le dice a gtag: "¡luz verde! envía el 'config'
-    //    y todo lo demás que tengas en cola".
     if (typeof gtag === 'function') {
         gtag('consent', 'update', {
           'analytics_storage': 'granted'
@@ -277,29 +269,28 @@ function loadGoogleAnalytics() {
     } else {
         console.warn("gtag no está definido al intentar actualizar el consentimiento.");
     }
-    // --- FIN NUEVO CONSENT MODE ---
 }
 
 
-// 2. Lógica principal del banner
+// 2. Lógica principal del banner (¡Apunta al WRAPPER!)
 document.addEventListener('DOMContentLoaded', () => {
-    const banner = document.getElementById('cookie-consent-banner');
+    
+    const banner = document.getElementById('cookie-consent-wrapper'); // <-- El ID clave
+    
     const acceptBtn = document.getElementById('accept-cookies');
     const rejectBtn = document.getElementById('reject-cookies');
 
-    // Revisa el almacenamiento local
     const consent = localStorage.getItem('cookieConsent');
 
     if (consent === 'granted') {
-        // Si ya aceptó, carga GA4 directamente
         loadGoogleAnalytics();
     } else if (consent === 'denied') {
-        // Si ya rechazó, no hagas nada
         console.log("Analytics RECHAZADAS (consentimiento previo).");
     } else {
-        // Si no ha contestado, muestra el banner
+        // Si NO ha contestado (consent es null)
         if (banner) {
-            banner.classList.remove('hidden');
+            banner.classList.remove('hidden'); // <-- Muestra el banner
+            document.body.style.overflow = 'hidden'; // <-- Bloquea el scroll
         }
     }
 
@@ -310,7 +301,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (banner) {
                 banner.classList.add('hidden');
             }
-            loadGoogleAnalytics(); // Carga GA4
+            document.body.style.overflow = ''; // <-- Restaura el scroll
+            loadGoogleAnalytics(); 
         });
     }
 
@@ -321,6 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (banner) {
                 banner.classList.add('hidden');
             }
+            document.body.style.overflow = ''; // <-- Restaura el scroll
             console.log("Analytics RECHAZADAS (botón).");
         });
     }
