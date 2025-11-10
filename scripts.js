@@ -272,11 +272,10 @@ function loadGoogleAnalytics() {
 }
 
 
-// 2. Lógica principal del banner (¡Apunta al WRAPPER!)
+// 2. Lógica principal del banner
 document.addEventListener('DOMContentLoaded', () => {
     
-    const banner = document.getElementById('cookie-consent-wrapper'); // <-- El ID clave
-    
+    const banner = document.getElementById('cookie-consent-wrapper'); 
     const acceptBtn = document.getElementById('accept-cookies');
     const rejectBtn = document.getElementById('reject-cookies');
 
@@ -287,21 +286,28 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (consent === 'denied') {
         console.log("Analytics RECHAZADAS (consentimiento previo).");
     } else {
-        // Si NO ha contestado (consent es null)
         if (banner) {
-            banner.classList.remove('hidden'); // <-- Muestra el banner
-            document.body.style.overflow = 'hidden'; // <-- Bloquea el scroll
+            banner.classList.remove('hidden'); 
+            document.body.style.overflow = 'hidden'; 
         }
     }
 
     // 3. Qué pasa al ACEPTAR
     if (acceptBtn) {
         acceptBtn.addEventListener('click', () => {
+            
+            // --- ¡NUEVO! Envía evento GA4 de ACEPTAR ---
+            if (typeof gtag === 'function') {
+                gtag('event', 'consent_choice', {
+                    'consent_decision': 'accepted'
+                });
+            }
+            
             localStorage.setItem('cookieConsent', 'granted');
             if (banner) {
                 banner.classList.add('hidden');
             }
-            document.body.style.overflow = ''; // <-- Restaura el scroll
+            document.body.style.overflow = ''; 
             loadGoogleAnalytics(); 
         });
     }
@@ -309,11 +315,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Qué pasa al RECHAZAR
     if (rejectBtn) {
         rejectBtn.addEventListener('click', () => {
+
+            // --- ¡NUEVO! Envía evento GA4 de RECHAZAR ---
+            if (typeof gtag === 'function') {
+                gtag('event', 'consent_choice', {
+                    'consent_decision': 'rejected'
+                });
+            }
+
             localStorage.setItem('cookieConsent', 'denied');
             if (banner) {
                 banner.classList.add('hidden');
             }
-            document.body.style.overflow = ''; // <-- Restaura el scroll
+            document.body.style.overflow = ''; 
             console.log("Analytics RECHAZADAS (botón).");
         });
     }
