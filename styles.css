@@ -529,9 +529,10 @@ background-color: #E2E8F0; /* gris */
   }
 }
 
-
+/* Banner de cookies */
 
 #cookie-consent-banner {
+  display: none; /* controlado por JS */
   position: fixed;
   bottom: 0;
   left: 50%;
@@ -551,6 +552,7 @@ background-color: #E2E8F0; /* gris */
 }
 
 #cookie-consent-banner.show {
+  display: block;
   opacity: 1;
   pointer-events: all;
   transform: translate(-50%, 0);
