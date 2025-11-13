@@ -1,19 +1,18 @@
-// **************************************************
-// *** 🛠️ CARGA DE GA4 (EL SCRIPT ESTÁ EN EL HEAD) ***
-// **************************************************
+// --- MODIFICACIÓN: Carga CONDICIONAL ---
+// Verificamos si el usuario ya rechazó antes de cargar nada
+const savedConsent = localStorage.getItem('cookieConsent');
 
-// 3. Carga el script de gtag.js INMEDIATAMENTE
-//    (gtag y el consent 'denied' ya se definieron en el <head>)
-const gaScript = document.createElement('script');
-gaScript.async = true;
-gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0G3Q7PGYFP";
-document.head.appendChild(gaScript);
+if (savedConsent !== 'denied') {
+    // Solo cargamos si NO está denegado
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0G3Q7PGYFP";
+    document.head.appendChild(gaScript);
 
-
-// 4. Envía el 'config' AHORA.
-//    gtag.js lo recibirá y lo retendrá (porque el 'denied' del head)
-gtag('js', new Date());
-gtag('config', 'G-0G3Q7PGYFP');
+    gtag('js', new Date());
+    gtag('config', 'G-0G3Q7PGYFP');
+}
+// ---------------------------------------
 
 // **************************************************
 
@@ -40,7 +39,6 @@ function trackProyecto(url) {
     }
 }
 
-// --- LÓGICA DEL MENÚ MÓVIL (¡CORREGIDA!) ---
 // --- LÓGICA DEL MENÚ MÓVIL (FINAL Y UNIFICADA) ---
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -263,9 +261,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function loadGoogleAnalytics() {
     if (typeof gtag === 'function') {
         gtag('consent', 'update', {
-          'analytics_storage': 'granted'
+          'analytics_storage': 'granted',
+          'ad_storage': 'granted',        // <--- Faltaba
+          'ad_user_data': 'granted',      // <--- Faltaba (V2)
+          'ad_personalization': 'granted' // <--- Faltaba (V2)
         });
-        console.log("✅ Analytics ACEPTADAS. Consentimiento 'granted'.");
+        console.log("✅ Analytics ACEPTADAS. Consentimiento total 'granted'.");
     } else {
         console.warn("gtag no está definido al intentar actualizar el consentimiento.");
     }
@@ -315,20 +316,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Qué pasa al RECHAZAR
     if (rejectBtn) {
         rejectBtn.addEventListener('click', () => {
-
-            // --- ¡NUEVO! Envía evento GA4 de RECHAZAR ---
+            
+            // A) Avisamos a Google explícitamente (Actualización v2)
             if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    'analytics_storage': 'denied',
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied'
+                });
+                // Enviamos evento de que ha rechazado
                 gtag('event', 'consent_choice', {
                     'consent_decision': 'rejected'
                 });
             }
 
+            // B) Guardamos la decisión
             localStorage.setItem('cookieConsent', 'denied');
+
+            // C) Cerramos banner
             if (banner) {
                 banner.classList.add('hidden');
             }
             document.body.style.overflow = ''; 
-            console.log("Analytics RECHAZADAS (botón).");
+            
+            console.log("Analytics: Rechazado estrictamente.");
         });
     }
 });
