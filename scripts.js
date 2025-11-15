@@ -1,18 +1,13 @@
-// --- MODIFICACIÓN: Carga CONDICIONAL ---
-// Verificamos si el usuario ya rechazó antes de cargar nada
-const savedConsent = localStorage.getItem('cookieConsent');
+// --- CARGA DIRECTA "SÍ O SÍ" ---
+// El script de Google se carga siempre, pero "dormido" (gracias al 'denied' del HTML)
+const gaScript = document.createElement('script');
+gaScript.async = true;
+gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0G3Q7PGYFP";
+document.head.appendChild(gaScript);
 
-if (savedConsent !== 'denied') {
-    // Solo cargamos si NO está denegado
-    const gaScript = document.createElement('script');
-    gaScript.async = true;
-    gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0G3Q7PGYFP";
-    document.head.appendChild(gaScript);
-
-    gtag('js', new Date());
-    gtag('config', 'G-0G3Q7PGYFP');
-}
-// ---------------------------------------
+gtag('js', new Date());
+gtag('config', 'G-0G3Q7PGYFP');
+// -------------------------------
 
 // **************************************************
 
@@ -108,12 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- LÓGICA DEL MODAL (¡CORREGIDA!) ---
 
-/**
- * Abre el modal especificado por ID y carga un iframe si se proporciona una URL.
- * @param {string} modalId - El ID del elemento modal (overlay).
- * @param {string} iframeSrc - La URL que se debe cargar en el iframe del dashboard (o placeholder).
- */
-
   function openModal(modalId, iframeSrc) {
   const modal = document.getElementById(modalId);
 
@@ -122,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // ************************************************
 // *** 🎯 CÓDIGO GA4 PARA EL EVENTO DE PROYECTO ***
 // ************************************************
-// Verificamos si gtag está cargado (es decir, si aceptaron las cookies)
 if (typeof gtag === 'function') { 
     gtag('event', 'proyecto_visto', {
         'modal_id': modalId, 
@@ -132,70 +120,43 @@ if (typeof gtag === 'function') {
 }
 // ************************************************
 
-// 1. Cargamos el iframe si existe un ID de iframe coincidente dentro del modal
-// Usamos el modalId para encontrar el iframe correcto
 let iframeId;
-
-// Proyecto 1 (Marketing)
 if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
-
-// Proyecto 2 (Operational)
 else if (modalId === 'operational-insights-modal') iframeId = 'operational-dashboard-iframe';
-
-// Proyecto 3 (Covid)
 else if (modalId === 'project-covid-modal') iframeId = 'project-covid-iframe';
-
 
 const iframe = document.getElementById(iframeId);
 
 if (iframe) {
-   // --- ¡LÓGICA DEL LAZY LOAD! ---
-   // Comprueba si el iframe tiene un 'data-src' (los proyectos)
    const dataSrc = iframe.getAttribute('data-src');
    if (dataSrc) {
-       iframe.src = dataSrc; // Carga el iframe AHORA, al hacer clic
+       iframe.src = dataSrc; 
    } else if (iframeSrc) {
-       // Esto es para los modales que SÍ pasan un src (los del blog no lo usan)
        iframe.src = iframeSrc;
    }
-   // Si es un modal del blog (sin iframeSrc y sin data-src), no hace nada
 }
 
-// 2. Abre el modal con animación
 modal.classList.add('open');
-
-// 3. Ocultar el scroll del body principal
 document.body.style.overflow = 'hidden';
    }
 }
 
-/**
- * Cierra el modal especificado por ID.
- * @param {string} modalId - El ID del elemento modal (overlay).
- */
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
 
     if (modal) {
-        // Cierra el modal con animación
         modal.classList.remove('open');
 
-        // Muestra el scroll del body principal después de una pequeña espera
         setTimeout(() => {
-            // Solo mostramos el scroll del body si NO hay otro modal abierto
             if (!document.querySelector('.modal-overlay.open')) {
                 document.body.style.overflow = '';
             }
-        }, 300); // 300ms, que es la duración de la transición
+        }, 300);
 
-        // --- ¡FIX PARA APAGAR IFRAMES! ---
-        // Pausa el iframe (detiene videos/Power BI)
         let iframeId;
         if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
         else if (modalId === 'operational-insights-modal') iframeId = 'operational-dashboard-iframe';
         else if (modalId === 'project-covid-modal') iframeId = 'project-covid-iframe';
-        
-        // Los modales del blog no tienen iframes que necesiten apagarse
         else if (modalId === 'cfviztech-modal-1') iframeId = null;
         else if (modalId === 'cfviztech-modal-2') iframeId = null;
         else if (modalId === 'cfviztech-modal-3') iframeId = null;
@@ -205,10 +166,9 @@ function closeModal(modalId) {
         if (iframeId) {
             const iframe = document.getElementById(iframeId);
             if (iframe) {
-                iframe.src = ''; // Limpia el src para detener la carga
+                iframe.src = ''; 
             }
         }
-        // --- FIN DEL FIX ---
     }
 }
 
@@ -217,22 +177,12 @@ function closeModal(modalId) {
 function hideFloatingTooltip() {
     const button = document.getElementById('floating-contact-button');
     if (button) {
-        
-        // 1. ¡NUEVO! Quita el foco del botón inmediatamente.
-        // Esto evita que el tooltip se quede "pillado" en estado :focus
         button.blur(); 
-
-        // 2. Guarda el contenido del tooltip original
         const originalTooltip = button.getAttribute('data-tooltip');
-        
-        // 3. Borra el atributo del tooltip temporalmente para esconderlo
         button.setAttribute('data-tooltip', '');
-        
-        // 4. Restaura el contenido del tooltip después de un breve momento (100ms)
-        // Esto permite que vuelva a funcionar para el hover en desktop
         setTimeout(() => {
             button.setAttribute('data-tooltip', originalTooltip);
-        }, 100); // Le damos un pelín más de tiempo
+        }, 100); 
     }
 }
 
@@ -262,9 +212,9 @@ function loadGoogleAnalytics() {
     if (typeof gtag === 'function') {
         gtag('consent', 'update', {
           'analytics_storage': 'granted',
-          'ad_storage': 'granted',        // <--- Faltaba
-          'ad_user_data': 'granted',      // <--- Faltaba (V2)
-          'ad_personalization': 'granted' // <--- Faltaba (V2)
+          'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted'
         });
         console.log("✅ Analytics ACEPTADAS. Consentimiento total 'granted'.");
     } else {
@@ -283,10 +233,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const consent = localStorage.getItem('cookieConsent');
 
     if (consent === 'granted') {
+        // Si ya aceptó, actualizamos el consentimiento (despertamos a Google)
         loadGoogleAnalytics();
     } else if (consent === 'denied') {
+        // Si ya rechazó, no hacemos nada. Google sigue dormido.
         console.log("Analytics RECHAZADAS (consentimiento previo).");
     } else {
+        // Si no hay nada, mostramos el banner
         if (banner) {
             banner.classList.remove('hidden'); 
             document.body.style.overflow = 'hidden'; 
@@ -296,18 +249,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // 3. Qué pasa al ACEPTAR
     if (acceptBtn) {
         acceptBtn.addEventListener('click', () => {
-            
-            // --- ¡NUEVO! Envía evento GA4 de ACEPTAR ---
             if (typeof gtag === 'function') {
                 gtag('event', 'consent_choice', {
                     'consent_decision': 'accepted'
                 });
             }
-            
             localStorage.setItem('cookieConsent', 'granted');
-            if (banner) {
-                banner.classList.add('hidden');
-            }
+            if (banner) banner.classList.add('hidden');
             document.body.style.overflow = ''; 
             loadGoogleAnalytics(); 
         });
@@ -316,8 +264,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Qué pasa al RECHAZAR
     if (rejectBtn) {
         rejectBtn.addEventListener('click', () => {
-            
-            // A) Avisamos a Google explícitamente (Actualización v2)
             if (typeof gtag === 'function') {
                 gtag('consent', 'update', {
                     'analytics_storage': 'denied',
@@ -325,25 +271,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     'ad_user_data': 'denied',
                     'ad_personalization': 'denied'
                 });
-                // Enviamos evento de que ha rechazado
                 gtag('event', 'consent_choice', {
                     'consent_decision': 'rejected'
                 });
             }
-
-            // B) Guardamos la decisión
             localStorage.setItem('cookieConsent', 'denied');
-
-            // C) Cerramos banner
-            if (banner) {
-                banner.classList.add('hidden');
-            }
+            if (banner) banner.classList.add('hidden');
             document.body.style.overflow = ''; 
-            
             console.log("Analytics: Rechazado estrictamente.");
         });
     }
-});
+}); // <-- ¡EL CIERRE IMPORTANTE QUE FALTABA AYER!
 
  // === Mejora del botón flotante (scroll + responsive + hover animado) ===
 document.addEventListener("DOMContentLoaded", () => {
