@@ -6,7 +6,7 @@
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 
-// 2️⃣ Función para cargar GA4
+// 2️⃣ Función para cargar GA4 normalmente
 function loadGA4() {
     if (window.gtagLoaded) return;
     window.gtagLoaded = true;
@@ -34,16 +34,7 @@ function generateClientID() {
     return id;
 }
 
-// 4️⃣ Función para enviar eventos a Tiempo real (vía gtag.js)
-// (Se usa para eventos DESPUÉS de aceptar cookies)
-function sendEventRealtime(eventName, params = {}) {
-    const clientId = generateClientID();
-    gtag('event', eventName, { client_id: clientId, ...params });
-    console.log("✅ Evento a Tiempo real:", eventName, params);
-}
-
-// 5️⃣ Función para enviar evento seguro al backend (Netlify Functions)
-// (Se usa para eventos ANTES de aceptar cookies, como el propio consentimiento)
+// 4️⃣ Enviar evento seguro al backend (Netlify Functions)
 function sendEventToBackend(eventName, params = {}) {
     const clientId = generateClientID();
     fetch("/.netlify/functions/track-event", {
@@ -57,19 +48,29 @@ function sendEventToBackend(eventName, params = {}) {
     }).catch(err => console.error("Error enviando evento al backend:", err));
 }
 
-
 // =======================================================
 // ----------------- SEGUIMIENTO PROYECTOS --------------
 // =======================================================
+
 function trackProyecto(url) {
+    if (typeof dataLayer === 'undefined') {
+        console.error('Google Tag Manager (dataLayer) no está inicializado.');
+        return;
+    }
+
     try {
         const urlObj = new URL(url);
         const proyectoId = urlObj.searchParams.get('p') || 'sin-id';
 
-        dataLayer.push({ event: 'proyecto_visto', id_proyecto: proyectoId });
-        sendEventRealtime('proyecto_visto', { id_proyecto: proyectoId });
+        dataLayer.push({
+            'event': 'proyecto_visto',
+            'id_proyecto': proyectoId
+        });
+        console.log('✅ Evento manual "proyecto_visto" disparado con ID:', proyectoId);
 
-        console.log('✅ Evento "proyecto_visto" disparado con ID:', proyectoId);
+        if (typeof gtag === "function") {
+            gtag('event', 'proyecto_visto', { 'id_proyecto': proyectoId });
+        }
     } catch (e) {
         console.error('Error al rastrear el proyecto:', e);
     }
@@ -84,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function toggleMenu() {
         if (!mobileMenu || !menuToggle) return;
+
         const isHidden = mobileMenu.classList.toggle('invisible');
         mobileMenu.classList.toggle('opacity-0');
         mobileMenu.classList.toggle('scale-95');
@@ -129,7 +131,9 @@ function openModal(modalId, iframeSrc) {
     const modal = document.getElementById(modalId);
     if (!modal) return;
 
-    sendEventRealtime('modal_open', { modal_id: modalId, iframe_src: iframeSrc });
+    if (typeof gtag === "function") {
+        gtag('event', 'proyecto_visto', { modal_id: modalId, iframe_src: iframeSrc });
+    }
 
     let iframeId;
     if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
@@ -169,6 +173,39 @@ function closeModal(modalId) {
 }
 
 // =======================================================
+// ----------------- TOOLTIP ----------------------------
+// =======================================================
+function hideFloatingTooltip() {
+    const button = document.getElementById('floating-contact-button');
+    if (!button) return;
+    button.blur();
+    const originalTooltip = button.getAttribute('data-tooltip');
+    button.setAttribute('data-tooltip', '');
+    setTimeout(() => button.setAttribute('data-tooltip', originalTooltip), 100);
+}
+
+// =======================================================
+// ----------------- CARRUSEL ---------------------------
+// =======================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const nextBtn = document.getElementById('carousel-next');
+    const prevBtn = document.getElementById('carousel-prev');
+    const viewport = document.getElementById('carousel-viewport');
+
+    function scrollCarousel(direction) {
+        if (!viewport) return;
+        const firstCard = viewport.querySelector('.carousel-item');
+        if (!firstCard) return;
+        const gap = 24;
+        const scrollAmount = firstCard.offsetWidth + gap;
+        viewport.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+
+    if (nextBtn) nextBtn.addEventListener('click', () => scrollCarousel(1));
+    if (prevBtn) prevBtn.addEventListener('click', () => scrollCarousel(-1));
+});
+
+// =======================================================
 // ----------------- BANNER DE COOKIES ------------------
 // =======================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -180,10 +217,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (consent === 'granted') {
         loadGA4();
-        sendEventToBackend('cookie_accept'); // <-- CAMBIADO
+        sendEventToBackend('cookie_accept');
         if (banner) banner.classList.add('hidden');
     } else if (consent === 'denied') {
-        sendEventToBackend('cookie_reject'); // <-- CAMBIADO
+        sendEventToBackend('cookie_reject');
         if (banner) banner.classList.add('hidden');
     } else {
         if (banner) {
@@ -196,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
         acceptBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'granted');
             loadGA4();
-            sendEventToBackend('cookie_accept'); // <-- CAMBIADO
+            sendEventToBackend('cookie_accept');
             if (banner) banner.classList.add('hidden');
             document.body.style.overflow = '';
         });
@@ -205,9 +242,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (rejectBtn) {
         rejectBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'denied');
-            sendEventToBackend('cookie_reject'); // <-- CAMBIADO
+            sendEventToBackend('cookie_reject');
             if (banner) banner.classList.add('hidden');
             document.body.style.overflow = '';
+            console.log("❌ Usuario rechazó cookies (evento enviado al backend)");
         });
     }
 });
@@ -232,25 +270,4 @@ document.addEventListener("DOMContentLoaded", () => {
     checkButtonVisibility();
     window.addEventListener("scroll", () => requestAnimationFrame(checkButtonVisibility), { passive: true });
     window.addEventListener("resize", checkButtonVisibility);
-});
-
-// =======================================================
-// ----------------- CARRUSEL ---------------------------
-// =======================================================
-document.addEventListener('DOMContentLoaded', () => {
-    const nextBtn = document.getElementById('carousel-next');
-    const prevBtn = document.getElementById('carousel-prev');
-    const viewport = document.getElementById('carousel-viewport');
-
-    function scrollCarousel(direction) {
-        if (!viewport) return;
-        const firstCard = viewport.querySelector('.carousel-item');
-        if (!firstCard) return;
-        const gap = 24;
-        const scrollAmount = firstCard.offsetWidth + gap;
-        viewport.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-    }
-
-    if (nextBtn) nextBtn.addEventListener('click', () => scrollCarousel(1));
-    if (prevBtn) prevBtn.addEventListener('click', () => scrollCarousel(-1));
 });
