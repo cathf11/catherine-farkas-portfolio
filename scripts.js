@@ -34,12 +34,29 @@ function generateClientID() {
     return id;
 }
 
-// 4️⃣ Función para enviar eventos a Tiempo real
+// 4️⃣ Función para enviar eventos a Tiempo real (vía gtag.js)
+// (Se usa para eventos DESPUÉS de aceptar cookies)
 function sendEventRealtime(eventName, params = {}) {
     const clientId = generateClientID();
     gtag('event', eventName, { client_id: clientId, ...params });
     console.log("✅ Evento a Tiempo real:", eventName, params);
 }
+
+// 5️⃣ Función para enviar evento seguro al backend (Netlify Functions)
+// (Se usa para eventos ANTES de aceptar cookies, como el propio consentimiento)
+function sendEventToBackend(eventName, params = {}) {
+    const clientId = generateClientID();
+    fetch("/.netlify/functions/track-event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+            event_name: eventName,
+            params: params,
+            client_id: clientId
+        })
+    }).catch(err => console.error("Error enviando evento al backend:", err));
+}
+
 
 // =======================================================
 // ----------------- SEGUIMIENTO PROYECTOS --------------
@@ -163,10 +180,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (consent === 'granted') {
         loadGA4();
-        sendEventRealtime('cookie_accept');
+        sendEventToBackend('cookie_accept'); // <-- CAMBIADO
         if (banner) banner.classList.add('hidden');
     } else if (consent === 'denied') {
-        sendEventRealtime('cookie_reject');
+        sendEventToBackend('cookie_reject'); // <-- CAMBIADO
         if (banner) banner.classList.add('hidden');
     } else {
         if (banner) {
@@ -179,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         acceptBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'granted');
             loadGA4();
-            sendEventRealtime('cookie_accept');
+            sendEventToBackend('cookie_accept'); // <-- CAMBIADO
             if (banner) banner.classList.add('hidden');
             document.body.style.overflow = '';
         });
@@ -188,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (rejectBtn) {
         rejectBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'denied');
-            sendEventRealtime('cookie_reject');
+            sendEventToBackend('cookie_reject'); // <-- CAMBIADO
             if (banner) banner.classList.add('hidden');
             document.body.style.overflow = '';
         });
