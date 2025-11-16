@@ -48,11 +48,10 @@ function sendEventToBackend(eventName, params = {}) {
     }).catch(err => console.error("Error enviando evento al backend:", err));
 }
 
-// 4️⃣a Enviar también a GA4 directamente para pruebas (Tiempo Real)
-function sendEventToGA4(eventName, params = {}) {
-    if (typeof gtag === "function") {
-        gtag('event', eventName, params);
-    }
+// 5️⃣ Función de prueba para disparar evento en tiempo real
+function sendEventTest(eventName, params = {}) {
+    gtag('event', eventName, params); // Para verlo en tiempo real
+    sendEventToBackend(eventName, params); // Para producción segura
 }
 
 // =======================================================
@@ -63,7 +62,6 @@ function trackProyecto(url) {
         console.error('Google Tag Manager (dataLayer) no está inicializado.');
         return;
     }
-
     try {
         const urlObj = new URL(url);
         const proyectoId = urlObj.searchParams.get('p') || 'sin-id';
@@ -74,9 +72,7 @@ function trackProyecto(url) {
         });
         console.log('✅ Evento manual "proyecto_visto" disparado con ID:', proyectoId);
 
-        if (typeof gtag === "function") {
-            gtag('event', 'proyecto_visto', { 'id_proyecto': proyectoId }); // PARA PRUEBAS
-        }
+        sendEventTest('proyecto_visto', { id_proyecto: proyectoId });
     } catch (e) {
         console.error('Error al rastrear el proyecto:', e);
     }
@@ -111,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (menuToggle) menuToggle.addEventListener('click', toggleMenu);
-
     if (mobileMenu) {
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
@@ -137,9 +132,7 @@ function openModal(modalId, iframeSrc) {
     const modal = document.getElementById(modalId);
     if (!modal) return;
 
-    if (typeof gtag === "function") {
-        gtag('event', 'proyecto_visto', { modal_id: modalId, iframe_src: iframeSrc }); // PARA PRUEBAS
-    }
+    sendEventTest('proyecto_visto', { modal_id: modalId, iframe_src: iframeSrc });
 
     let iframeId;
     if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
@@ -179,39 +172,6 @@ function closeModal(modalId) {
 }
 
 // =======================================================
-// ----------------- TOOLTIP ----------------------------
-// =======================================================
-function hideFloatingTooltip() {
-    const button = document.getElementById('floating-contact-button');
-    if (!button) return;
-    button.blur();
-    const originalTooltip = button.getAttribute('data-tooltip');
-    button.setAttribute('data-tooltip', '');
-    setTimeout(() => button.setAttribute('data-tooltip', originalTooltip), 100);
-}
-
-// =======================================================
-// ----------------- CARRUSEL ---------------------------
-// =======================================================
-document.addEventListener('DOMContentLoaded', () => {
-    const nextBtn = document.getElementById('carousel-next');
-    const prevBtn = document.getElementById('carousel-prev');
-    const viewport = document.getElementById('carousel-viewport');
-
-    function scrollCarousel(direction) {
-        if (!viewport) return;
-        const firstCard = viewport.querySelector('.carousel-item');
-        if (!firstCard) return;
-        const gap = 24;
-        const scrollAmount = firstCard.offsetWidth + gap;
-        viewport.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-    }
-
-    if (nextBtn) nextBtn.addEventListener('click', () => scrollCarousel(1));
-    if (prevBtn) prevBtn.addEventListener('click', () => scrollCarousel(-1));
-});
-
-// =======================================================
 // ----------------- BANNER DE COOKIES ------------------
 // =======================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -223,12 +183,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (consent === 'granted') {
         loadGA4();
-        sendEventToBackend('cookie_accept');
-        sendEventToGA4('cookie_accept'); // PARA PRUEBAS
+        sendEventTest('cookie_accept');
         if (banner) banner.classList.add('hidden');
     } else if (consent === 'denied') {
-        sendEventToBackend('cookie_reject');
-        sendEventToGA4('cookie_reject'); // PARA PRUEBAS
+        sendEventTest('cookie_reject');
         if (banner) banner.classList.add('hidden');
     } else {
         if (banner) {
@@ -241,8 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         acceptBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'granted');
             loadGA4();
-            sendEventToBackend('cookie_accept');
-            sendEventToGA4('cookie_accept'); // PARA PRUEBAS
+            sendEventTest('cookie_accept');
             if (banner) banner.classList.add('hidden');
             document.body.style.overflow = '';
         });
@@ -251,11 +208,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (rejectBtn) {
         rejectBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'denied');
-            sendEventToBackend('cookie_reject');
-            sendEventToGA4('cookie_reject'); // PARA PRUEBAS
+            sendEventTest('cookie_reject');
             if (banner) banner.classList.add('hidden');
             document.body.style.overflow = '';
-            console.log("❌ Usuario rechazó cookies (evento enviado al backend y a GA4 para pruebas)");
+            console.log("❌ Usuario rechazó cookies (evento enviado al backend y tiempo real)");
         });
     }
 });
