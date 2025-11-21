@@ -215,37 +215,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const consent = localStorage.getItem('cookieConsent');
 
+    // 1. COMPROBAR AL CARGAR: Si ya aceptó antes, desbloqueamos Google inmediatamente
     if (consent === 'granted') {
+        if (typeof gtag === 'function') {
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted',
+                'ad_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted'
+            });
+        }
         loadGA4();
-        sendEventToBackend('cookie_accept');
+        // Opcional: sendEventToBackend('cookie_accept'); // Quitado para no duplicar eventos al recargar
         if (banner) banner.classList.add('hidden');
+
     } else if (consent === 'denied') {
-        sendEventToBackend('cookie_reject');
+        // Si rechazó antes, mantenemos todo cerrado
         if (banner) banner.classList.add('hidden');
     } else {
+        // Si es la primera vez, mostramos el banner
         if (banner) {
             banner.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
     }
 
+    // 2. BOTÓN ACEPTAR: Guardamos y AVISAMOS A GOOGLE (Update)
     if (acceptBtn) {
         acceptBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'granted');
+
+            // ¡ESTA ES LA CLAVE! Actualizamos el permiso a "granted"
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    'analytics_storage': 'granted',
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted'
+                });
+            }
+
             loadGA4();
             sendEventToBackend('cookie_accept');
+            
             if (banner) banner.classList.add('hidden');
             document.body.style.overflow = '';
         });
     }
 
+    // 3. BOTÓN RECHAZAR
     if (rejectBtn) {
         rejectBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'denied');
             sendEventToBackend('cookie_reject');
+            
             if (banner) banner.classList.add('hidden');
             document.body.style.overflow = '';
-            console.log("❌ Usuario rechazó cookies (evento enviado al backend)");
+            console.log("❌ Usuario rechazó cookies (Analytics bloqueado)");
         });
     }
 });
