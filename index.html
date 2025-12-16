@@ -38,7 +38,7 @@
     gtag('consent', 'default', {
       'analytics_storage': 'denied',
       'ad_storage': 'denied',
-      'ad_user_data': 'denied',       
+      'ad_user_data': 'denied',        
       'ad_personalization': 'denied', 
       'wait_for_update': 500
     });
@@ -81,7 +81,7 @@
     
     <a href="#impact" 
        class="text-sm font-medium text-gray-600 transition duration-150"
-       onclick="gtag('event', 'nav_clic', {'destino': 'impact'});">Impact</a>    
+       onclick="gtag('event', 'nav_clic', {'destino': 'impact'});">Impact</a>      
     
     <a href="#projects" 
        class="text-sm font-medium text-gray-600 transition duration-150"
@@ -89,15 +89,15 @@
     
     <a href="#about" 
        class="text-sm font-medium text-gray-600 transition duration-150"
-       onclick="gtag('event', 'nav_clic', {'destino': 'about'});">About Me</a>    
+       onclick="gtag('event', 'nav_clic', {'destino': 'about'});">About Me</a>      
     
     <a href="#experience" 
        class="text-sm font-medium text-gray-600 transition duration-150"
-       onclick="gtag('event', 'nav_clic', {'destino': 'experience'});">Experience</a>    
+       onclick="gtag('event', 'nav_clic', {'destino': 'experience'});">Experience</a>      
     
     <a href="#skills" 
        class="text-sm font-medium text-gray-600 transition duration-150"
-       onclick="gtag('event', 'nav_clic', {'destino': 'skills'});">Data Skills</a>    
+       onclick="gtag('event', 'nav_clic', {'destino': 'skills'});">Data Skills</a>      
     
     <a href="#blog" 
        class="text-sm font-medium text-gray-600 transition duration-150"
@@ -203,13 +203,13 @@
 
 <section id="impact" class="mb-20 max-w-7xl mx-auto sm:px-12 lg:px-24">
 
-  <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center section-title">
+  <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center section-title reveal">
       Quantified Impact
   </h2>
 
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
     
-      <div class="card-pro p-8 rounded-2xl text-center bg-white hover:shadow-xl transition-all duration-300">
+      <div class="card-pro p-8 rounded-2xl text-center bg-white hover:shadow-xl transition-all duration-300 reveal">
           <span class="block text-5xl font-bold text-cyan-500 mb-2">35%</span>
           <p class="text-lg font-semibold text-gray-800">Reduction in Reporting Time</p>
           <p class="text-sm text-gray-500 mt-2">
@@ -217,7 +217,7 @@
           </p>
       </div>
 
-      <div class="card-pro p-8 rounded-2xl text-center bg-white hover:shadow-xl transition-all duration-300">
+      <div class="card-pro p-8 rounded-2xl text-center bg-white hover:shadow-xl transition-all duration-300 reveal">
           <span class="block text-5xl font-bold text-cyan-500 mb-2">95%</span>
           <p class="text-lg font-semibold text-gray-800">KPI Consistency</p>
           <p class="text-sm text-gray-500 mt-2">
@@ -225,7 +225,7 @@
           </p>
       </div>
 
-      <div class="card-pro p-8 rounded-2xl text-center bg-white hover:shadow-xl transition-all duration-300">
+      <div class="card-pro p-8 rounded-2xl text-center bg-white hover:shadow-xl transition-all duration-300 reveal">
           <span class="block text-5xl font-bold text-cyan-500 mb-2">+2 Pts</span>
           <p class="text-lg font-semibold text-gray-800">Improvement in Usability Score (UX)</p>
           <p class="text-sm text-gray-500 mt-2">
@@ -241,14 +241,14 @@
 
 
 <section id="projects" class="mb-16 max-w-6xl mx-auto sm:px-8 lg:px-16">
-    <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
+    <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title reveal">
         Featured Projects
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
         <div
-            class="card-pro p-6 rounded-xl flex flex-col clickable-card"
+            class="card-pro p-6 rounded-xl flex flex-col clickable-card reveal"
             onclick="openModal('dashboard-marketing-modal', 'https://app.powerbi.com/view?r=eyJrIjoiNWRhZDA0NTUtYjlkNi00M2E4LTk3Y2UtNzI1ZDc4N2ZiYWNmIiwidCI6IjA2NjFhYzVkLWI0YTQtNDE1YS05ZWQ5LTZjNmNjZDE4M2UxOCJ9')"
         >
             <video
@@ -282,7 +282,7 @@
         </div>
 
 <div
-            class="card-pro p-6 rounded-xl flex flex-col clickable-card"
+            class="card-pro p-6 rounded-xl flex flex-col clickable-card reveal"
             onclick="openModal('operational-insights-modal', 'https://app.powerbi.com/view?r=eyJrIjoiOTkyZmQ3ZmUtZDc5Yy00ODk4LTk2M2MtZjFkNDI4ZWRkNGM2IiwidCI6IjA2NjFhYzVkLWI0YTQtNDE1YS05ZWQ5LTZjNmNjZDE4M2UxOCJ9')"
         >
            <video
@@ -315,7 +315,7 @@
         </div>
    
 <div
-            class="card-pro p-6 rounded-xl flex flex-col clickable-card"
+            class="card-pro p-6 rounded-xl flex flex-col clickable-card reveal"
             onclick="openModal('project-covid-modal', 'https://docs.google.com/presentation/d/1CkJWqZfxVcdNvLhj9RI0QxySiCniHwEF/embed?start=false&loop=false&delayms=3000')"
         >
            <video
@@ -349,10 +349,10 @@
 
 
 </div> </section> <section id="about" class="mb-16 max-w-6xl mx-auto sm:px-8 lg:px-16">
-    <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
+    <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title reveal">
         The Story Behind the Analyst </h2>
     
-    <div class="card-pro p-10 md:p-12 rounded-xl bg-white shadow-lg border border-gray-100 max-w-5xl mx-auto">
+    <div class="card-pro p-10 md:p-12 rounded-xl bg-white shadow-lg border border-gray-100 max-w-5xl mx-auto reveal">
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
 
@@ -409,11 +409,11 @@
 
 <section id="experience" class="mb-16 max-w-6xl mx-auto sm:px-8 lg:px-16">
  
- <h2 class="text-3xl font-bold text-gray-800 text-center mb-10 section-title">
+ <h2 class="text-3xl font-bold text-gray-800 text-center mb-10 section-title reveal">
   Experience & Education
  </h2>
 
-  <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-md border border-gray-100 p-6">
+  <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-md border border-gray-100 p-6 reveal">
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
@@ -466,7 +466,7 @@
           <div class="timeline-dot absolute left-0 top-1.5 w-2.5 h-2.5 bg-cyan-500 rounded-full"></div>
           <p class="font-semibold text-gray-900 text-sm">Degree in Journalism & Mass Media</p>
           <p class="text-xs text-gray-600 italic mb-1">University of La Laguna, Spain | 2009 – 2013</p>
-           <p class="text-xs text-gray-500">Foundation in communication, research, and data analysis. Learning to uncover insights and craft narratives that connect data and people.</p>
+            <p class="text-xs text-gray-500">Foundation in communication, research, and data analysis. Learning to uncover insights and craft narratives that connect data and people.</p>
         </div>
       </div>
 
@@ -475,7 +475,7 @@
 </section>
 
 <section id="skills" class="mb-16 max-w-6xl mx-auto sm:px-8 lg:px-16">
-  <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title">
+  <h2 class="text-3xl font-bold text-gray-800 mb-10 text-center section-title reveal">
     Data Skills & Consultancy
   </h2>
 
@@ -483,7 +483,7 @@
 
   <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
     
-    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 reveal">
       
       <h3 class="text-base font-semibold text-gray-900 pb-2 mb-4 border-b border-gray-200 flex items-center">
         <i class="fa-solid fa-brain text-cyan-500 text-2xl mr-3 w-8 text-center"></i>
@@ -501,7 +501,7 @@
       </ul>
     </div>
 
-    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 reveal">
       
       <h3 class="text-base font-semibold text-gray-900 pb-2 mb-4 border-b border-gray-200 flex items-center">
         <i class="fa-solid fa-gears text-cyan-500 text-2xl mr-3 w-8 text-center"></i>
@@ -519,7 +519,7 @@
       </ul>
     </div>
 
-    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300">
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 reveal">
       
       <h3 class="text-base font-semibold text-gray-900 pb-2 mb-4 border-b border-gray-200 flex items-center">
         <i class="fa-solid fa-bullhorn text-cyan-500 text-2xl mr-3 w-8 text-center"></i>
@@ -540,7 +540,7 @@
   </div>
 </section>
 
-<section id="stack" class="mb-16 max-w-7xl mx-auto sm:px-12 lg:px-20">
+<section id="stack" class="mb-16 max-w-7xl mx-auto sm:px-12 lg:px-20 reveal">
   <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">
     Tech Stack
   </h2>
@@ -588,16 +588,16 @@
 
 <section id="blog" class="mb-16">
   <div class="sm:px-12 lg:px-20">
-    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center section-title">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center section-title reveal">
       My Blog: The "Why" Beyond the Data
     </h2>
 
-    <p class="text-center text-base text-gray-600 mb-10 max-w-4xl mx-auto">
+    <p class="text-center text-base text-gray-600 mb-10 max-w-4xl mx-auto reveal">
       CF VizTech is my personal project — a space to <strong class="font-semibold text-gray-600">bridge the gap</strong> between data and decision-makers. My goal isn't just to show <em class="italic">how</em> to build dashboards, but to explore the <em class="italic">why</em> behind them. This is my collection of articles on the <strong class="font-semibold text-gray-600">process, strategy, and design</strong> that bring data to life for any role.
     </p>
   </div>
 
-  <div class="relative max-w-6xl mx-auto">
+  <div class="relative max-w-6xl mx-auto reveal">
         <button id="carousel-prev" aria-label="Previous Article" class="absolute top-1/2 left-0 z-30 -translate-y-1-2 -translate-x-4 bg-white/80 backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center text-gray-700 shadow-lg hover:bg-white transition duration-300">
 
             <i class="fa-solid fa-chevron-left text-lg"></i>
@@ -691,7 +691,7 @@
 
 </section>
 
-<section id="contact" class="text-center py-16 mt-16 border-t border-gray-200 max-w-6xl mx-auto px-4 sm:px-8 lg:px-16">
+<section id="contact" class="text-center py-16 mt-16 border-t border-gray-200 max-w-6xl mx-auto px-4 sm:px-8 lg:px-16 reveal">
 
     <h2 class="text-3xl font-bold text-gray-800 mb-4">Let's talk about your next data challenge.</h2>
     <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -1531,6 +1531,33 @@
     </div>
 
 <script src="scripts.js" defer></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Seleccionamos todos los elementos con la clase "reveal"
+    const reveals = document.querySelectorAll('.reveal');
+
+    const revealOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        const elementVisible = 100; // Píxeles antes de que aparezca
+
+        reveals.forEach((reveal) => {
+            const elementTop = reveal.getBoundingClientRect().top;
+            
+            // Si el elemento está visible en pantalla, le añadimos la clase 'active'
+            if (elementTop < windowHeight - elementVisible) {
+                reveal.classList.add('active');
+            }
+        });
+    };
+
+    // Escuchamos el scroll
+    window.addEventListener('scroll', revealOnScroll);
+    
+    // Ejecutamos una vez al inicio por si ya hay elementos visibles
+    revealOnScroll(); 
+});
+</script>
 
 </body>
 </html>

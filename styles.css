@@ -780,3 +780,71 @@ color: white !important; /* <-- ¡AÑADE ESTA LÍNEA! */
   }
 
 } /* <-- FIN DEL MODO OSCURO UNIFICADO */
+
+/* --- FONDO DINÁMICO: ONDAS CON GLOW (ESTILO PRO) --- */
+
+/* 1. Ocultar en móviles para mantener limpieza */
+@media (max-width: 1024px) {
+    body::before, body::after {
+        display: none !important;
+    }
+}
+
+
+/* --- FONDO ONDAS "LIQUIDAS" (Versión Estilizada) --- */
+
+@media (max-width: 1024px) {
+    body::before, body::after { display: none !important; }
+}
+
+body {
+    position: relative;
+    overflow-x: hidden;
+    z-index: 1;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    pointer-events: none;
+    
+    /* Configuración base de estilo */
+    border: 2px solid rgba(6, 182, 212, 0.15);
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.01) 0%, transparent 60%);
+    box-shadow: 0 0 40px rgba(6, 182, 212, 0.05);
+    backdrop-filter: blur(3px);
+
+    will-change: transform;
+    transition: transform 0.1s linear; 
+}
+
+/* --- IZQUIERDA (Estilo actual) --- */
+body::before {
+    width: 25vw;   
+    height: 60vh;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    top: 20vh;
+    left: -12vw;   
+    transform: rotate(calc(var(--scroll, 0) * 0.02deg)); 
+    border-color: rgba(6, 182, 212, 0.2);
+}
+
+/* --- DERECHA (CORREGIDA: Ahora es alargada y deforme) --- */
+body::after {
+    /* 1. Cambiamos proporciones para que sea imposible que parezca un círculo */
+    width: 22vw;   /* Más estrecha */
+    height: 65vh;  /* Mucho más alta (alargada) */
+    
+    bottom: 5vh;
+    right: -10vw;  /* La sacamos menos para ver su forma alargada */
+    
+    /* 2. Deformación agresiva (nada de curvas suaves) */
+    border-radius: 20% 80% 20% 80% / 60% 40% 60% 40%;
+    
+    /* 3. Rotación base para inclinarla */
+    transform: rotate(-10deg) rotate(calc(var(--scroll, 0) * -0.03deg));
+    
+    border-color: rgba(6, 182, 212, 0.25);
+}
