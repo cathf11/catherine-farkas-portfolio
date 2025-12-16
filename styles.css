@@ -865,3 +865,23 @@ body::after {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* =======================================================
+   RECUPERANDO EL EFECTO HOVER (MOVIMIENTO) EN PROYECTOS
+   ======================================================= */
+
+/* Se aplica a las tarjetas que tienen la clase "clickable-card" */
+.clickable-card {
+    transition: all 0.3s ease-in-out; /* Suavidad en el movimiento */
+}
+
+.clickable-card:hover {
+    transform: translateY(-8px); /* Sube 8 píxeles */
+    box-shadow: 0 15px 30px rgba(6, 182, 212, 0.15); /* Sombra cian suave */
+    border-color: rgba(6, 182, 212, 0.4); /* El borde se pone un poco azul */
+}
+
+/* Y para asegurar que el cursor salga como "manita" */
+.clickable-card:hover {
+    cursor: pointer;
+}
