@@ -1,299 +1,160 @@
-// =======================================================
-// ----------------- GOOGLE ANALYTICS -------------------
-// =======================================================
-
-// 1️⃣ Creamos dataLayer
+/* =======================================================
+   1. GOOGLE ANALYTICS & EVENTOS
+   ======================================================= */
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 
-// 2️⃣ Función para cargar GA4 normalmente
 function loadGA4() {
     if (window.gtagLoaded) return;
     window.gtagLoaded = true;
-
     const gaScript = document.createElement('script');
     gaScript.async = true;
     gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0G3Q7PGYFP";
-
     gaScript.onload = () => {
         gtag('js', new Date());
         gtag('config', 'G-0G3Q7PGYFP');
-        console.log("✅ gtag.js cargado y configurado");
+        console.log("✅ GA4 cargado");
     };
-
     document.head.appendChild(gaScript);
 }
 
-// 3️⃣ Generar client_id persistente
-function generateClientID() {
-    let id = localStorage.getItem("client_id_ga4");
-    if (!id) {
-        id = "cid-" + Math.random().toString(36).substring(2) + Date.now();
-        localStorage.setItem("client_id_ga4", id);
-    }
-    return id;
-}
-
-// 4️⃣ Enviar evento seguro al backend (Netlify Functions)
-function sendEventToBackend(eventName, params = {}) {
-    const clientId = generateClientID();
-    fetch("/.netlify/functions/track-event", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-            event_name: eventName,
-            params: params,
-            client_id: clientId
-        })
-    }).catch(err => console.error("Error enviando evento al backend:", err));
-}
-
-// =======================================================
-// ----------------- SEGUIMIENTO PROYECTOS --------------
-// =======================================================
-
 function trackProyecto(url) {
-    if (typeof dataLayer === 'undefined') {
-        console.error('Google Tag Manager (dataLayer) no está inicializado.');
-        return;
-    }
-
-    try {
-        const urlObj = new URL(url);
-        const proyectoId = urlObj.searchParams.get('p') || 'sin-id';
-
-        dataLayer.push({
-            'event': 'proyecto_visto',
-            'id_proyecto': proyectoId
-        });
-        console.log('✅ Evento manual "proyecto_visto" disparado con ID:', proyectoId);
-
-        if (typeof gtag === "function") {
-            gtag('event', 'proyecto_visto', { 'id_proyecto': proyectoId });
-        }
-    } catch (e) {
-        console.error('Error al rastrear el proyecto:', e);
+    if (typeof dataLayer !== 'undefined') {
+        dataLayer.push({ 'event': 'proyecto_visto', 'url_proyecto': url });
     }
 }
 
-// =======================================================
-// ----------------- MENÚ MÓVIL ------------------------
-// =======================================================
-document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    function toggleMenu() {
-        if (!mobileMenu || !menuToggle) return;
-
-        const isHidden = mobileMenu.classList.toggle('invisible');
-        mobileMenu.classList.toggle('opacity-0');
-        mobileMenu.classList.toggle('scale-95');
-        mobileMenu.classList.toggle('opacity-100', !isHidden);
-        mobileMenu.classList.toggle('scale-100', !isHidden);
-
-        const icon = menuToggle.querySelector('i');
-        if (icon) {
-            if (mobileMenu.classList.contains('opacity-100')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        }
-    }
-
-    if (menuToggle) menuToggle.addEventListener('click', toggleMenu);
-
-    if (mobileMenu) {
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (mobileMenu.classList.contains('opacity-100')) toggleMenu();
-            });
-        });
-    }
-
-    document.addEventListener('click', (e) => {
-        if (!mobileMenu || !menuToggle) return;
-        if (mobileMenu.classList.contains('opacity-100')) {
-            const isClickInsideMenu = mobileMenu.contains(e.target);
-            const isClickOnToggle = menuToggle.contains(e.target);
-            if (!isClickInsideMenu && !isClickOnToggle) toggleMenu();
-        }
-    });
-});
-
-// =======================================================
-// ----------------- MODALES ----------------------------
-// =======================================================
+/* =======================================================
+   2. MODALES (VENTANAS EMERGENTES)
+   ======================================================= */
 function openModal(modalId, iframeSrc) {
     const modal = document.getElementById(modalId);
     if (!modal) return;
-
-    if (typeof gtag === "function") {
-        gtag('event', 'proyecto_visto', { modal_id: modalId, iframe_src: iframeSrc });
+    
+    // Si hay iframe, cargarlo
+    if (iframeSrc) {
+        let iframeId = '';
+        if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
+        else if (modalId === 'operational-insights-modal') iframeId = 'operational-dashboard-iframe';
+        else if (modalId === 'project-covid-modal') iframeId = 'project-covid-iframe';
+        
+        const iframe = document.getElementById(iframeId);
+        if (iframe) iframe.src = iframeSrc;
     }
-
-    let iframeId;
-    if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
-    else if (modalId === 'operational-insights-modal') iframeId = 'operational-dashboard-iframe';
-    else if (modalId === 'project-covid-modal') iframeId = 'project-covid-iframe';
-
-    const iframe = document.getElementById(iframeId);
-    if (iframe) {
-        const dataSrc = iframe.getAttribute('data-src');
-        iframe.src = dataSrc || iframeSrc || '';
-    }
-
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    
+    modal.style.display = 'flex'; // Asegurar display flex
+    // Pequeño timeout para permitir la transición de opacidad
+    setTimeout(() => {
+        modal.classList.add('open');
+    }, 10);
+    document.body.style.overflow = 'hidden'; // Bloquear scroll fondo
 }
 
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
     if (!modal) return;
-
+    
     modal.classList.remove('open');
+    
+    // Esperar a que termine la animación para ocultarlo
     setTimeout(() => {
-        if (!document.querySelector('.modal-overlay.open')) {
-            document.body.style.overflow = '';
+        modal.style.display = 'none';
+        
+        // Limpiar src del iframe para detener videos
+        const iframes = modal.getElementsByTagName('iframe');
+        if (iframes.length > 0) {
+            iframes[0].src = '';
         }
+        document.body.style.overflow = ''; // Reactivar scroll
     }, 300);
-
-    let iframeId;
-    if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
-    else if (modalId === 'operational-insights-modal') iframeId = 'operational-dashboard-iframe';
-    else if (modalId === 'project-covid-modal') iframeId = 'project-covid-iframe';
-
-    if (iframeId) {
-        const iframe = document.getElementById(iframeId);
-        if (iframe) iframe.src = '';
-    }
 }
 
-// =======================================================
-// ----------------- TOOLTIP ----------------------------
-// =======================================================
-function hideFloatingTooltip() {
-    const button = document.getElementById('floating-contact-button');
-    if (!button) return;
-    button.blur();
-    const originalTooltip = button.getAttribute('data-tooltip');
-    button.setAttribute('data-tooltip', '');
-    setTimeout(() => button.setAttribute('data-tooltip', originalTooltip), 100);
-}
-
-// =======================================================
-// ----------------- CARRUSEL ---------------------------
-// =======================================================
+/* =======================================================
+   3. ANIMACIONES Y LÓGICA DE PÁGINA (Al cargar)
+   ======================================================= */
 document.addEventListener('DOMContentLoaded', () => {
-    const nextBtn = document.getElementById('carousel-next');
-    const prevBtn = document.getElementById('carousel-prev');
-    const viewport = document.getElementById('carousel-viewport');
 
-    function scrollCarousel(direction) {
-        if (!viewport) return;
-        const firstCard = viewport.querySelector('.carousel-item');
-        if (!firstCard) return;
-        const gap = 24;
-        const scrollAmount = firstCard.offsetWidth + gap;
-        viewport.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-    }
-
-    if (nextBtn) nextBtn.addEventListener('click', () => scrollCarousel(1));
-    if (prevBtn) prevBtn.addEventListener('click', () => scrollCarousel(-1));
-});
-
-// =======================================================
-// ----------------- BANNER DE COOKIES ------------------
-// =======================================================
-document.addEventListener('DOMContentLoaded', () => {
-    const banner = document.getElementById('cookie-consent-wrapper');
+    // --- A. GESTIÓN DE COOKIES ---
+    const banner = document.getElementById('cookie-consent-banner');
+    const wrapper = document.getElementById('cookie-consent-wrapper');
     const acceptBtn = document.getElementById('accept-cookies');
     const rejectBtn = document.getElementById('reject-cookies');
 
-    const consent = localStorage.getItem('cookieConsent');
-
-    // 1. COMPROBAR AL CARGAR: Si ya aceptó antes, desbloqueamos Google inmediatamente
-    if (consent === 'granted') {
-        if (typeof gtag === 'function') {
-            gtag('consent', 'update', {
-                'analytics_storage': 'granted',
-                'ad_storage': 'granted',
-                'ad_user_data': 'granted',
-                'ad_personalization': 'granted'
-            });
-        }
-        loadGA4();
-        // Opcional: sendEventToBackend('cookie_accept'); // Quitado para no duplicar eventos al recargar
-        if (banner) banner.classList.add('hidden');
-
-    } else if (consent === 'denied') {
-        // Si rechazó antes, mantenemos todo cerrado
-        if (banner) banner.classList.add('hidden');
-    } else {
-        // Si es la primera vez, mostramos el banner
-        if (banner) {
-            banner.classList.remove('hidden');
+    if (!localStorage.getItem('cookieConsent')) {
+        if (wrapper) {
+            wrapper.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
+    } else if (localStorage.getItem('cookieConsent') === 'granted') {
+        loadGA4();
     }
 
-    // 2. BOTÓN ACEPTAR: Guardamos y AVISAMOS A GOOGLE (Update)
     if (acceptBtn) {
         acceptBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'granted');
-
-            // ¡ESTA ES LA CLAVE! Actualizamos el permiso a "granted"
-            if (typeof gtag === 'function') {
-                gtag('consent', 'update', {
-                    'analytics_storage': 'granted',
-                    'ad_storage': 'granted',
-                    'ad_user_data': 'granted',
-                    'ad_personalization': 'granted'
-                });
-            }
-
             loadGA4();
-            sendEventToBackend('cookie_accept');
-            
-            if (banner) banner.classList.add('hidden');
+            if (wrapper) wrapper.classList.add('hidden');
             document.body.style.overflow = '';
         });
     }
 
-    // 3. BOTÓN RECHAZAR
     if (rejectBtn) {
         rejectBtn.addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'denied');
-            sendEventToBackend('cookie_reject');
-            
-            if (banner) banner.classList.add('hidden');
+            if (wrapper) wrapper.classList.add('hidden');
             document.body.style.overflow = '';
-            console.log("❌ Usuario rechazó cookies (Analytics bloqueado)");
         });
     }
-});
 
-// =======================================================
-// ----------------- BOTÓN FLOTANTE --------------------
-// =======================================================
-document.addEventListener("DOMContentLoaded", () => {
-    const button = document.querySelector(".floating-button");
+    // --- B. BOTÓN FLOTANTE ---
+    const floatBtn = document.querySelector(".floating-button");
     const intro = document.querySelector("#intro");
-    const header = document.querySelector("#main-header");
-    if (!button || !intro) return;
-
+    
     function checkButtonVisibility() {
-        const introRect = intro.getBoundingClientRect();
-        const headerHeight = header ? header.offsetHeight : 0;
-        const shouldShow = (introRect.bottom - headerHeight) <= 0;
-        if (shouldShow) button.classList.add("visible");
-        else button.classList.remove("visible");
+        if (!floatBtn || !intro) return;
+        const introBottom = intro.getBoundingClientRect().bottom;
+        if (introBottom <= 100) { // Aparece al pasar la intro
+            floatBtn.classList.add("visible");
+        } else {
+            floatBtn.classList.remove("visible");
+        }
     }
 
+    // --- C. SCROLL REVEAL (SOLUCIÓN "IMÁGENES QUE NO SALEN") ---
+    const reveals = document.querySelectorAll('.reveal');
+    function revealOnScroll() {
+        const windowHeight = window.innerHeight;
+        const elementVisible = 100;
+
+        reveals.forEach((reveal) => {
+            const elementTop = reveal.getBoundingClientRect().top;
+            if (elementTop < windowHeight - elementVisible) {
+                reveal.classList.add('active');
+            }
+        });
+    }
+
+    // --- D. PARALLAX FIGURAS (SOLUCIÓN "FIGURAS QUE NO SE MUEVEN") ---
+    function parallaxEffect() {
+        // Actualiza la variable CSS --scroll con la posición actual
+        document.body.style.setProperty('--scroll', window.pageYOffset);
+    }
+
+    // EVENT LISTENERS UNIFICADOS
+    window.addEventListener('scroll', () => {
+        checkButtonVisibility();
+        revealOnScroll();
+        parallaxEffect();
+    });
+
+    // Ejecutar una vez al inicio
     checkButtonVisibility();
-    window.addEventListener("scroll", () => requestAnimationFrame(checkButtonVisibility), { passive: true });
-    window.addEventListener("resize", checkButtonVisibility);
+    revealOnScroll();
 });
+
+// Función global para cerrar modales al hacer clic fuera
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal-overlay')) {
+        closeModal(event.target.id);
+    }
+};
