@@ -1,237 +1,329 @@
-/* =======================================================
-   1. VARIABLES Y CONFIGURACIÓN BASE (DEL ORIGINAL)
-   ======================================================= */
-:root {
-    --color-cian: #06B6D4; /* Tailwind cyan-500 */
-    --color-shadow-light: rgba(6, 182, 212, 0.15); /* Sombra suave cian */
+// =======================================================
+// ----------------- GOOGLE ANALYTICS -------------------
+// =======================================================
+
+// 1️⃣ Creamos dataLayer
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+// 2️⃣ Función para cargar GA4 normalmente
+function loadGA4() {
+    if (window.gtagLoaded) return;
+    window.gtagLoaded = true;
+
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-0G3Q7PGYFP";
+
+    gaScript.onload = () => {
+        gtag('js', new Date());
+        gtag('config', 'G-0G3Q7PGYFP');
+        console.log("✅ gtag.js cargado y configurado");
+    };
+
+    document.head.appendChild(gaScript);
 }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #F3F4F6; /* Fondo original suave */
-    color: #1f2937;
-    
-    /* NECESARIO PARA LAS BOLAS FLOTANTES */
-    position: relative;
-    overflow-x: hidden;
-    z-index: 1;
+// 3️⃣ Generar client_id persistente
+function generateClientID() {
+    let id = localStorage.getItem("client_id_ga4");
+    if (!id) {
+        id = "cid-" + Math.random().toString(36).substring(2) + Date.now();
+        localStorage.setItem("client_id_ga4", id);
+    }
+    return id;
 }
 
-/* =======================================================
-   2. BOLAS FLOTANTES (EL EFECTO QUE TE GUSTA)
-   ======================================================= */
-body::before,
-body::after {
-    content: "";
-    position: fixed;
-    z-index: -1; 
-    pointer-events: none;
-    
-    /* Estilo de las bolas */
-    border: 2px solid rgba(6, 182, 212, 0.15);
-    background: radial-gradient(circle, rgba(6, 182, 212, 0.01) 0%, transparent 60%);
-    box-shadow: 0 0 40px rgba(6, 182, 212, 0.05);
-    backdrop-filter: blur(3px);
-
-    /* Animación suave */
-    will-change: transform;
-    transition: transform 0.1s linear; 
+// 4️⃣ Enviar evento seguro al backend (Netlify Functions)
+function sendEventToBackend(eventName, params = {}) {
+    const clientId = generateClientID();
+    fetch("/.netlify/functions/track-event", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+            event_name: eventName,
+            params: params,
+            client_id: clientId
+        })
+    }).catch(err => console.error("Error enviando evento al backend:", err));
 }
 
-/* BOLA IZQUIERDA */
-body::before {
-    width: 25vw;   
-    height: 60vh;
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    top: 20vh;
-    left: -12vw;   
-    transform: rotate(calc(var(--scroll, 0) * 0.02deg)); 
-}
+// =======================================================
+// ----------------- SEGUIMIENTO PROYECTOS --------------
+// =======================================================
 
-/* BOLA DERECHA */
-body::after {
-    width: 30vw;
-    height: 30vw;
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    bottom: 5vh;
-    right: -10vw;
-    transform: translateY(calc(var(--scroll, 0) * -0.1px)) rotate(calc(var(--scroll, 0) * -0.01deg)); 
-}
+function trackProyecto(url) {
+    if (typeof dataLayer === 'undefined') {
+        console.error('Google Tag Manager (dataLayer) no está inicializado.');
+        return;
+    }
 
-/* =======================================================
-   3. COMPONENTES DE TU WEB (ORIGINALES)
-   ======================================================= */
+    try {
+        const urlObj = new URL(url);
+        const proyectoId = urlObj.searchParams.get('p') || 'sin-id';
 
-/* EFECTO DE VIDRIO ESMERILADO (Header) */
-.glass-header {
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
+        dataLayer.push({
+            'event': 'proyecto_visto',
+            'id_proyecto': proyectoId
+        });
+        console.log('✅ Evento manual "proyecto_visto" disparado con ID:', proyectoId);
 
-/* TARJETAS (Card Pro) */
-.card-pro {
-    background-color: #F8FAFC;
-    border: 1px solid #e5e7eb;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-}
-
-/* INTERACCIÓN PROYECTOS (HOVER + GLOW) */
-.clickable-card:hover {
-    cursor: pointer;
-    transform: translateY(-8px); /* Salto visible */
-    border-color: var(--color-cian);
-    box-shadow: 0 15px 30px rgba(6, 182, 212, 0.15), 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-/* TÍTULOS CON LÍNEA */
-.section-title {
-    position: relative;
-    display: inline-block;
-    padding-bottom: 0.5rem;
-}
-.section-title::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 3px;
-    background-color: var(--color-cian);
-    border-radius: 9999px;
-}
-
-/* BOTONES CIAN */
-.btn-cian {
-    background-image: linear-gradient(to right, #06b6d4, #38bdf8);
-    color: white;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px var(--color-shadow-light);
-}
-.btn-cian:hover {
-    transform: translateY(-3px) scale(1.02); 
-    box-shadow: 0 7px 20px rgba(6, 182, 212, 0.4); 
-}
-
-/* BOTÓN FLOTANTE */
-.floating-button {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 50;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  width: 64px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: linear-gradient(to right, #06b6d4, #38bdf8);
-  box-shadow: none;
-  color: white;
-  cursor: pointer;
-}
-.floating-button.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.floating-button:hover {
-  transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.6);
-}
-
-/* OTROS ESTILOS MENORES (Títulos proyectos, Skills) */
-.project-name-title {
-    font-weight: 800;
-    color: #1f2937;
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-}
-.skill-list-group {
-    background-color: #ffffff;
-    border-radius: 0.75rem;
-    padding: 1.5rem;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-    min-height: 220px;
-}
-.skill-icon {
-    color: #06B6D4;
-    margin-right: 0.75rem;
-    flex-shrink: 0;
-    font-size: 20px;
-    line-height: 1.2;
-}
-
-/* =======================================================
-   4. ANIMACIÓN SCROLL REVEAL (NUEVO)
-   ======================================================= */
-.reveal {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 1s ease-out;
-}
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* =======================================================
-   5. AJUSTES DE SEGURIDAD (MODO OSCURO Y MÓVIL)
-   ======================================================= */
-
-/* Tooltip oculto en móvil */
-@media (hover: none) {
-    .floating-button::after {
-        display: none !important;
+        if (typeof gtag === "function") {
+            gtag('event', 'proyecto_visto', { 'id_proyecto': proyectoId });
+        }
+    } catch (e) {
+        console.error('Error al rastrear el proyecto:', e);
     }
 }
 
-/* FORZADO DE COLORES PARA MODO OSCURO (CRÍTICO PARA QUE SE VEA BIEN) */
-@media (prefers-color-scheme: dark) {
-  /* Fondo general */
-  body {
-    background-color: #F3F4F6 !important; 
-    color: #1f2937 !important; 
-  }
-  /* Header */
-  .glass-header {
-    background-color: rgba(255, 255, 255, 0.95) !important;
-  }
-  .glass-header span.text-gray-800 {
-    color: #1f2937 !important; 
-  }
-  /* Enlaces menú */
-  .nav-links a {
-    color: #4b5563 !important; 
-  }
-  /* Tarjetas blancas */
-  .card-pro,
-  .bg-white {
-    background-color: #ffffff !important;
-    border-color: #e5e7eb !important;
-  }
-  /* Textos oscuros forzados */
-  h1, h2, h3, h4,
-  .text-gray-900,
-  .text-gray-800 {
-    color: #1f2937 !important; 
-  }
-  p, 
-  .text-gray-600,
-  .text-gray-500 {
-    color: #4b5563 !important; 
-  }
-  /* Botones carrusel */
-  #carousel-prev,
-  #carousel-next {
-    background-color: #ffffff !important; 
-    color: #374151 !important; 
-    border: 1px solid #e5e7eb !important;
-  }
+// =======================================================
+// ----------------- MENÚ MÓVIL (TU VERSIÓN ORIGINAL) ---
+// =======================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function toggleMenu() {
+        if (!mobileMenu || !menuToggle) return;
+
+        const isHidden = mobileMenu.classList.toggle('invisible');
+        mobileMenu.classList.toggle('opacity-0');
+        mobileMenu.classList.toggle('scale-95');
+        mobileMenu.classList.toggle('opacity-100', !isHidden);
+        mobileMenu.classList.toggle('scale-100', !isHidden);
+
+        const icon = menuToggle.querySelector('i');
+        if (icon) {
+            if (mobileMenu.classList.contains('opacity-100')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+    }
+
+    if (menuToggle) menuToggle.addEventListener('click', toggleMenu);
+
+    if (mobileMenu) {
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('opacity-100')) toggleMenu();
+            });
+        });
+    }
+
+    document.addEventListener('click', (e) => {
+        if (!mobileMenu || !menuToggle) return;
+        if (mobileMenu.classList.contains('opacity-100')) {
+            const isClickInsideMenu = mobileMenu.contains(e.target);
+            const isClickOnToggle = menuToggle.contains(e.target);
+            if (!isClickInsideMenu && !isClickOnToggle) toggleMenu();
+        }
+    });
+});
+
+// =======================================================
+// ----------------- MODALES ----------------------------
+// =======================================================
+function openModal(modalId, iframeSrc) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+
+    if (typeof gtag === "function") {
+        gtag('event', 'proyecto_visto', { modal_id: modalId, iframe_src: iframeSrc });
+    }
+
+    let iframeId;
+    if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
+    else if (modalId === 'operational-insights-modal') iframeId = 'operational-dashboard-iframe';
+    else if (modalId === 'project-covid-modal') iframeId = 'project-covid-iframe';
+
+    const iframe = document.getElementById(iframeId);
+    if (iframe) {
+        const dataSrc = iframe.getAttribute('data-src');
+        iframe.src = dataSrc || iframeSrc || '';
+    }
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
 }
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+
+    modal.classList.remove('open');
+    setTimeout(() => {
+        if (!document.querySelector('.modal-overlay.open')) {
+            document.body.style.overflow = '';
+        }
+    }, 300);
+
+    let iframeId;
+    if (modalId === 'dashboard-marketing-modal') iframeId = 'dashboard-marketing-iframe';
+    else if (modalId === 'operational-insights-modal') iframeId = 'operational-dashboard-iframe';
+    else if (modalId === 'project-covid-modal') iframeId = 'project-covid-iframe';
+
+    if (iframeId) {
+        const iframe = document.getElementById(iframeId);
+        if (iframe) iframe.src = '';
+    }
+}
+
+// =======================================================
+// ----------------- TOOLTIP ----------------------------
+// =======================================================
+function hideFloatingTooltip() {
+    const button = document.getElementById('floating-contact-button');
+    if (!button) return;
+    button.blur();
+    const originalTooltip = button.getAttribute('data-tooltip');
+    button.setAttribute('data-tooltip', '');
+    setTimeout(() => button.setAttribute('data-tooltip', originalTooltip), 100);
+}
+
+// =======================================================
+// ----------------- CARRUSEL ---------------------------
+// =======================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const nextBtn = document.getElementById('carousel-next');
+    const prevBtn = document.getElementById('carousel-prev');
+    const viewport = document.getElementById('carousel-viewport');
+
+    function scrollCarousel(direction) {
+        if (!viewport) return;
+        const firstCard = viewport.querySelector('.carousel-item');
+        if (!firstCard) return;
+        const gap = 24;
+        const scrollAmount = firstCard.offsetWidth + gap;
+        viewport.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+    }
+
+    if (nextBtn) nextBtn.addEventListener('click', () => scrollCarousel(1));
+    if (prevBtn) prevBtn.addEventListener('click', () => scrollCarousel(-1));
+});
+
+// =======================================================
+// ----------------- BANNER DE COOKIES ------------------
+// =======================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('cookie-consent-wrapper');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const rejectBtn = document.getElementById('reject-cookies');
+
+    const consent = localStorage.getItem('cookieConsent');
+
+    // 1. COMPROBAR AL CARGAR
+    if (consent === 'granted') {
+        if (typeof gtag === 'function') {
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted',
+                'ad_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted'
+            });
+        }
+        loadGA4();
+        if (banner) banner.classList.add('hidden');
+
+    } else if (consent === 'denied') {
+        if (banner) banner.classList.add('hidden');
+    } else {
+        if (banner) {
+            banner.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    // 2. BOTÓN ACEPTAR
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'granted');
+
+            if (typeof gtag === 'function') {
+                gtag('consent', 'update', {
+                    'analytics_storage': 'granted',
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted'
+                });
+            }
+
+            loadGA4();
+            sendEventToBackend('cookie_accept');
+            
+            if (banner) banner.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+    }
+
+    // 3. BOTÓN RECHAZAR
+    if (rejectBtn) {
+        rejectBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'denied');
+            sendEventToBackend('cookie_reject');
+            
+            if (banner) banner.classList.add('hidden');
+            document.body.style.overflow = '';
+            console.log("❌ Usuario rechazó cookies (Analytics bloqueado)");
+        });
+    }
+});
+
+// =======================================================
+// ----------------- BOTÓN FLOTANTE --------------------
+// =======================================================
+document.addEventListener("DOMContentLoaded", () => {
+    const button = document.querySelector(".floating-button");
+    const intro = document.querySelector("#intro");
+    const header = document.querySelector("#main-header");
+    if (!button || !intro) return;
+
+    function checkButtonVisibility() {
+        const introRect = intro.getBoundingClientRect();
+        const headerHeight = header ? header.offsetHeight : 0;
+        const shouldShow = (introRect.bottom - headerHeight) <= 0;
+        if (shouldShow) button.classList.add("visible");
+        else button.classList.remove("visible");
+    }
+
+    checkButtonVisibility();
+    window.addEventListener("scroll", () => requestAnimationFrame(checkButtonVisibility), { passive: true });
+    window.addEventListener("resize", checkButtonVisibility);
+});
+
+// =======================================================
+// ----------------- 🆕 ANIMACIONES VISUALES ------------
+// // =======================================================
+document.addEventListener('DOMContentLoaded', () => {
+    const reveals = document.querySelectorAll('.reveal');
+
+    function handleVisualEffects() {
+        const scrollY = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+
+        // 1. MOVER LAS BOLAS (Parallax)
+        // Esto le dice al CSS cuánto has bajado para que gire las bolas
+        document.body.style.setProperty('--scroll', scrollY);
+
+        // 2. APARECER TEXTO (Scroll Reveal)
+        reveals.forEach((reveal) => {
+            const elementTop = reveal.getBoundingClientRect().top;
+            if (elementTop < windowHeight - 100) {
+                reveal.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', handleVisualEffects);
+    handleVisualEffects(); // Ejecutar al inicio para comprobar
+});
+
+// Cerrar modales si se hace clic fuera (Global)
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal-overlay')) {
+        closeModal(event.target.id);
+    }
+};
