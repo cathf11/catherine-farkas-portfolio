@@ -848,3 +848,20 @@ body::after {
     
     border-color: rgba(6, 182, 212, 0.25);
 }
+
+/* =========================================
+   ANIMACIÓN SCROLL REVEAL (LO QUE FALTA)
+   ========================================= */
+
+/* 1. Estado inicial: Oculto y un poco más abajo */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px); /* Empieza 50px más abajo */
+    transition: all 1s ease-out; /* Tarda 1 segundo en colocarse */
+}
+
+/* 2. Estado final: Visible y en su sitio */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
