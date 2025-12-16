@@ -42,12 +42,11 @@ function openModal(modalId, iframeSrc) {
         if (iframe) iframe.src = iframeSrc;
     }
     
-    modal.style.display = 'flex'; // Asegurar display flex
-    // Pequeño timeout para permitir la transición de opacidad
+    modal.style.display = 'flex'; 
     setTimeout(() => {
         modal.classList.add('open');
     }, 10);
-    document.body.style.overflow = 'hidden'; // Bloquear scroll fondo
+    document.body.style.overflow = 'hidden'; 
 }
 
 function closeModal(modalId) {
@@ -56,25 +55,39 @@ function closeModal(modalId) {
     
     modal.classList.remove('open');
     
-    // Esperar a que termine la animación para ocultarlo
     setTimeout(() => {
         modal.style.display = 'none';
-        
-        // Limpiar src del iframe para detener videos
         const iframes = modal.getElementsByTagName('iframe');
         if (iframes.length > 0) {
             iframes[0].src = '';
         }
-        document.body.style.overflow = ''; // Reactivar scroll
+        document.body.style.overflow = ''; 
     }, 300);
 }
 
 /* =======================================================
-   3. ANIMACIONES Y LÓGICA DE PÁGINA (Al cargar)
+   3. LÓGICA DE PÁGINA (DOM LISTENER)
    ======================================================= */
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- A. GESTIÓN DE COOKIES ---
+    // --- A. CARRUSEL BLOG (¡ARREGLADO!) ---
+    const carouselViewport = document.getElementById('carousel-viewport');
+    const prevBtn = document.getElementById('carousel-prev');
+    const nextBtn = document.getElementById('carousel-next');
+
+    if (carouselViewport && prevBtn && nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            // Desplaza 300px a la derecha suavemente
+            carouselViewport.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            // Desplaza 300px a la izquierda suavemente
+            carouselViewport.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+    }
+
+    // --- B. GESTIÓN DE COOKIES ---
     const banner = document.getElementById('cookie-consent-banner');
     const wrapper = document.getElementById('cookie-consent-wrapper');
     const acceptBtn = document.getElementById('accept-cookies');
@@ -106,21 +119,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- B. BOTÓN FLOTANTE ---
+    // --- C. BOTÓN FLOTANTE ---
     const floatBtn = document.querySelector(".floating-button");
     const intro = document.querySelector("#intro");
     
     function checkButtonVisibility() {
         if (!floatBtn || !intro) return;
         const introBottom = intro.getBoundingClientRect().bottom;
-        if (introBottom <= 100) { // Aparece al pasar la intro
+        if (introBottom <= 100) { 
             floatBtn.classList.add("visible");
         } else {
             floatBtn.classList.remove("visible");
         }
     }
 
-    // --- C. SCROLL REVEAL (SOLUCIÓN "IMÁGENES QUE NO SALEN") ---
+    // --- D. SCROLL REVEAL ---
     const reveals = document.querySelectorAll('.reveal');
     function revealOnScroll() {
         const windowHeight = window.innerHeight;
@@ -134,13 +147,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- D. PARALLAX FIGURAS (SOLUCIÓN "FIGURAS QUE NO SE MUEVEN") ---
+    // --- E. PARALLAX ---
     function parallaxEffect() {
-        // Actualiza la variable CSS --scroll con la posición actual
         document.body.style.setProperty('--scroll', window.pageYOffset);
     }
 
-    // EVENT LISTENERS UNIFICADOS
+    // EVENTOS SCROLL
     window.addEventListener('scroll', () => {
         checkButtonVisibility();
         revealOnScroll();
@@ -152,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealOnScroll();
 });
 
-// Función global para cerrar modales al hacer clic fuera
+// Cerrar modales al hacer clic fuera
 window.onclick = function(event) {
     if (event.target.classList.contains('modal-overlay')) {
         closeModal(event.target.id);
